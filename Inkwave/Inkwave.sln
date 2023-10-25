@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inkwave.WebAPI", "Inkwave.Api\Inkwave.WebAPI.csproj", "{CA97DD50-C675-4017-BFF6-62AA075E5FC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inkwave.WebAPI", "Inkwave.Api\Inkwave.WebAPI.csproj", "{CA97DD50-C675-4017-BFF6-62AA075E5FC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inkwave.Domain", "Inkwave.Domain\Inkwave.Domain.csproj", "{69517B6A-FCC9-4869-AF24-CCE740CD067A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inkwave.Domain", "Inkwave.Domain\Inkwave.Domain.csproj", "{69517B6A-FCC9-4869-AF24-CCE740CD067A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inkwave.Application", "Inkwave.Application\Inkwave.Application.csproj", "{CD3861FE-01CF-467C-8080-AC23D394818F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inkwave.Application", "Inkwave.Application\Inkwave.Application.csproj", "{CD3861FE-01CF-467C-8080-AC23D394818F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inkwave.Infrastructure", "Inkwave.Infrastructure\Inkwave.Infrastructure.csproj", "{E1F72F81-A379-4D22-9B66-B7C16A634E77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inkwave.Infrastructure", "Inkwave.Infrastructure\Inkwave.Infrastructure.csproj", "{E1F72F81-A379-4D22-9B66-B7C16A634E77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inkwave.Presentation", "Inkwave.Presentation\Inkwave.Presentation.csproj", "{72D4A1F4-0046-4394-BB39-E871E667BB93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inkwave.Persistence", "Inkwave.Presentation\Inkwave.Persistence.csproj", "{72D4A1F4-0046-4394-BB39-E871E667BB93}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{6C582767-ADC7-4AD7-8B19-4DF2B8D30D99}"
 EndProject
@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{ADB90E17-D214-4DF1-9EA6-52F3552DA179}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inkwave.Shared", "Inkwave.Shared\Inkwave.Shared.csproj", "{A248098E-B3AD-4945-9905-67428B859B8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inkwave.Shared", "Inkwave.Shared\Inkwave.Shared.csproj", "{A248098E-B3AD-4945-9905-67428B859B8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
