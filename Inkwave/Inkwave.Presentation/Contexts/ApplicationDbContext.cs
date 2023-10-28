@@ -20,6 +20,9 @@ namespace Inkwave.Persistence.Contexts
         }
 
         public DbSet<User> Users => Set<User>();
+        public DbSet<Item> Items => Set<Item>();
+        public DbSet<Category> Categories => Set<Category>();
+        public DbSet<SubDescription> SubDescriptions => Set<SubDescription>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
