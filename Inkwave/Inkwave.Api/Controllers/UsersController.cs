@@ -1,14 +1,14 @@
-﻿using Inkwave.Application.Features.Users.Commands.CreateUser;
-using Inkwave.Application.Features.Users.Commands.DeleteUser;
+﻿using Inkwave.Application.Features.Users.Commands.DeleteUser;
 using Inkwave.Application.Features.Users.Commands.UpdateUser;
 using Inkwave.Application.Features.Users.Queries.GetUsersWithPagination;
 using Inkwave.Shared;
 using MediatR;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Inkwave.WebAPI.Controllers
 {
+    [Authorize]
     public class UsersController : ApiControllerBase
     {
         private readonly IMediator _mediator;
@@ -48,11 +48,7 @@ namespace Inkwave.WebAPI.Controllers
             return BadRequest(errorMessages);
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Result<Guid>>> Create(CreateUserCommand command)
-        {
-            return await _mediator.Send(command);
-        }
+       
 
         [HttpPut("{id}")]
         public async Task<ActionResult<Result<Guid>>> Update(Guid id, UpdateUserCommand command)

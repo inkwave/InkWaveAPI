@@ -16,3 +16,7 @@ public class User : BaseAuditableEntity
     public string status { get; set; } = string.Empty;
     public string PhotoUrl { get; set; } = string.Empty;
 }
+public class Claims : BaseEntity
+{
+    public string Description { get; set; } = string.Empty;
+}

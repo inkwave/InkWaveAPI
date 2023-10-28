@@ -16,7 +16,6 @@ namespace Inkwave.Persistence.Repositories
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
-
         public IGenericRepository<T> Repository<T>() where T : BaseAuditableEntity
         {
             if (_repositories == null)
@@ -33,7 +32,7 @@ namespace Inkwave.Persistence.Repositories
                 _repositories.Add(type, repositoryInstance);
             }
 
-            return (IGenericRepository<T>) _repositories[type];
+            return (IGenericRepository<T>)_repositories[type];
         }
 
         public Task Rollback()

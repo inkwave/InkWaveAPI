@@ -19,4 +19,9 @@
     <ProjectReference Include="..\Inkwave.Shared\Inkwave.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Users\Queries\SignOut\" />
+    <Folder Include="Features\Users\Queries\RefreshToken\" />
+  </ItemGroup>
+
 </Project>
