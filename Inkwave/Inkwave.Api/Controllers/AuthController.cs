@@ -1,11 +1,12 @@
 ﻿using Inkwave.Application.Features.Users.Commands.CreateUser;
 using Inkwave.Application.Features.Users.Commands.LoginUser;
 using Inkwave.Application.Features.Users.Commands.RefreshToken;
+using Inkwave.Application.Interfaces;
 using Inkwave.Domain.Authentication;
+using Inkwave.Infrastructure.Services;
 using Inkwave.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Inkwave.WebAPI.Controllers
 {
@@ -14,10 +15,12 @@ namespace Inkwave.WebAPI.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IEmailService emailService;
 
-        public AuthController(IMediator mediator)
+        public AuthController(IMediator mediator, IEmailService emailService)
         {
             _mediator = mediator;
+            this.emailService = emailService;
         }
         [HttpPost("Register")]
         public async Task<ActionResult<Result<Guid>>> Create(CreateUserCommand command)
@@ -36,6 +39,7 @@ namespace Inkwave.WebAPI.Controllers
         {
             return await _mediator.Send(command);
         }
+
 
     }
 }
