@@ -25,7 +25,7 @@ namespace Inkwave.Persistence.Extensions
 
         public static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
+            var connectionString = configuration.GetConnectionString("HostConnection");
 
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseSqlServer(connectionString,

@@ -13,7 +13,8 @@ public class Item : BaseAuditableEntity
     public double Quantity { get; set; }
     public string Image { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
-    public SubDescription SubDescription { get; set; } = new SubDescription();
+    public Guid? SubDescriptionId { get; set; }
+    public SubDescription? SubDescription { get; set; }
     public string Tags { get; set; } = string.Empty;
     public Guid CategoryId { get; set; }
     public Category? Category { get; set; }

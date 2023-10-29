@@ -1,7 +1,9 @@
-﻿namespace Inkwave.Domain.Entities;
+﻿using Inkwave.Domain.Common;
+
+namespace Inkwave.Domain.Entities;
 
 
-public class SubDescription
+public class SubDescription: BaseEntity
 {
     public string ISBN { get; set; } = string.Empty;
     public string Author { get; set; } = string.Empty;
