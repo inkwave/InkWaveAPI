@@ -1,22 +1,17 @@
-﻿using Inkwave.Domain.Common;
+﻿namespace Inkwave.Domain.Entities;
 
-namespace Inkwave.Domain.Entities
 
+public class SubDescription
 {
-    public class SubDescription
-    {
-        public string ISBN { get; set; }
-        public string Author { get; set; }
-        public string Publisher { get; set; }
-        public string Year { get; set; }
-        public string Edition { get; set; }
-        public string Pages { get; set; }
-        public string Language { get; set; }
-        public string Weight { get; set; }
-        public string Category { get; set; }
-        public string SubCategory { get; set; }
-        public string Tags { get; set; }
-
-
-    }
+    public string ISBN { get; set; } = string.Empty;
+    public string Author { get; set; } = string.Empty;
+    public string Publisher { get; set; } = string.Empty;
+    public string Year { get; set; } = string.Empty;
+    public string Edition { get; set; } = string.Empty;
+    public string Pages { get; set; } = string.Empty;
+    public string Language { get; set; } = string.Empty;
+    public string Weight { get; set; } = string.Empty;
+    public string Category { get; set; } = string.Empty;
+    public string SubCategory { get; set; } = string.Empty;
+    public string Tags { get; set; } = string.Empty;
 }
