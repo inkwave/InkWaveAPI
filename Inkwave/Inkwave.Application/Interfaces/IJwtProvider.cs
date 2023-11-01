@@ -1,5 +1,5 @@
 ﻿using Inkwave.Domain.Authentication;
-using Inkwave.Domain.Entities;
+using Inkwave.Domain.User;
 using System.Security.Claims;
 
 namespace Inkwave.Application.Interfaces;

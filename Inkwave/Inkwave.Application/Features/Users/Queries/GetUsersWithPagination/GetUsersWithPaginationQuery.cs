@@ -3,7 +3,7 @@ using AutoMapper.QueryableExtensions;
 
 using Inkwave.Application.Extensions;
 using Inkwave.Application.Interfaces.Repositories;
-using Inkwave.Domain.Entities;
+using Inkwave.Domain.User;
 using Inkwave.Shared;
 using MediatR;
 
@@ -37,7 +37,7 @@ internal class GetUsersWithPaginationQueryHandler : IRequestHandler<GetUsersWith
     public async Task<PaginatedResult<GetUsersWithPaginationDto>> Handle(GetUsersWithPaginationQuery query, CancellationToken cancellationToken)
     {
         return await _unitOfWork.Repository<User>().Entities
-               .OrderBy(x => x.Name)
+               .OrderBy(x => x.FirstName)
                .ProjectTo<GetUsersWithPaginationDto>(_mapper.ConfigurationProvider)
                .ToPaginatedListAsync(query.PageNumber, query.PageSize, cancellationToken);
     }

@@ -1,6 +1,7 @@
 ﻿using Inkwave.Domain.Common;
 using Inkwave.Domain.Common.Interfaces;
-using Inkwave.Domain.Entities;
+using Inkwave.Domain.Item;
+using Inkwave.Domain.User;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 

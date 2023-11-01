@@ -1,6 +1,6 @@
 ﻿using Inkwave.Application.Interfaces;
 using Inkwave.Domain.Authentication;
-using Inkwave.Domain.Entities;
+using Inkwave.Domain.User;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -28,7 +28,8 @@ internal class JwtProvider : IJwtProvider
             {
                     new Claim("Id", user.Id.ToString()),
                     new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                    new Claim(JwtRegisteredClaimNames.Name, user.Name),
+                    new Claim(JwtRegisteredClaimNames.Name, user.FirstName),
+                    new Claim(JwtRegisteredClaimNames.FamilyName, user.LastName),
                 };
         var SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
         var jwtSecurityToken = new JwtSecurityToken(jwtSettings.Issuer, jwtSettings.Audience, Claims, null, DateTime.Now.AddHours(2), SigningCredentials);

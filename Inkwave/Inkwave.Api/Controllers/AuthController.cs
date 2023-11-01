@@ -1,4 +1,5 @@
-﻿using Inkwave.Application.Features.Users.Commands.CreateUser;
+﻿using Inkwave.Application.Features.Users.Commands.ActiveUser;
+using Inkwave.Application.Features.Users.Commands.CreateUser;
 using Inkwave.Application.Features.Users.Commands.LoginUser;
 using Inkwave.Application.Features.Users.Commands.RefreshToken;
 using Inkwave.Application.Interfaces;
@@ -24,6 +25,12 @@ namespace Inkwave.WebAPI.Controllers
         }
         [HttpPost("Register")]
         public async Task<ActionResult<Result<Guid>>> Create(CreateUserCommand command)
+        {
+            return await _mediator.Send(command);
+        }
+
+        [HttpPost("ActiveUser")]
+        public async Task<ActionResult<Result<Guid>>> ActiveUser(ActiveUserCommand command)
         {
             return await _mediator.Send(command);
         }

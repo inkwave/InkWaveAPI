@@ -7,5 +7,6 @@ namespace Inkwave.Application.DTOs.Email
         public string Subject { get; set; }
         public string Body { get; set; }
         public string From { get; set; }
+        public bool IsBodyHtml { get; set; }
     }
 }

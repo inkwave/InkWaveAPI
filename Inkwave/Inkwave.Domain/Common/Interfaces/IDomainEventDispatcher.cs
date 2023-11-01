@@ -1,6 +1,7 @@
-﻿namespace Inkwave.Domain.Common.Interfaces;
+﻿using MediatR;
+namespace Inkwave.Domain.Common.Interfaces;
 
-public interface IDomainEventDispatcher
+public interface IDomainEventDispatcher : INotification
 {
     Task DispatchAndClearEvents(IEnumerable<BaseEntity> entitiesWithEvents);
 }

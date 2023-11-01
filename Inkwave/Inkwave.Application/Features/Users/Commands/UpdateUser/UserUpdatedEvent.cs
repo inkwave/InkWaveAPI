@@ -1,5 +1,5 @@
 ﻿using Inkwave.Domain.Common;
-using Inkwave.Domain.Entities;
+using Inkwave.Domain.User;
 
 namespace Inkwave.Application.Features.Users.Commands.UpdateUser
 {

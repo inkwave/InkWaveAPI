@@ -4,11 +4,11 @@ using AutoMapper.QueryableExtensions;
 using Inkwave.Application.Extensions;
 using Inkwave.Application.Interfaces.Repositories;
 using Inkwave.Domain.Common.Interfaces;
-using Inkwave.Domain.Entities;
+using Inkwave.Domain.User;
 using Inkwave.Shared;
 using MediatR;
 
-using Microsoft.EntityFrameworkCore; 
+using Microsoft.EntityFrameworkCore;
 
 namespace Inkwave.Application.Features.Users.Queries.GetUsersWithPagination
 {

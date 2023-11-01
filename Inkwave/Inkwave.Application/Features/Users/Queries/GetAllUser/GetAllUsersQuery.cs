@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Inkwave.Application.Interfaces.Repositories;
-using Inkwave.Domain.Entities;
+using Inkwave.Domain.User;
 using Inkwave.Shared;
 using MediatR;
 

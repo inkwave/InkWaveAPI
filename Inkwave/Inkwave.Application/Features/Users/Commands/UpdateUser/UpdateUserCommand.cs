@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Inkwave.Application.Interfaces.Repositories;
-using Inkwave.Domain.Entities;
+using Inkwave.Domain.User;
 using Inkwave.Shared;
 
 using MediatR;
@@ -10,7 +10,8 @@ namespace Inkwave.Application.Features.Users.Commands.UpdateUser
     public record UpdateUserCommand : IRequest<Result<Guid>>
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string Email { get; set; }
     }
 
@@ -30,7 +31,8 @@ namespace Inkwave.Application.Features.Users.Commands.UpdateUser
             var User = await _unitOfWork.Repository<User>().GetByIdAsync(command.Id);
             if (User != null)
             {
-                User.Name = command.Name;
+                User.FirstName = command.FirstName;
+                User.LastName = command.LastName;
                 User.Email = command.Email;
 
                 await _unitOfWork.Repository<User>().UpdateAsync(User);
