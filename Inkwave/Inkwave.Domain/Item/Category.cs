@@ -11,6 +11,7 @@ public class Category : BaseAuditableEntity
     public string Image { get; set; } = string.Empty;
     public Guid? CategoryParentId { get; set; }
     public Category? CategoryParent { get; set; }
+    public ICollection<ItemCategory>? ItemCategorys { get; set; }
 
 }
 

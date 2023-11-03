@@ -20,7 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Users\Queries\SignOut\" />
+    <Folder Include="Features\Categorys\Commands\" />
+    <Folder Include="Features\Items\Commands\" />
     <Folder Include="Features\Users\Queries\RefreshToken\" />
   </ItemGroup>
 

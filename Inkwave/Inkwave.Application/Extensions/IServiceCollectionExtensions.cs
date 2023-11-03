@@ -1,7 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using Inkwave.Application.Behaviors;
 using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using FluentValidation;
 
 namespace Inkwave.Application.Extensions
 {
@@ -12,6 +13,7 @@ namespace Inkwave.Application.Extensions
             services.AddAutoMapper();
             services.AddMediator();
             services.AddValidators();
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         }
 
         private static void AddAutoMapper(this IServiceCollection services)
@@ -27,6 +29,6 @@ namespace Inkwave.Application.Extensions
         private static void AddValidators(this IServiceCollection services)
         {
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-        }        
+        }
     }
 }

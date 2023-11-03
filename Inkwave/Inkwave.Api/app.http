@@ -1,0 +1,10 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+
+@hostname=localhost
+@port=7214
+@host={{hostname}}:{{port}}
+GET https://{{host}}/api/Users
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjgxNTQxYmY4LThhMWEtNDZmYi1jZWM4LTA4ZGJkODlmYjljZSIsImVtYWlsIjoibSIsIm5hbWUiOiIiLCJmYW1pbHlfbmFtZSI6Im0iLCJleHAiOjE2OTg5NjUzOTAsImlzcyI6Iklua3dhdmUiLCJhdWQiOiJJbmt3YXZlIn0.O3N5v79Nf8F86nYNFaRwOnYpJ1YW6Wps-6BAkQ7LY5U
+###
+GET http://webstercassin1-001-site1.ftempurl.com/api/Users
+Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjgxNTQxYmY4LThhMWEtNDZmYi1jZWM4LTA4ZGJkODlmYjljZSIsImVtYWlsIjoibSIsIm5hbWUiOiIiLCJmYW1pbHlfbmFtZSI6Im0iLCJleHAiOjE2OTg5NjUzOTAsImlzcyI6Iklua3dhdmUiLCJhdWQiOiJJbmt3YXZlIn0.O3N5v79Nf8F86nYNFaRwOnYpJ1YW6Wps-6BAkQ7LY5U

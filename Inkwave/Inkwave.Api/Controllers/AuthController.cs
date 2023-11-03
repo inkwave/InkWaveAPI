@@ -4,7 +4,6 @@ using Inkwave.Application.Features.Users.Commands.LoginUser;
 using Inkwave.Application.Features.Users.Commands.RefreshToken;
 using Inkwave.Application.Interfaces;
 using Inkwave.Domain.Authentication;
-using Inkwave.Infrastructure.Services;
 using Inkwave.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

@@ -74,9 +74,6 @@ namespace Inkwave.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
@@ -128,11 +125,36 @@ namespace Inkwave.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
                     b.HasIndex("SubDescriptionId");
 
                     b.ToTable("Items");
+                });
+
+            modelBuilder.Entity("Inkwave.Domain.Item.ItemCategory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("ItemId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("ItemId");
+
+                    b.ToTable("ItemCategories");
                 });
 
             modelBuilder.Entity("Inkwave.Domain.Item.SubDescription", b =>
@@ -193,7 +215,7 @@ namespace Inkwave.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SubDescription");
+                    b.ToTable("SubDescriptions");
                 });
 
             modelBuilder.Entity("Inkwave.Domain.User.User", b =>
@@ -226,10 +248,18 @@ namespace Inkwave.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -279,19 +309,30 @@ namespace Inkwave.Persistence.Migrations
 
             modelBuilder.Entity("Inkwave.Domain.Item.Item", b =>
                 {
+                    b.HasOne("Inkwave.Domain.Item.SubDescription", "SubDescription")
+                        .WithMany()
+                        .HasForeignKey("SubDescriptionId");
+
+                    b.Navigation("SubDescription");
+                });
+
+            modelBuilder.Entity("Inkwave.Domain.Item.ItemCategory", b =>
+                {
                     b.HasOne("Inkwave.Domain.Item.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Inkwave.Domain.Item.SubDescription", "SubDescription")
+                    b.HasOne("Inkwave.Domain.Item.Item", "Item")
                         .WithMany()
-                        .HasForeignKey("SubDescriptionId");
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Category");
 
-                    b.Navigation("SubDescription");
+                    b.Navigation("Item");
                 });
 #pragma warning restore 612, 618
         }

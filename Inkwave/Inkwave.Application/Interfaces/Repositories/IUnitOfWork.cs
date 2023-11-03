@@ -4,7 +4,7 @@ namespace Inkwave.Application.Interfaces.Repositories
 {
     public interface IUnitOfWork : IDisposable
     {
-        IGenericRepository<T> Repository<T>() where T : BaseAuditableEntity;
+        IGenericRepository<T> Repository<T>() where T : BaseEntity;
 
         Task<int> Save(CancellationToken cancellationToken);
 

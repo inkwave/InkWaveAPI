@@ -12,7 +12,7 @@ namespace Inkwave.Shared
 
         //public List<ValidationResult> ValidationErrors { get; set; }
 
-        public Exception Exception { get; set; }
+        public Exception Exception { get; set; } = new Exception();
 
         public int Code { get; set; }
 
@@ -22,15 +22,15 @@ namespace Inkwave.Shared
 
         public static Result<T> Success()
         {
-            return new Result<T> 
-            { 
+            return new Result<T>
+            {
                 Succeeded = true
             };
         }
 
         public static Result<T> Success(string message)
         {
-            return new Result<T> 
+            return new Result<T>
             {
                 Succeeded = true,
                 Messages = new List<string> { message }
@@ -120,7 +120,7 @@ namespace Inkwave.Shared
             return new Result<T>
             {
                 Succeeded = false,
-                Exception = exception 
+                Exception = exception
             };
         }
 

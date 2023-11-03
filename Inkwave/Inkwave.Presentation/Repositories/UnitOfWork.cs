@@ -16,7 +16,7 @@ namespace Inkwave.Persistence.Repositories
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
-        public IGenericRepository<T> Repository<T>() where T : BaseAuditableEntity
+        public IGenericRepository<T> Repository<T>() where T : BaseEntity
         {
             if (_repositories == null)
                 _repositories = new Hashtable();

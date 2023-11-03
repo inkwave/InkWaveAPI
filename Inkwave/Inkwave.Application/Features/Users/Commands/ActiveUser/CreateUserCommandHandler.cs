@@ -18,9 +18,12 @@ namespace Inkwave.Application.Features.Users.Commands.ActiveUser
         public async Task<Result<Guid>> Handle(ActiveUserCommand command, CancellationToken cancellationToken)
         {
             var User = await _unitOfWork.Repository<User>().Entities.FirstOrDefaultAsync(x => x.Email.Trim().ToLower() == command.Email.Trim().ToLower());
+
             if (User == null) return await Result<Guid>.FailureAsync("user hot found");
+
             if (User.ActiveCode != command.Code)
-                return await Result<Guid>.FailureAsync("Error in the code");
+                return await Result<Guid>.FailureAsync("error in the code");
+
             User.Active = true;
             await _unitOfWork.Repository<User>().UpdateAsync(User);
             User.AddDomainEvent(new SendWelcomUserCodeDomainEvent(User));

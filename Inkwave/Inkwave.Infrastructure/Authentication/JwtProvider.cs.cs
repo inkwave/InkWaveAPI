@@ -32,7 +32,7 @@ internal class JwtProvider : IJwtProvider
                     new Claim(JwtRegisteredClaimNames.FamilyName, user.LastName),
                 };
         var SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
-        var jwtSecurityToken = new JwtSecurityToken(jwtSettings.Issuer, jwtSettings.Audience, Claims, null, DateTime.Now.AddHours(2), SigningCredentials);
+        var jwtSecurityToken = new JwtSecurityToken(jwtSettings.Issuer, jwtSettings.Audience, Claims, null, DateTime.UtcNow.AddHours(2), SigningCredentials);
         var jwtTokenHandler = new JwtSecurityTokenHandler();
         var jwtToken = jwtTokenHandler.WriteToken(jwtSecurityToken);
 

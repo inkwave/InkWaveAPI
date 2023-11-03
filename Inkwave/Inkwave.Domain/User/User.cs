@@ -15,7 +15,10 @@ public class User : BaseAuditableEntity
     public required string LastName { get; set; } = string.Empty;
     public string UserName { get; set; } = string.Empty;
     [Required]
+    [EmailAddress]
     public required string Email { get; set; } = string.Empty;
+    public string Phone { get; set; } = string.Empty;
+    public string Gender { get; set; } = string.Empty;
     public byte[] passwordHash { get; set; }
     public byte[] passwordSalt { get; set; }
     public string RememberToken { get; set; } = string.Empty;
@@ -24,18 +27,19 @@ public class User : BaseAuditableEntity
     public string ActiveCode { get; set; } = string.Empty;
     public bool Active { get; set; } = false;
 
-    public static User CreateUser(string fname,string lname, string email, byte[] passwordHash, byte[] passwordSalt)
+    public static User CreateUser(string fname, string lname, string email, string phone, string gender, byte[] passwordHash, byte[] passwordSalt)
     {
         User user = new User()
         {
             FirstName = fname,
             LastName = lname,
             Email = email,
+            Phone = phone,
+            Gender = gender,
             passwordHash = passwordHash,
             passwordSalt = passwordSalt
         };
-        user.ActiveCode= System.Security.Cryptography.RandomNumberGenerator.GetInt32(0, 1000000).ToString("D6");
-
+        user.ActiveCode = System.Security.Cryptography.RandomNumberGenerator.GetInt32(0, 1000000).ToString("D6");
         return user;
     }
 }

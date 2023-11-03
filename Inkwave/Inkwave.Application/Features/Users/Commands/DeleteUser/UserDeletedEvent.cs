@@ -9,7 +9,7 @@ namespace Inkwave.Application.Features.Users.Commands.DeleteUser
 
         public UserDeletedEvent(User User)
         {
-            User = User;
+            this.User = User;
         }
     }
 }

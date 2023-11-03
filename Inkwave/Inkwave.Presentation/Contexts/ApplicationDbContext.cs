@@ -20,6 +20,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<User> Users => Set<User>();
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<Item> Items => Set<Item>();
+    public DbSet<SubDescription> SubDescriptions => Set<SubDescription>();
+    public DbSet<ItemCategory> ItemCategories => Set<ItemCategory>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

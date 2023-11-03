@@ -15,7 +15,11 @@ public static class IServiceCollectionExtensions
     public static void AddInfrastructureLayer(this IServiceCollection services)
     {
         services.AddServices();
-        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
+        services.AddAuthentication(x =>
+        {
+            x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer();
         services.ConfigureOptions<JwtOptionsSetup>();
         services.ConfigureOptions<JwtBearerOptionsSetup>();
         services.ConfigureOptions<MailSettingsSetup>();

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Inkwave.Persistence.Repositories
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : BaseAuditableEntity
+    public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         private readonly ApplicationDbContext _dbContext;
 

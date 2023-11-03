@@ -9,7 +9,7 @@ namespace Inkwave.Application.Features.Users.Commands.UpdateUser
 
         public UserUpdatedEvent(User User)
         {
-            User = User;
+            this.User = User;
         }
     }
 }

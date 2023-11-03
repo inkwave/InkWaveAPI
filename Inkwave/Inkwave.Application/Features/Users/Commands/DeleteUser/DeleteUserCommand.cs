@@ -18,7 +18,7 @@ namespace Inkwave.Application.Features.Users.Commands.DeleteUser
 
         public DeleteUserCommand(Guid id)
         {
-            Id = id; 
+            Id = id;
         }
     }
 
@@ -43,7 +43,7 @@ namespace Inkwave.Application.Features.Users.Commands.DeleteUser
 
                 await _unitOfWork.Save(cancellationToken);
 
-                return await Result<Guid>.SuccessAsync(User.Id, "Product Deleted");
+                return await Result<Guid>.SuccessAsync(User.Id, "User Deleted");
             }
             else
             {
