@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using Inkwave.Domain.Common.Interfaces;
+﻿using Inkwave.Domain.Common.Interfaces;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Inkwave.Domain.Common;
 
@@ -9,8 +9,6 @@ public abstract class BaseEntity : IEntity
 
     public Guid Id { get; set; }
 
-    public bool IsDeleted { get; set; }
-    public DateTime? DeletedOn { get; set; }
     [NotMapped]
     public IReadOnlyCollection<BaseEvent> DomainEvents => _domainEvents.AsReadOnly();
 

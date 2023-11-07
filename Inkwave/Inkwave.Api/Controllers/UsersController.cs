@@ -1,6 +1,7 @@
 ﻿using Inkwave.Application.Features.Users.Commands.DeleteUser;
 using Inkwave.Application.Features.Users.Commands.UpdateUser;
 using Inkwave.Application.Features.Users.Queries.GetUsersWithPagination;
+using Inkwave.Infrastructure.Authentication;
 using Inkwave.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -29,7 +30,15 @@ namespace Inkwave.WebAPI.Controllers
         {
             return await _mediator.Send(new GetUserByIdQuery(id));
         }
-
+        [HttpGet()]
+        [Route("GetMyInfo")]
+        public async Task<ActionResult<Result<GetUserByIdDto>>> GetMyInfo()
+        {
+            if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid UserId))
+                return await GetUsersById(UserId);
+            else
+                return Result<GetUserByIdDto>.Failure("Not Found");
+        }
         [HttpGet]
         [Route("paged")]
         public async Task<ActionResult<PaginatedResult<GetUsersWithPaginationDto>>> GetUsersWithPagination([FromQuery] GetUsersWithPaginationQuery query)
@@ -48,7 +57,7 @@ namespace Inkwave.WebAPI.Controllers
             return BadRequest(errorMessages);
         }
 
-       
+
 
         [HttpPut("{id}")]
         public async Task<ActionResult<Result<Guid>>> Update(Guid id, UpdateUserCommand command)

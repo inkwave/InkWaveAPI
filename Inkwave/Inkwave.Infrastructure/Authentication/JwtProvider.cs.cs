@@ -9,13 +9,12 @@ using System.Security.Claims;
 using System.Text;
 
 namespace Inkwave.Infrastructure.Authentication;
-
 internal class JwtProvider : IJwtProvider
 {
     private readonly JwtOptions jwtSettings;
     private readonly JwtBearerOptions jwtBearerOptions;
 
-    public JwtProvider(IOptions<JwtOptions> jwtSettings, IOptions <JwtBearerOptions>  jwtBearerOptions)
+    public JwtProvider(IOptions<JwtOptions> jwtSettings, IOptions<JwtBearerOptions> jwtBearerOptions)
     {
         this.jwtSettings = jwtSettings.Value;
         this.jwtBearerOptions = jwtBearerOptions.Value;
@@ -26,10 +25,10 @@ internal class JwtProvider : IJwtProvider
         var key = Encoding.UTF8.GetBytes(jwtSettings.SecretKey);
         var Claims = new Claim[]
             {
-                    new Claim("Id", user.Id.ToString()),
-                    new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                    new Claim(JwtRegisteredClaimNames.Name, user.FirstName),
-                    new Claim(JwtRegisteredClaimNames.FamilyName, user.LastName),
+                    new Claim(ClaimName.UserId, user.Id.ToString()),
+                    new Claim(ClaimName.Email, user.Email),
+                    new Claim(ClaimName.FirstName, user.FirstName),
+                    new Claim(ClaimName.LastName, user.LastName),
                 };
         var SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
         var jwtSecurityToken = new JwtSecurityToken(jwtSettings.Issuer, jwtSettings.Audience, Claims, null, DateTime.UtcNow.AddHours(2), SigningCredentials);
@@ -56,7 +55,7 @@ internal class JwtProvider : IJwtProvider
             Expiration = jwtSecurityToken.ValidTo
         };
     }
-    public ClaimsPrincipal?  GetPrincipalFromExpiredToken(string? token)
+    public ClaimsPrincipal? GetPrincipalFromExpiredToken(string? token)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var principal = tokenHandler.ValidateToken(token, jwtBearerOptions.TokenValidationParameters, out SecurityToken securityToken);

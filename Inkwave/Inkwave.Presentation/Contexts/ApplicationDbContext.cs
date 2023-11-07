@@ -1,4 +1,5 @@
-﻿using Inkwave.Domain.Common;
+﻿using Inkwave.Domain;
+using Inkwave.Domain.Common;
 using Inkwave.Domain.Common.Interfaces;
 using Inkwave.Domain.Item;
 using Inkwave.Domain.User;
@@ -22,6 +23,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<Item> Items => Set<Item>();
     public DbSet<SubDescription> SubDescriptions => Set<SubDescription>();
     public DbSet<ItemCategory> ItemCategories => Set<ItemCategory>();
+    public DbSet<Favourite> Favourites => Set<Favourite>();
+    public DbSet<Cart> Carts => Set<Cart>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

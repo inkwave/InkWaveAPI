@@ -11,4 +11,9 @@ public class ItemRepository : IItemRepository
     {
         _repository = repository;
     }
+
+    public Task<bool> ItemIsActive(Guid id)
+    {
+        throw new NotImplementedException();
+    }
 }

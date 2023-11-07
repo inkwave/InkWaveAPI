@@ -1,11 +1,9 @@
 ﻿using Inkwave.Application.Interfaces.Repositories;
 using Inkwave.Persistence.Contexts;
 using Inkwave.Persistence.Repositories;
-
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Inkwave.Persistence.Extensions
 {
@@ -36,9 +34,9 @@ namespace Inkwave.Persistence.Extensions
         {
             services
                 .AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork))
-                .AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-               // .AddTransient<IPlayerRepository, PlayerRepository>()
-                
+                .AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>))
+            .AddTransient<IFavouriteRepository, FavouriteRepository>();
+
         }
     }
 }
