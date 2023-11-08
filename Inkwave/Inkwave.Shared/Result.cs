@@ -191,6 +191,11 @@ namespace Inkwave.Shared
             return Task.FromResult(Failure(exception));
         }
 
+        public static Task<Result<Guid>> SuccessAsync(object id, string v)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         #endregion

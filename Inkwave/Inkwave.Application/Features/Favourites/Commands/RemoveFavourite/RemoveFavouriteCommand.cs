@@ -1,7 +1,8 @@
 ﻿using Inkwave.Shared;
 using MediatR;
 
-namespace Inkwave.Application.Features.Favourites.Commands.AddFavourite
+
+namespace inkwave.application.features.favourites.commands.addfavourite
 {
     public record RemoveFavouriteCommand : IRequest<Result<Guid>>
     {

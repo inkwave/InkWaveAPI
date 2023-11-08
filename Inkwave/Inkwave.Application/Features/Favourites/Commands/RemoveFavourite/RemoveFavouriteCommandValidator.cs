@@ -1,5 +1,6 @@
-﻿namespace Inkwave.Application.Features.Favourites.Commands.AddFavourite;
+﻿namespace Inkwave.Application.Features.Favourites.Commands.RemoveFavourite;
 using FluentValidation;
+using inkwave.application.features.favourites.commands.addfavourite;
 using Inkwave.Application.Interfaces.Repositories;
 using Inkwave.Domain.Item;
 using Inkwave.Domain.User;
@@ -11,6 +12,7 @@ public class RemoveFavouriteCommandValidator : AbstractValidator<RemoveFavourite
     public RemoveFavouriteCommandValidator(IUnitOfWork unitOfWork)
     {
         this.unitOfWork = unitOfWork;
+
 
         RuleFor(x => x.UserId)
             .NotEmpty()
@@ -41,3 +43,4 @@ public class RemoveFavouriteCommandValidator : AbstractValidator<RemoveFavourite
     }
 
 }
+

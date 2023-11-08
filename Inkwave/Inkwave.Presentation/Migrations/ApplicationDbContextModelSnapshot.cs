@@ -39,7 +39,7 @@ namespace Inkwave.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Carts");
+                    b.ToTable("Carts", (string)null);
                 });
 
             modelBuilder.Entity("Inkwave.Domain.Favourite", b =>
@@ -56,7 +56,7 @@ namespace Inkwave.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Favourites");
+                    b.ToTable("Favourites", (string)null);
                 });
 
             modelBuilder.Entity("Inkwave.Domain.Item.Category", b =>
@@ -102,7 +102,7 @@ namespace Inkwave.Persistence.Migrations
 
                     b.HasIndex("CategoryParentId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("Inkwave.Domain.Item.Item", b =>
@@ -164,7 +164,7 @@ namespace Inkwave.Persistence.Migrations
 
                     b.HasIndex("SubDescriptionId");
 
-                    b.ToTable("Items");
+                    b.ToTable("Items", (string)null);
                 });
 
             modelBuilder.Entity("Inkwave.Domain.Item.ItemCategory", b =>
@@ -185,7 +185,7 @@ namespace Inkwave.Persistence.Migrations
 
                     b.HasIndex("ItemId");
 
-                    b.ToTable("ItemCategories");
+                    b.ToTable("ItemCategories", (string)null);
                 });
 
             modelBuilder.Entity("Inkwave.Domain.Item.SubDescription", b =>
@@ -240,7 +240,7 @@ namespace Inkwave.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SubDescriptions");
+                    b.ToTable("SubDescriptions", (string)null);
                 });
 
             modelBuilder.Entity("Inkwave.Domain.User.User", b =>
@@ -320,7 +320,7 @@ namespace Inkwave.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("Inkwave.Domain.Item.Category", b =>

@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Categorys\Commands\" />
-    <Folder Include="Features\Favourites\Commands\RemoveFavourite\" />
     <Folder Include="Features\Favourites\Queries\GetMyFavourite\" />
     <Folder Include="Features\Items\Commands\" />
     <Folder Include="Features\Users\Queries\RefreshToken\" />

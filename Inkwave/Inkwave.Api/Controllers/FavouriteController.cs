@@ -13,7 +13,7 @@ namespace Inkwave.WebAPI.Controllers
             _mediator = mediator;
         }
         [HttpPost()]
-        public async Task<ActionResult<Result<Guid>>> AddFavourite(AddFavouriteCommand command)
+        public async Task<ActionResult<Result<Guid>>> AddFavourite(RemoveFavouriteCommand command)
         {
             return await _mediator.Send(command);
         }
