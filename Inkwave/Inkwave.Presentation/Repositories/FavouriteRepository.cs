@@ -22,7 +22,7 @@ namespace Inkwave.Persistence.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<bool> RemoveItemFavourite(Guid usetId, Guid itemId)
+        public Task RemoveItemFavourite(Guid usetId, Guid itemId)
         {
             throw new NotImplementedException();
         }

@@ -22,7 +22,7 @@ public class User : BaseAuditableEntity
     public byte[] passwordHash { get; set; }
     public byte[] passwordSalt { get; set; }
     public string RememberToken { get; set; } = string.Empty;
-    public string status { get; set; } = string.Empty;
+    public string status { get; set; } = "Customer";
     public string PhotoUrl { get; set; } = string.Empty;
     public string ActiveCode { get; set; } = string.Empty;
     public bool Active { get; set; } = false;

@@ -1,29 +1,41 @@
 ﻿using Inkwave.Application.Interfaces.Repositories;
 using Inkwave.Domain;
+using Inkwave.Domain.Item;
+using Microsoft.EntityFrameworkCore;
 
 namespace Inkwave.Persistence.Repositories
 {
     public class CartRepository : ICartRepository
     {
-        readonly IGenericRepository<Cart> genericRepository;
-        public CartRepository(IGenericRepository<Cart> genericRepository)
+        readonly IGenericRepository<Cart> cartRepository;
+        readonly IGenericRepository<Item> itemRepository;
+
+        public CartRepository(IGenericRepository<Cart> cartRepository, IGenericRepository<Item> itemRepository)
         {
-            this.genericRepository = genericRepository;
+            this.cartRepository = cartRepository;
+            this.itemRepository = itemRepository;
         }
 
         public Task<Cart> AddItemCart(Guid userId, Guid itemId, double quantity)
         {
-            throw new NotImplementedException();
+            var cart = Cart.Create(userId, itemId, quantity);
+            cartRepository.AddAsync(cart);
+            return Task.FromResult(cart);
         }
 
-        public Task<List<Cart>> GetCartByUserId(Guid userId)
+
+        public async Task<List<Item>> GetItemsCartByUserIdAsync(Guid userId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var UserItems = await cartRepository.Entities.Where(x => x.UserId == userId).Select(x => x.ItemId).ToListAsync();
+            return await itemRepository.Entities.Where(x => UserItems.Contains(x.Id)).ToListAsync(cancellationToken);
         }
 
-        public Task<bool> RemoveItemCart(Guid userId, Guid itemId)
+        public Task RemoveItemCart(Guid userId, Guid itemId)
         {
-            throw new NotImplementedException();
+            var cart = cartRepository.Entities.FirstOrDefault(x => x.UserId == userId && x.ItemId == itemId);
+            if (cart != null)
+                cartRepository.DeleteAsync(cart);
+            return Task.FromResult(cart);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using inkwave.application.features.favourites.commands.addfavourite;
-using Inkwave.Application.Interfaces.Repositories;
+﻿using Inkwave.Application.Interfaces.Repositories;
 using Inkwave.Shared;
 using MediatR;
 
@@ -18,10 +17,10 @@ namespace Inkwave.Application.Features.Favourites.Commands.RemoveFavourite
 
         public async Task<Result<Guid>> Handle(RemoveFavouriteCommand command, CancellationToken cancellationToken)
         {
-            var favourite = await favouriteRepository.RemoveItemFavourite(command.UserId, command.ItemId);
-            await unitOfWork.Save(cancellationToken);
-            if (favourite != null)
-                return await Result<Guid>.SuccessAsync(favourite.Id, "Remove Favourite.");
+            await favouriteRepository.RemoveItemFavourite(command.UserId, command.ItemId);
+            var result = await unitOfWork.Save(cancellationToken);
+            if (result > 0)
+                return await Result<Guid>.SuccessAsync(command.UserId, "Removed Favourite.");
             else
                 return await Result<Guid>.FailureAsync("error in the code");
         }

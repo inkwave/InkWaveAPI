@@ -28,23 +28,23 @@ namespace Inkwave.WebAPI.Controllers
             return await _mediator.Send(new GetItemByIdQuery(id));
         }
 
-        //[HttpGet]
-        //[Route("paged")]
-        //public async Task<ActionResult<PaginatedResult<GetItemsWithPaginationDto>>> GetItemsWithPagination([FromQuery] GetItemsWithPaginationQuery query)
-        //{
-        //    var validator = new GetItemsWithPaginationValidator();
+        [HttpGet]
+        [Route("paged")]
+        public async Task<ActionResult<PaginatedResult<GetItemsWithPaginationDto>>> GetItemsWithPagination([FromQuery] GetItemsWithPaginationQuery query)
+        {
+            var validator = new GetItemsWithPaginationValidator();
 
-        //    // Call Validate or ValidateAsync and pass the object which needs to be validated
-        //    var result = validator.Validate(query);
+            // Call Validate or ValidateAsync and pass the object which needs to be validated
+            var result = validator.Validate(query);
 
-        //    if (result.IsValid)
-        //    {
-        //        return await _mediator.Send(query);
-        //    }
+            if (result.IsValid)
+            {
+                return await _mediator.Send(query);
+            }
 
-        //    var errorMessages = result.Errors.Select(x => x.ErrorMessage).ToList();
-        //    return BadRequest(errorMessages);
-        //}
+            var errorMessages = result.Errors.Select(x => x.ErrorMessage).ToList();
+            return BadRequest(errorMessages);
+        }
 
 
 

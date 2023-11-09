@@ -1,11 +1,13 @@
-﻿using inkwave.application.features.favourites.commands.addfavourite;
-using Inkwave.Application.Features.Favourites.Commands.AddFavourite;
+﻿using Inkwave.Application.Features.Favourites.Commands.AddFavourite;
+using Inkwave.Application.Features.Favourites.Commands.RemoveFavourite;
 using Inkwave.Shared;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Inkwave.WebAPI.Controllers
 {
+    [Authorize]
     public class FavouriteController : ApiControllerBase
     {
         private readonly IMediator _mediator;
@@ -20,7 +22,7 @@ namespace Inkwave.WebAPI.Controllers
         }
 
 
-        [HttpPost()]
+        [HttpDelete()]
         public async Task<ActionResult<Result<Guid>>> RemoveFavourite(RemoveFavouriteCommand command)
         {
             return await _mediator.Send(command);

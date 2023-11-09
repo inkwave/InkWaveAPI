@@ -2,16 +2,15 @@
 using Inkwave.Application.Interfaces.Repositories;
 using Inkwave.Domain.Item;
 using Inkwave.Domain.User;
-namespace Inkwave.Application.Features.Favourites.Commands.RemoveFavourite;
+namespace Inkwave.Application.Features.Carts.Commands.AddCart;
 
-public class RemoveFavouriteCommandValidator : AbstractValidator<RemoveFavouriteCommand>
+public class AddCartCommandValidator : AbstractValidator<AddCartCommand>
 {
     private readonly IUnitOfWork unitOfWork;
 
-    public RemoveFavouriteCommandValidator(IUnitOfWork unitOfWork)
+    public AddCartCommandValidator(IUnitOfWork unitOfWork)
     {
         this.unitOfWork = unitOfWork;
-
 
         RuleFor(x => x.UserId)
             .NotEmpty()
@@ -22,6 +21,11 @@ public class RemoveFavouriteCommandValidator : AbstractValidator<RemoveFavourite
             .NotEmpty()
             .NotNull()
             .MustAsync(IsExistsItem).WithMessage("{PropertyName} not exists.");
+
+        RuleFor(x => x.Quantity)
+            .NotEmpty()
+            .NotNull()
+            .LessThan(0.1);
 
     }
     private async Task<bool> IsExistsAndActiveUser(Guid userId, CancellationToken cancellationToken)
@@ -42,4 +46,3 @@ public class RemoveFavouriteCommandValidator : AbstractValidator<RemoveFavourite
     }
 
 }
-
