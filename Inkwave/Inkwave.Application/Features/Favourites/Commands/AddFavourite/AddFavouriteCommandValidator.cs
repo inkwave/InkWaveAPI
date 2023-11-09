@@ -1,8 +1,10 @@
 ﻿namespace Inkwave.Application.Features.Favourites.Commands.AddFavourite;
 using FluentValidation;
 using Inkwave.Application.Interfaces.Repositories;
+using Inkwave.Domain;
 using Inkwave.Domain.Item;
 using Inkwave.Domain.User;
+using Microsoft.EntityFrameworkCore;
 
 public class AddFavouriteCommandValidator : AbstractValidator<AddFavouriteCommand>
 {
@@ -21,6 +23,7 @@ public class AddFavouriteCommandValidator : AbstractValidator<AddFavouriteComman
             .NotEmpty()
             .NotNull()
             .MustAsync(IsExistsItem).WithMessage("{PropertyName} not exists.");
+        RuleFor(x => x).MustAsync(IsNotExists).WithMessage("item exists.");
 
     }
     private async Task<bool> IsExistsAndActiveUser(Guid userId, CancellationToken cancellationToken)
@@ -38,6 +41,10 @@ public class AddFavouriteCommandValidator : AbstractValidator<AddFavouriteComman
             return false;
 
         return !userObject.IsDeleted;
+    }
+    private async Task<bool> IsNotExists(AddFavouriteCommand command, CancellationToken cancellationToken)
+    {
+        return !await unitOfWork.Repository<Favourite>().Entities.AnyAsync(x => x.UserId == command.UserId && x.ItemId == command.ItemId, cancellationToken);
     }
 
 }

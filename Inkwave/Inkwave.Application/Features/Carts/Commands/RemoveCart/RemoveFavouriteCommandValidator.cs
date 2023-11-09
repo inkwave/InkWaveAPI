@@ -23,7 +23,7 @@ public class RemoveCartCommandValidator : AbstractValidator<RemoveCartCommand>
             .NotNull();
 
         RuleFor(x => x)
-            .MustAsync(IsExistsItem).WithMessage("{PropertyName} not exists.");
+            .MustAsync(IsExistsItem).WithMessage("item not exists.");
 
     }
     private async Task<bool> IsExistsItem(RemoveCartCommand command, CancellationToken cancellationToken)

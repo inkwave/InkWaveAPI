@@ -1,15 +1,13 @@
 ﻿using Inkwave.Application.Interfaces.Repositories;
 using Inkwave.Domain.Item;
+using Inkwave.Persistence.Contexts;
 
 namespace Inkwave.Persistence.Repositories;
 
-public class ItemRepository : IItemRepository
+public class ItemRepository : GenericRepository<Item>, IItemRepository
 {
-    private readonly IGenericRepository<Item> _repository;
-
-    public ItemRepository(IGenericRepository<Item> repository)
+    public ItemRepository(ApplicationDbContext dbContext) : base(dbContext)
     {
-        _repository = repository;
     }
 
     public Task<bool> ItemIsActive(Guid id)

@@ -1,6 +1,8 @@
-﻿namespace Inkwave.Application.Interfaces.Repositories;
+﻿using Inkwave.Domain.Item;
 
-public interface IItemRepository
+namespace Inkwave.Application.Interfaces.Repositories;
+
+public interface IItemRepository : IGenericRepository<Item>
 {
     Task<bool> ItemIsActive(Guid id);
 }

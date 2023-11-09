@@ -1,5 +1,4 @@
 ﻿using Inkwave.Domain;
-using Inkwave.Domain.Item;
 
 namespace Inkwave.Application.Interfaces.Repositories
 {
@@ -7,6 +6,6 @@ namespace Inkwave.Application.Interfaces.Repositories
     {
         Task<Cart> AddItemCart(Guid userId, Guid itemId, double quantity);
         Task RemoveItemCart(Guid userId, Guid itemId);
-        Task<List<Item>> GetItemsCartByUserIdAsync(Guid userId, CancellationToken cancellationToken);
+        Task<List<Cart>> GetCartByUserIdAsync(Guid userId, CancellationToken cancellationToken);
     }
 }

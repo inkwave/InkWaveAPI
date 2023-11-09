@@ -1,7 +1,10 @@
 ﻿using FluentValidation;
 using Inkwave.Application.Interfaces.Repositories;
+using Inkwave.Domain;
 using Inkwave.Domain.Item;
 using Inkwave.Domain.User;
+using Microsoft.EntityFrameworkCore;
+
 namespace Inkwave.Application.Features.Carts.Commands.AddCart;
 
 public class AddCartCommandValidator : AbstractValidator<AddCartCommand>
@@ -25,7 +28,10 @@ public class AddCartCommandValidator : AbstractValidator<AddCartCommand>
         RuleFor(x => x.Quantity)
             .NotEmpty()
             .NotNull()
-            .LessThan(0.1);
+            .GreaterThan(0.1);
+
+        RuleFor(x => x).MustAsync(IsNotExists).WithMessage("item exists.");
+
 
     }
     private async Task<bool> IsExistsAndActiveUser(Guid userId, CancellationToken cancellationToken)
@@ -43,6 +49,10 @@ public class AddCartCommandValidator : AbstractValidator<AddCartCommand>
             return false;
 
         return !userObject.IsDeleted;
+    }
+    private async Task<bool> IsNotExists(AddCartCommand command, CancellationToken cancellationToken)
+    {
+        return !await unitOfWork.Repository<Cart>().Entities.AnyAsync(x => x.UserId == command.UserId && x.ItemId == command.ItemId, cancellationToken);
     }
 
 }
