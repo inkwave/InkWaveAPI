@@ -24,7 +24,11 @@ namespace Inkwave.Persistence.Repositories
 
         public Task RemoveItemFavourite(Guid usetId, Guid itemId)
         {
-            throw new NotImplementedException();
+            var model = genericRepository.Entities.FirstOrDefault(x => x.UserId == usetId && x.ItemId == itemId);
+            if (model != null)
+                genericRepository.DeleteAsync(model);
+            return Task.FromResult(model);
+
         }
     }
 }

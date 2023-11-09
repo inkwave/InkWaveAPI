@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Categorys\Commands\" />
+    <Folder Include="Features\Categories\Commands\" />
     <Folder Include="Features\Favourites\Queries\GetMyFavourite\" />
     <Folder Include="Features\Items\Commands\" />
     <Folder Include="Features\Users\Queries\RefreshToken\" />

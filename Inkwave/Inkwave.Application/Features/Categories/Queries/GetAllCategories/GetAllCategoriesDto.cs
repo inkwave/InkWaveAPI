@@ -3,7 +3,7 @@ using Inkwave.Domain.Item;
 
 namespace Inkwave.Application.Features.Categorys.Queries
 {
-    public class GetAllCategoryDto : IMapFrom<Category>
+    public class GetAllCategoriesDto : IMapFrom<Category>
     {
         public Guid Id { get; init; }
         public string Name { get; set; } = string.Empty;

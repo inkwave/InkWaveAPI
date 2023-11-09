@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Inkwave.Application.Features.Categorys.Queries.GetCategorysWithPagination;
 
-public record GetAllCategorysQuery : IRequest<Result<List<GetAllCategoryDto>>>;
+public record GetAllCategoriesQuery : IRequest<Result<List<GetAllCategoriesDto>>>;
 
-internal class GetAllCategorysQueryHandler : IRequestHandler<GetAllCategorysQuery, Result<List<GetAllCategoryDto>>>
+internal class GetAllCategorysQueryHandler : IRequestHandler<GetAllCategoriesQuery, Result<List<GetAllCategoriesDto>>>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
@@ -22,12 +22,12 @@ internal class GetAllCategorysQueryHandler : IRequestHandler<GetAllCategorysQuer
         _mapper = mapper;
     }
 
-    public async Task<Result<List<GetAllCategoryDto>>> Handle(GetAllCategorysQuery query, CancellationToken cancellationToken)
+    public async Task<Result<List<GetAllCategoriesDto>>> Handle(GetAllCategoriesQuery query, CancellationToken cancellationToken)
     {
         var Categorys = await _unitOfWork.Repository<Category>().Entities
-               .ProjectTo<GetAllCategoryDto>(_mapper.ConfigurationProvider)
+               .ProjectTo<GetAllCategoriesDto>(_mapper.ConfigurationProvider)
                .ToListAsync(cancellationToken);
 
-        return await Result<List<GetAllCategoryDto>>.SuccessAsync(Categorys);
+        return await Result<List<GetAllCategoriesDto>>.SuccessAsync(Categorys);
     }
 }

@@ -16,9 +16,9 @@ namespace Inkwave.WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Result<List<GetAllCategoryDto>>>> Get()
+        public async Task<ActionResult<Result<List<GetAllCategoriesDto>>>> Get()
         {
-            return await _mediator.Send(new GetAllCategorysQuery());
+            return await _mediator.Send(new GetAllCategoriesQuery());
         }
 
         //[HttpGet("{id}")]
