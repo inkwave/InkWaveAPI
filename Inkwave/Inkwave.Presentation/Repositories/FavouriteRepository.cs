@@ -1,5 +1,6 @@
 ﻿using Inkwave.Application.Interfaces.Repositories;
 using Inkwave.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Inkwave.Persistence.Repositories
 {
@@ -19,7 +20,8 @@ namespace Inkwave.Persistence.Repositories
 
         public Task<List<Favourite>> GetFavouriteByUserId(Guid usetId)
         {
-            throw new NotImplementedException();
+            return genericRepository.Entities.Where(x => x.UserId == usetId).ToListAsync();
+         
         }
 
         public Task RemoveItemFavourite(Guid usetId, Guid itemId)
