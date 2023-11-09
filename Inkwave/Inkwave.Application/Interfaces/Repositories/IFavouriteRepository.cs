@@ -7,6 +7,5 @@ namespace Inkwave.Application.Interfaces.Repositories
         Task<Favourite> AddItemFavourite(Guid usetId, Guid itemId);
         Task<bool> RemoveItemFavourite(Guid usetId, Guid itemId);
         Task<List<Favourite>> GetFavouriteByUserId(Guid usetId);
-        Task GetMyFavourite(Guid userId);
     }
 }

@@ -5,18 +5,18 @@ using MediatR;
 
 namespace Inkwave.Favourites.Features.Favourites.Commands.AddFavourite
 {
-    internal class RemoveFavouriteCommandHandler : IRequestHandler<RemoveFavouriteCommand, Result<Guid>>
+    internal class AddFavouriteCommandHandler : IRequestHandler<AddFavouriteCommand, Result<Guid>>
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IFavouriteRepository favouriteRepository;
 
-        public RemoveFavouriteCommandHandler(IUnitOfWork unitOfWork, IFavouriteRepository favouriteRepository)
+        public AddFavouriteCommandHandler(IUnitOfWork unitOfWork, IFavouriteRepository favouriteRepository)
         {
             this.unitOfWork = unitOfWork;
             this.favouriteRepository = favouriteRepository;
         }
 
-        public async Task<Result<Guid>> Handle(RemoveFavouriteCommand command, CancellationToken cancellationToken)
+        public async Task<Result<Guid>> Handle(AddFavouriteCommand command, CancellationToken cancellationToken)
         {
             var favourite = await favouriteRepository.AddItemFavourite(command.UserId, command.ItemId);
             await unitOfWork.Save(cancellationToken);

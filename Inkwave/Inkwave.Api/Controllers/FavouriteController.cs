@@ -1,4 +1,5 @@
-﻿using Inkwave.Application.Features.Favourites.Commands.AddFavourite;
+﻿using inkwave.application.features.favourites.commands.addfavourite;
+using Inkwave.Application.Features.Favourites.Commands.AddFavourite;
 using Inkwave.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -13,10 +14,16 @@ namespace Inkwave.WebAPI.Controllers
             _mediator = mediator;
         }
         [HttpPost()]
-        public async Task<ActionResult<Result<Guid>>> AddFavourite(RemoveFavouriteCommand command)
+        public async Task<ActionResult<Result<Guid>>> AddFavourite(AddFavouriteCommand command)
         {
             return await _mediator.Send(command);
         }
 
+
+        [HttpPost()]
+        public async Task<ActionResult<Result<Guid>>> RemoveFavourite(RemoveFavouriteCommand command)
+        {
+            return await _mediator.Send(command);
+        }
     }
 }

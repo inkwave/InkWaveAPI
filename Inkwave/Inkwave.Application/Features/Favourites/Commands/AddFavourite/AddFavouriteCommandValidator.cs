@@ -4,11 +4,11 @@ using Inkwave.Application.Interfaces.Repositories;
 using Inkwave.Domain.Item;
 using Inkwave.Domain.User;
 
-public class RemoveFavouriteCommandValidator : AbstractValidator<RemoveFavouriteCommand>
+public class AddFavouriteCommandValidator : AbstractValidator<AddFavouriteCommand>
 {
     private readonly IUnitOfWork unitOfWork;
 
-    public RemoveFavouriteCommandValidator(IUnitOfWork unitOfWork)
+    public AddFavouriteCommandValidator(IUnitOfWork unitOfWork)
     {
         this.unitOfWork = unitOfWork;
 
