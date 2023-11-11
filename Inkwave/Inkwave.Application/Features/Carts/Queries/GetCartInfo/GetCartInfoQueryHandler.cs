@@ -3,24 +3,24 @@ using Inkwave.Application.Interfaces.Repositories;
 using Inkwave.Shared;
 using MediatR;
 
-namespace Inkwave.Application.Features.Carts.Queries.GetItemsMyCart;
+namespace Inkwave.Application.Features.Carts.Queries.GetCartInfo;
 
-internal class GetItemsMyCartQueryHandler : IRequestHandler<GetItemsMyCartQuery, Result<List<GetItemsMyCartDto>>>
+internal class GetCartInfoQueryHandler : IRequestHandler<GetCartInfoDtoQuery, Result<GetCartInfoDto>>
 {
     private readonly ICartRepository _cartRepository;
     private readonly IItemRepository _itemRepository;
     private readonly IMapper _mapper;
 
-    public GetItemsMyCartQueryHandler(IMapper mapper, ICartRepository cartRepository, IItemRepository itemRepository)
+    public GetCartInfoQueryHandler(IMapper mapper, ICartRepository cartRepository, IItemRepository itemRepository)
     {
         _mapper = mapper;
         _cartRepository = cartRepository;
         _itemRepository = itemRepository;
     }
 
-    public async Task<Result<List<GetItemsMyCartDto>>> Handle(GetItemsMyCartQuery query, CancellationToken cancellationToken)
+    public async Task<Result<GetCartInfoDto>> Handle(GetCartInfoDtoQuery query, CancellationToken cancellationToken)
     {
-        List<GetItemsMyCartDto> result = new List<GetItemsMyCartDto>();
+        GetCartInfoDto result = new GetCartInfoDto();
         var userCarts = await _cartRepository.GetCartByUserIdAsync(query.UserId, cancellationToken);
         foreach (var cart in userCarts)
         {
@@ -28,10 +28,9 @@ internal class GetItemsMyCartQueryHandler : IRequestHandler<GetItemsMyCartQuery,
             if (row != null)
             {
                 row.Quantity = cart.Quantity;
-                result.Add(row);
+                result.Items.Add(row);
             }
         }
-
-        return await Result<List<GetItemsMyCartDto>>.SuccessAsync(result);
+        return await Result<GetCartInfoDto>.SuccessAsync(result);
     }
 }

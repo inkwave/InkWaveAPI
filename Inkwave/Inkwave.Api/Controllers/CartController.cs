@@ -1,6 +1,6 @@
 ﻿using Inkwave.Application.Features.Carts.Commands.AddCart;
 using Inkwave.Application.Features.Carts.Commands.RemoveCart;
-using Inkwave.Application.Features.Carts.Queries.GetItemsMyCart;
+using Inkwave.Application.Features.Carts.Queries.GetCartInfo;
 using Inkwave.Infrastructure.Authentication;
 using Inkwave.Shared;
 using MediatR;
@@ -18,12 +18,12 @@ namespace Inkwave.WebAPI.Controllers
             _mediator = mediator;
         }
         [HttpGet()]
-        public async Task<ActionResult<Result<List<GetItemsMyCartDto>>>> GetItemsMyCart()
+        public async Task<ActionResult<Result<GetCartInfoDto>>> GetCartInfo()
         {
             if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid userId))
-                return await _mediator.Send(new GetItemsMyCartQuery { UserId = userId });
+                return await _mediator.Send(new GetCartInfoDtoQuery { UserId = userId });
             else
-                return Result<List<GetItemsMyCartDto>>.Failure("Not Found");
+                return Result<GetCartInfoDto>.Failure("Not Found");
 
         }
         [HttpPost()]

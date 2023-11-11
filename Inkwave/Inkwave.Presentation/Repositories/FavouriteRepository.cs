@@ -18,10 +18,9 @@ namespace Inkwave.Persistence.Repositories
             return model;
         }
 
-        public Task<List<Favourite>> GetFavouriteByUserId(Guid usetId)
+        public Task<List<Favourite>> GetFavouriteByUserIdAsync(Guid usetId, CancellationToken cancellationToken)
         {
-            return genericRepository.Entities.Where(x => x.UserId == usetId).ToListAsync();
-         
+            return genericRepository.Entities.Where(x => x.UserId == usetId).ToListAsync(cancellationToken);
         }
 
         public Task RemoveItemFavourite(Guid usetId, Guid itemId)

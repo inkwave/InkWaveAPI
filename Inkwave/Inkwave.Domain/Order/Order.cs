@@ -5,7 +5,12 @@ namespace Inkwave.Domain;
 
 public class Order : BaseAuditableEntity
 {
-    public OrderStatus OrderStatus { get; set; }
+    public readonly OrderStateContext OrderStateContext;
+    public Order()
+    {
+        OrderStateContext = new OrderStateContext(this);
+    }
+    public OrderStates OrderStates { get; set; } = OrderStates.Pending;
     public PaymentStatus PaymentStatus { get; set; }
     public Guid CustomerId { get; set; }
     public Guid BillingAddressId { get; set; }
@@ -16,4 +21,6 @@ public class Order : BaseAuditableEntity
     public double TotalNet { get; set; }
     public DateTime Canceled_at { get; set; }
     public ICollection<OrderLine> OrderLines { get; set; } = new HashSet<OrderLine>();
+
+
 }

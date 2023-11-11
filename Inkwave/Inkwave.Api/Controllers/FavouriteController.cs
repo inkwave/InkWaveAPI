@@ -1,6 +1,7 @@
 ﻿using Inkwave.Application.Features.Favourites.Commands.AddFavourite;
 using Inkwave.Application.Features.Favourites.Commands.RemoveFavourite;
 using Inkwave.Application.Features.Favourites.Queries.GetMyFavourite;
+using Inkwave.Infrastructure.Authentication;
 using Inkwave.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -17,25 +18,34 @@ namespace Inkwave.WebAPI.Controllers
             _mediator = mediator;
         }
         [HttpPost()]
-        public async Task<ActionResult<Result<Guid>>> AddFavourite(AddFavouriteCommand command)
+        public async Task<ActionResult<Result<Guid>>> AddFavourite(Guid itemId)
         {
-            return await _mediator.Send(command);
+            if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid userId))
+                return await _mediator.Send(new AddFavouriteCommand { UserId = userId, ItemId = itemId });
+            return Result<Guid>.Failure("Not Found");
         }
 
 
 
         [HttpDelete()]
-        public async Task<ActionResult<Result<Guid>>> RemoveFavourite(RemoveFavouriteCommand command)
+        public async Task<ActionResult<Result<Guid>>> RemoveFavourite(Guid itemId)
         {
-            return await _mediator.Send(command);
+            if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid userId))
+                return await _mediator.Send(new RemoveFavouriteCommand { UserId = userId, ItemId = itemId });
+            else
+                return Result<Guid>.Failure("Not Found");
         }
 
         [HttpGet()]
-        public async Task<ActionResult<Result<GetMyFavouriteDto>>> GetMyFavourite(Guid id)
+        public async Task<ActionResult<Result<List<GetMyFavouriteDto>>>> GetMyFavourite()
         {
-            return await _mediator.Send(new GetMyFavouriteQuery(id));
+            if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid userId))
+                return await _mediator.Send(new GetMyFavouriteQuery(userId));
+            else
+                return Result<List<GetMyFavouriteDto>>.Failure("Not Found");
+
         }
-        
+
 
     }
 }

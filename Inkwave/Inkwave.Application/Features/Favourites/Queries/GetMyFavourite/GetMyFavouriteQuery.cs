@@ -3,13 +3,14 @@ using MediatR;
 
 namespace Inkwave.Application.Features.Favourites.Queries.GetMyFavourite
 {
-    public record GetMyFavouriteQuery : IRequest<Result<GetMyFavouriteDto>>
+    public record GetMyFavouriteQuery : IRequest<Result<List<GetMyFavouriteDto>>>
     {
-        public GetMyFavouriteQuery(Guid Id)
+        public Guid UserId { get; set; }
+
+        public GetMyFavouriteQuery(Guid UserId)
         {
-            this.Id = Id;
+            this.UserId = UserId;
         }
-        public Guid Id { get; set; }
     }
 }
 

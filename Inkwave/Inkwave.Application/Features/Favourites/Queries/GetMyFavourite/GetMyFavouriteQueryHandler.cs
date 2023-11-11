@@ -1,39 +1,37 @@
 ﻿using AutoMapper;
 using Inkwave.Application.Interfaces.Repositories;
-using Inkwave.Domain;
 using Inkwave.Shared;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Inkwave.Application.Features.Favourites.Queries.GetMyFavourite
 {
-    internal class GetMyFavouriteQueryHandler : IRequestHandler<GetMyFavouriteQuery, Result<GetMyFavouriteDto>>
+    internal class GetMyFavouriteQueryHandler : IRequestHandler<GetMyFavouriteQuery, Result<List<GetMyFavouriteDto>>>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IFavouriteRepository _favouriteRepository;
+        private readonly IItemRepository _itemRepository;
         private readonly IMapper _mapper;
 
 
-        public GetMyFavouriteQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public GetMyFavouriteQueryHandler(IFavouriteRepository favouriteRepository, IItemRepository itemRepository, IMapper mapper)
         {
-            _unitOfWork = unitOfWork;
+            _favouriteRepository = favouriteRepository;
+            _itemRepository = itemRepository;
             _mapper = mapper;
         }
 
-        public async Task<Result<GetMyFavouriteDto>> Handle(GetMyFavouriteQuery query, CancellationToken cancellationToken)
+        public async Task<Result<List<GetMyFavouriteDto>>> Handle(GetMyFavouriteQuery query, CancellationToken cancellationToken)
         {
-
-            var favourite = await _unitOfWork.Repository<Favourite>().Entities
-                .Include(x => x.ItemId)
-                .FirstOrDefaultAsync(x => x.Id == query.Id, cancellationToken);
-            if (favourite == null) return await Result<GetMyFavouriteDto>.FailureAsync("favourite not fund");
-            var result = _mapper.Map<GetMyFavouriteDto>(favourite);
-
-            favourite.ItemId?.ToList().ForEach(x =>
+            List<GetMyFavouriteDto> result = new List<GetMyFavouriteDto>();
+            var userCarts = await _favouriteRepository.GetFavouriteByUserIdAsync(query.UserId, cancellationToken);
+            foreach (var cart in userCarts)
             {
+                var row = _mapper.Map<GetMyFavouriteDto>(await _itemRepository.GetByIdAsync(cart.ItemId));
+                if (row != null)
+                    result.Add(row);
+            }
 
-                result.ItemId.Add(_mapper.Map<GetMyFavouriteItemDto>(x.ItemId));
-            });
-            return await Result<GetMyFavouriteDto>.SuccessAsync(result);
+            return await Result<List<GetMyFavouriteDto>>.SuccessAsync(result);
+
         }
     }
 }

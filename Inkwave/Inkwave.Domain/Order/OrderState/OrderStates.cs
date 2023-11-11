@@ -1,8 +1,9 @@
 ﻿namespace Inkwave.Domain;
 
-public enum OrderStatus
+public enum OrderStates
 {
     Pending,
+    Confirmed,
     Cancelled,
     Delivered,
     InTransit,
@@ -12,4 +13,3 @@ public enum OrderStatus
     Returned,
     Closed
 }
-
