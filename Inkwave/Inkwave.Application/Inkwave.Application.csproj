@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Categories\Commands\**" />
+    <EmbeddedResource Remove="Features\Categories\Commands\**" />
+    <None Remove="Features\Categories\Commands\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="FluentValidation" Version="11.8.0" />
@@ -20,8 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Categories\Commands\" />
     <Folder Include="Features\Items\Commands\" />
+    <Folder Include="Features\Orders\Events\" />
+    <Folder Include="Features\Orders\Queries\" />
     <Folder Include="Features\Users\Queries\RefreshToken\" />
   </ItemGroup>
 

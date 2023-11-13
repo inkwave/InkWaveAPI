@@ -32,7 +32,7 @@ namespace Inkwave.Persistence.Repositories
                 _repositories.Add(type, repositoryInstance);
             }
 
-            return (IGenericRepository<T>)_repositories[type];
+            return (_repositories[type] as IGenericRepository<T>);
         }
 
         public Task Rollback()

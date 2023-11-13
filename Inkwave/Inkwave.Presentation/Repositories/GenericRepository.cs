@@ -22,7 +22,11 @@ namespace Inkwave.Persistence.Repositories
             await _dbContext.Set<T>().AddAsync(entity);
             return entity;
         }
-
+        public async Task<List<T>> AddRangeAsync(IEnumerable<T> entitys)
+        {
+            await _dbContext.Set<T>().AddRangeAsync(entitys);
+            return entitys.ToList();
+        }
         public Task UpdateAsync(T entity)
         {
             T exist = _dbContext.Set<T>().Find(entity.Id);
@@ -47,5 +51,12 @@ namespace Inkwave.Persistence.Repositories
         {
             return await _dbContext.Set<T>().FindAsync(id);
         }
+
+        public async Task<List<T>> GetByIdsAsync(IEnumerable<Guid> guids)
+        {
+            return await _dbContext.Set<T>().Where(x => guids.Contains(x.Id)).ToListAsync();
+        }
+
+
     }
 }

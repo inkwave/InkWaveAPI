@@ -9,7 +9,9 @@ namespace Inkwave.Application.Interfaces.Repositories
         Task<T> GetByIdAsync(Guid id);
         Task<List<T>> GetAllAsync();
         Task<T> AddAsync(T entity);
+        Task<List<T>> AddRangeAsync(IEnumerable<T> entitys);
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);
+        Task<List<T>> GetByIdsAsync(IEnumerable<Guid> guids);
     }
 }

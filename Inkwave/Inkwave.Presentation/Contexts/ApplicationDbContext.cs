@@ -25,6 +25,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<ItemCategory> ItemCategories => Set<ItemCategory>();
     public DbSet<Favourite> Favourites => Set<Favourite>();
     public DbSet<Cart> Carts => Set<Cart>();
+    public DbSet<Order> Orders => Set<Order>();
+    public DbSet<OrderLine> OrderLines => Set<OrderLine>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -32,6 +34,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         modelBuilder.Entity<Favourite>().HasIndex(c => c.UserId);
         modelBuilder.Entity<Cart>().HasIndex(c => c.UserId);
+        modelBuilder.Entity<Order>().HasIndex(c => c.CustomerId);
     }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

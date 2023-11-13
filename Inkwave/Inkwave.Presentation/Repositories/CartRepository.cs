@@ -20,6 +20,11 @@ namespace Inkwave.Persistence.Repositories
             return Task.FromResult(cart);
         }
 
+        public async Task ClearCart(Guid userId)
+        {
+            var carts = await cartRepository.Entities.Where(x => x.UserId == userId).ToListAsync();
+            carts.ForEach(async x => await cartRepository.DeleteAsync(x));
+        }
 
         public async Task<List<Cart>> GetCartByUserIdAsync(Guid userId, CancellationToken cancellationToken)
         {

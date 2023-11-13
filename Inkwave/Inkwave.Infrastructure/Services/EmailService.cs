@@ -15,7 +15,7 @@ namespace Inkwave.Infrastructure.Services
             this.mailSettings = mailSettings.Value;
         }
 
-       
+
         public async Task SendAsync(EmailRequestDto request)
         {
             var message = new MailMessage();
@@ -32,7 +32,13 @@ namespace Inkwave.Infrastructure.Services
             emailClient.EnableSsl = true;
             emailClient.UseDefaultCredentials = false;
             emailClient.Credentials = new NetworkCredential(mailSettings.Mail, mailSettings.Password);
+            emailClient.SendCompleted += EmailClient_SendCompleted;
             await emailClient.SendMailAsync(mailMessage);
+        }
+
+        private void EmailClient_SendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            Console.WriteLine(e.Error);
         }
     }
 }

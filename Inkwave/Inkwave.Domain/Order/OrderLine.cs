@@ -16,4 +16,27 @@ public class OrderLine : BaseEntity
     public double Tax { get; set; }
     public double Total { get; set; }
     public double Net { get; set; }
+    public OrderLine(Guid orderId, Guid itemId, double quantity,
+        double price,
+        double discount,
+        double tax)
+    {
+        this.Id = Guid.NewGuid();
+        this.ItemId = itemId;
+        this.OrderId = orderId;
+        this.Quantity = quantity;
+        this.Price = price;
+        this.Discount = discount;
+        this.Tax = tax;
+        this.Total = Quantity * Price;
+        this.Net = (Total - Discount) + Tax;
+
+    }
+    public static OrderLine Create(Guid orderId, Guid itemId, double quantity,
+        double price,
+        double discount,
+        double tax)
+    {
+        return new OrderLine(orderId, itemId, quantity, price, discount, tax);
+    }
 }

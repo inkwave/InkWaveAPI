@@ -7,5 +7,6 @@ namespace Inkwave.Application.Interfaces.Repositories
         Task<Cart> AddItemCart(Guid userId, Guid itemId, double quantity);
         Task RemoveItemCart(Guid userId, Guid itemId);
         Task<List<Cart>> GetCartByUserIdAsync(Guid userId, CancellationToken cancellationToken);
+        Task ClearCart(Guid customerId);
     }
 }
