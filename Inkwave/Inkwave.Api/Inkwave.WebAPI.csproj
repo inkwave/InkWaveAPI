@@ -14,7 +14,14 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 	  <PackageReference Include="MediatR" Version="12.1.1" />
   </ItemGroup>
- 
+	<ItemGroup>
+		<Using Include="Microsoft.AspNetCore.Mvc" />
+		<Using Include="Inkwave.Shared" />
+		<Using Include="Inkwave.Domain" />
+		<Using Include="Inkwave.Infrastructure.Authentication" />
+		<Using Include="Microsoft.AspNetCore.Authorization" />
+		<Using Include="MediatR" />
+	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Inkwave.Application\Inkwave.Application.csproj" />
 		<ProjectReference Include="..\Inkwave.Infrastructure\Inkwave.Infrastructure.csproj" />

@@ -1,8 +1,5 @@
 ﻿using Inkwave.Application.Features.Categorys.Queries;
 using Inkwave.Application.Features.Categorys.Queries.GetCategorysWithPagination;
-using Inkwave.Shared;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Inkwave.WebAPI.Controllers
 {

@@ -26,7 +26,7 @@ namespace Inkwave.Application.Features.Users.Commands.ActiveUser
 
             User.Active = true;
             await _unitOfWork.Repository<User>().UpdateAsync(User);
-            User.AddDomainEvent(new SendWelcomUserCodeDomainEvent(User));
+            User.AddDomainEvent(new UserActivedEvent(User));
             await _unitOfWork.Save(cancellationToken);
             return await Result<Guid>.SuccessAsync(User.Id, "user activated.");
         }

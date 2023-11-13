@@ -19,6 +19,16 @@ namespace Inkwave.Persistence.Repositories
             cartRepository.AddAsync(cart);
             return Task.FromResult(cart);
         }
+        public async Task<Cart> UpdateQuantityAsync(Guid userId, Guid itemId, double quantity)
+        {
+            Cart? cart = await cartRepository.Entities.FirstOrDefaultAsync(x => x.UserId == userId && x.ItemId == itemId);
+            if (cart != null)
+            {
+                cart.Quantity = quantity;
+                await cartRepository.UpdateAsync(cart);
+            }
+            return cart;
+        }
 
         public async Task ClearCart(Guid userId)
         {

@@ -4,9 +4,6 @@ using Inkwave.Application.Features.Users.Commands.LoginUser;
 using Inkwave.Application.Features.Users.Commands.RefreshToken;
 using Inkwave.Application.Interfaces;
 using Inkwave.Domain.Authentication;
-using Inkwave.Shared;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Inkwave.WebAPI.Controllers
 {

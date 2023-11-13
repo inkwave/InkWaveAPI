@@ -32,4 +32,10 @@
     <Folder Include="Features\Users\Queries\RefreshToken\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Using Include="Inkwave.Shared" />
+    <Using Include="MediatR" />
+    <Using Include="Inkwave.Domain" />
+  </ItemGroup>
+
 </Project>

@@ -4,14 +4,14 @@ using MediatR;
 
 namespace Inkwave.Application.Features.Users.Events;
 
-internal sealed class SendActiveUserCodeDomainEventHandler : INotificationHandler<SendActiveUserCodeDomainEvent>
+internal sealed class SendActiveUserCodeDomainEventHandler : INotificationHandler<CreatedUserEvent>
 {
     private readonly IEmailService emailService;
     public SendActiveUserCodeDomainEventHandler(IEmailService emailService)
     {
         this.emailService = emailService;
     }
-    public Task Handle(SendActiveUserCodeDomainEvent notification, CancellationToken cancellationToken)
+    public Task Handle(CreatedUserEvent notification, CancellationToken cancellationToken)
     {
         if (notification.User == null) return Task.CompletedTask;
         var email = new DTOs.Email.EmailRequestDto();

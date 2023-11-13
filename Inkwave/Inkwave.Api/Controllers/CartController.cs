@@ -1,11 +1,12 @@
 ﻿using Inkwave.Application.Features.Carts.Commands.AddCart;
 using Inkwave.Application.Features.Carts.Commands.RemoveCart;
+using Inkwave.Application.Features.Carts.Commands.UpdateQuantityCart;
 using Inkwave.Application.Features.Carts.Queries.GetCartInfo;
+using Inkwave.Domain;
 using Inkwave.Infrastructure.Authentication;
 using Inkwave.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Inkwave.WebAPI.Controllers
 {
@@ -33,7 +34,13 @@ namespace Inkwave.WebAPI.Controllers
                 return await _mediator.Send(new AddCartCommand { UserId = userId, ItemId = itemId, Quantity = quantity });
             return Result<Guid>.Failure("Not Found");
         }
-
+        [HttpPut()]
+        public async Task<ActionResult<Result<Cart>>> UpdateQuantity(Guid itemId, double quantity)
+        {
+            if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid userId))
+                return await _mediator.Send(new UpdateQuantityCartCommand { UserId = userId, ItemId = itemId, Quantity = quantity });
+            return Result<Cart>.Failure("Not Found");
+        }
 
         [HttpDelete()]
         public async Task<ActionResult<Result<Guid>>> RemoveCart(Guid itemId)

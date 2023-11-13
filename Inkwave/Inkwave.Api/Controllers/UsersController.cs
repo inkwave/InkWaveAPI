@@ -1,11 +1,6 @@
 ﻿using Inkwave.Application.Features.Users.Commands.DeleteUser;
 using Inkwave.Application.Features.Users.Commands.UpdateUser;
 using Inkwave.Application.Features.Users.Queries.GetUsersWithPagination;
-using Inkwave.Infrastructure.Authentication;
-using Inkwave.Shared;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Inkwave.WebAPI.Controllers
 {

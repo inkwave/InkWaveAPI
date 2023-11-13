@@ -1,10 +1,4 @@
 ﻿using Inkwave.Application.Features.Orders.Commands.CreateFromCartOrder;
-using Inkwave.Domain;
-using Inkwave.Infrastructure.Authentication;
-using Inkwave.Shared;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Inkwave.WebAPI.Controllers
 {

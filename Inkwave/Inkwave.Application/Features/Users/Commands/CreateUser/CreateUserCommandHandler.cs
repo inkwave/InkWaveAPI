@@ -22,7 +22,6 @@ namespace Inkwave.Application.Features.Users.Commands.CreateUser
 
             PasswordSecurity.CreatePassword(command.Password, out byte[] passwordHash, out byte[] passwordSalt);
             var user = User.CreateUser(command.FirstName, command.LastName, command.Email, command.Phone, command.Gender, passwordHash, passwordSalt);
-            user.AddDomainEvent(new SendActiveUserCodeDomainEvent(user));
             await _unitOfWork.Repository<User>().AddAsync(user);
             await _unitOfWork.Save(cancellationToken);
             return await Result<Guid>.SuccessAsync(user.Id, "User Created.");

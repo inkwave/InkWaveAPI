@@ -1,11 +1,7 @@
 ﻿using Inkwave.Application.Features.Favourites.Commands.AddFavourite;
 using Inkwave.Application.Features.Favourites.Commands.RemoveFavourite;
 using Inkwave.Application.Features.Favourites.Queries.GetMyFavourite;
-using Inkwave.Infrastructure.Authentication;
-using Inkwave.Shared;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+
 
 namespace Inkwave.WebAPI.Controllers
 {

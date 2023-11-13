@@ -40,8 +40,23 @@ public class User : BaseAuditableEntity
             passwordSalt = passwordSalt
         };
         user.ActiveCode = System.Security.Cryptography.RandomNumberGenerator.GetInt32(0, 1000000).ToString("D6");
+        user.AddDomainEvent(new CreatedUserEvent(user));
         return user;
     }
+    public User UpdateUser(string fname, string lname, string email, string phone, string gender)
+    {
+        User user = new User()
+        {
+            FirstName = fname,
+            LastName = lname,
+            Email = email,
+            Phone = phone,
+            Gender = gender
+        };
+        user.AddDomainEvent(new UserUpdatedEvent(user));
+        return user;
+    }
+
 }
 public class Claims : BaseEntity
 {

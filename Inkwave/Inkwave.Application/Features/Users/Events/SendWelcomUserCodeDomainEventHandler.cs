@@ -7,14 +7,14 @@ using System.Text;
 
 namespace Inkwave.Application.Features.Users.Events;
 
-internal sealed class SendWelcomUserCodeDomainEventHandler : INotificationHandler<SendWelcomUserCodeDomainEvent>
+internal sealed class SendWelcomUserCodeDomainEventHandler : INotificationHandler<UserActivedEvent>
 {
     private readonly IEmailService emailService;
     public SendWelcomUserCodeDomainEventHandler(IEmailService emailService)
     {
         this.emailService = emailService;
     }
-    public Task Handle(SendWelcomUserCodeDomainEvent notification, CancellationToken cancellationToken)
+    public Task Handle(UserActivedEvent notification, CancellationToken cancellationToken)
     {
         if (notification.User == null) return Task.CompletedTask;
         var email = new DTOs.Email.EmailRequestDto();

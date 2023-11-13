@@ -2,12 +2,12 @@
 
 namespace Inkwave.Domain.User;
 
-public class SendActiveUserCodeDomainEvent : BaseEvent
+public class UserActivedEvent : BaseEvent
 {
     public User User { get; }
 
-    public SendActiveUserCodeDomainEvent(User User)
+    public UserActivedEvent(User User)
     {
         this.User = User;
-    } 
+    }
 }
