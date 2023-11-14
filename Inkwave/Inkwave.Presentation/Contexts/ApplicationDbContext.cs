@@ -2,6 +2,7 @@
 using Inkwave.Domain.Common;
 using Inkwave.Domain.Common.Interfaces;
 using Inkwave.Domain.Item;
+using Inkwave.Domain.Payment;
 using Inkwave.Domain.User;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -27,6 +28,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Cart> Carts => Set<Cart>();
     public DbSet<Order> Orders => Set<Order>();
     public DbSet<OrderLine> OrderLines => Set<OrderLine>();
+    public DbSet<Payment> Payments => Set<Payment>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
