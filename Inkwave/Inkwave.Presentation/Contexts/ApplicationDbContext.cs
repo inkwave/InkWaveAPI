@@ -3,6 +3,7 @@ using Inkwave.Domain.Common;
 using Inkwave.Domain.Common.Interfaces;
 using Inkwave.Domain.Item;
 using Inkwave.Domain.Payment;
+using Inkwave.Domain.PaymentMethod;
 using Inkwave.Domain.User;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -29,6 +30,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Order> Orders => Set<Order>();
     public DbSet<OrderLine> OrderLines => Set<OrderLine>();
     public DbSet<Payment> Payments => Set<Payment>();
+    public DbSet<PaymentMethod> PaymentMethods => Set<PaymentMethod>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Inkwave.Application.Features.Payments.Commands.AddPayment
 {
-    internal class AddPaymentCommandValidator : AbstractValidator<AddPaymentCommand>
+    public class AddPaymentCommandValidator : AbstractValidator<AddPaymentCommand>
     {
         public AddPaymentCommandValidator()
         {
