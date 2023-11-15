@@ -30,6 +30,24 @@ namespace Inkwave.Persistence.Repositories
 
         }
 
+
+        public async Task<PaymentMethod> UpdatePaymentMethodAsync(PaymentMethod paymentMethod)
+        {
+            //fill this method to achieve the goal
+            var model = await genericRepository.Entities.FirstOrDefaultAsync(x => x.Id == paymentMethod.Id);
+            if (model != null)
+            {
+                model.CardName = paymentMethod.CardName;
+                model.CardNumber = paymentMethod.CardNumber;
+                model.CardMonth = paymentMethod.CardMonth;
+                model.CardYear = paymentMethod.CardYear;
+                model.CardCVV = paymentMethod.CardCVV;
+                await genericRepository.UpdateAsync(model);
+            }
+            return model;
+
+        }
+
          
 
         

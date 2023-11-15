@@ -1,16 +1,16 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Inkwave.Application.Features.PaymentMethod.Commands
+namespace Inkwave.Application.Features.PaymentMethod.Commands.UpdatePaymentMethod
 {
-    public class AddPaymentMethodCommandValidator : AbstractValidator<AddPaymentMethodCommand>
+    internal class UpdatePaymentMethodCommandValidator : AbstractValidator<UpdatePaymentMethodCommand>
     {
-        public AddPaymentMethodCommandValidator() 
+        
+        public UpdatePaymentMethodCommandValidator() 
         { 
+            RuleFor(p => p.Id)
+                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .NotNull();
+
             RuleFor(p => p.CardName)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
@@ -37,5 +37,8 @@ namespace Inkwave.Application.Features.PaymentMethod.Commands
                 .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
         }
 
+
+
     }
+    
 }

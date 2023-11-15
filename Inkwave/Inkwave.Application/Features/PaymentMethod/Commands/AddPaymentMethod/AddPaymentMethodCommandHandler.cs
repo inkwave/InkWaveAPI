@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Inkwave.Application.Interfaces.Repositories;
 
-namespace Inkwave.Application.Features.PaymentMethod.Commands
+namespace Inkwave.Application.Features.PaymentMethod.Commands.AddPaymentMethod
 {
-    public class AddPaymentMethodCommandHandler : IRequestHandler <AddPaymentMethodCommand, Result<Guid>>
+    public class AddPaymentMethodCommandHandler : IRequestHandler<AddPaymentMethodCommand, Result<Guid>>
     {
         private readonly IPaymentMethodRepository paymentMethodRepository;
         private readonly IMapper mapper;
@@ -27,5 +27,5 @@ namespace Inkwave.Application.Features.PaymentMethod.Commands
 
         }
     }
-    
+
 }
