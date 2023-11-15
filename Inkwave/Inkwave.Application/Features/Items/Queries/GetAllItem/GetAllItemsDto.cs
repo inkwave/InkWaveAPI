@@ -14,6 +14,7 @@ namespace Inkwave.Application.Features.Items.Queries.GetAllItem
         public double Quantity { get; set; }
         public string Image { get; set; } = string.Empty;
         public string Tags { get; set; } = string.Empty;
+        public double Rate => new Random().Next(1, 5) + new Random().NextDouble() - 0.1;
         public GetAllItemSubDescriptionDto? SubDescription { get; set; }
         public ICollection<GetAllItemCategoryDto> Categorys { get; set; } = new HashSet<GetAllItemCategoryDto>();
     }

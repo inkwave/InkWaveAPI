@@ -1,6 +1,6 @@
 ﻿using Inkwave.Domain.Common;
 
-namespace Inkwave.Domain.Payment;
+namespace Inkwave.Domain;
 
 public class Payment : BaseAuditableEntity
 {
@@ -11,8 +11,8 @@ public class Payment : BaseAuditableEntity
     public PaymentStatus PaymentStatus { get; set; }
     public double PaymentValue { get; set; }
     public DateTime PaymentDate { get; set; }
-    public string PaymentType { get; set; } = "";
-    public string PaymentMethod { get; set; } = "";
+    public string PaymentType { get; set; } = string.Empty;
+    public string PaymentMethod { get; set; } = string.Empty;
     public static Payment Create(Guid orderId, double paymentValue, string paymentType, string paymentMethod)
     {
         Payment payment = new Payment();

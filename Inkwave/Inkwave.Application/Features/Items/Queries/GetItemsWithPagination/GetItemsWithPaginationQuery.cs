@@ -1,7 +1,4 @@
-﻿using Inkwave.Shared;
-using MediatR;
-
-namespace Inkwave.Application.Features.Items.Queries.GetItemsWithPagination;
+﻿namespace Inkwave.Application.Features.Items.Queries.GetItemsWithPagination;
 
 
 public record GetItemsWithPaginationQuery : IRequest<PaginatedResult<GetItemsWithPaginationDto>>

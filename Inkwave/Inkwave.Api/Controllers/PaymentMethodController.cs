@@ -12,16 +12,36 @@ namespace Inkwave.WebAPI.Controllers
             _mediator = mediator;
         }
         [HttpPost()]
-
-        public async Task<IActionResult> AddPaymentMethod(AddPaymentMethodCommand command)
+        public async Task<ActionResult<Result<Guid>>> AddPaymentMethod(string cardName, string cardNumber, string cardMonth, string cardYear, string cardCvv)
         {
-            return Ok(await _mediator.Send(command));
+            if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid userId))
+                return await _mediator.Send(new AddPaymentMethodCommand
+                {
+                    UserId = userId,
+                    CardName = cardName,
+                    CardNumber = cardNumber,
+                    CardMonth = cardMonth,
+                    CardYear = cardYear,
+                    CardCVV = cardCvv
+                });
+            return Result<Guid>.Failure("Not Found");
         }
 
-        [HttpPost()]
-        public async Task<IActionResult> UpdatePaymentMethod(UpdatePaymentMethodCommand command)
+        [HttpPut()]
+        public async Task<ActionResult<Result<Guid>>> UpdatePaymentMethod(Guid id, string cardName, string cardNumber, string cardMonth, string cardYear, string cardCvv)
         {
-            return Ok(await _mediator.Send(command));
+            if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid userId))
+                return await _mediator.Send(new UpdatePaymentMethodCommand
+                {
+                    Id = id,
+                    UserId = userId,
+                    CardName = cardName,
+                    CardNumber = cardNumber,
+                    CardMonth = cardMonth,
+                    CardYear = cardYear,
+                    CardCVV = cardCvv
+                });
+            return Result<Guid>.Failure("Not Found");
         }
 
     }

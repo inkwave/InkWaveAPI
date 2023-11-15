@@ -16,9 +16,9 @@ internal class UpdateQuantityCartCommandHandler : IRequestHandler<UpdateQuantity
 
     public async Task<Result<Cart>> Handle(UpdateQuantityCartCommand command, CancellationToken cancellationToken)
     {
-        var Cart = await CartRepository.AddItemCart(command.UserId, command.ItemId, command.Quantity);
-        await unitOfWork.Save(cancellationToken);
-        if (Cart != null)
+        var Cart = await CartRepository.UpdateQuantityAsync(command.UserId, command.ItemId, command.Quantity);
+        var result = await unitOfWork.Save(cancellationToken);
+        if (result > 0)
             return await Result<Cart>.SuccessAsync(Cart, "Updated Cart.");
         else
             return await Result<Cart>.FailureAsync("error in the code");

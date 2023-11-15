@@ -1,8 +1,4 @@
-﻿using Inkwave.Domain;
-using Inkwave.Shared;
-using MediatR;
-
-namespace Inkwave.Application.Features.Carts.Commands.UpdateQuantityCart
+﻿namespace Inkwave.Application.Features.Carts.Commands.UpdateQuantityCart
 {
     public record UpdateQuantityCartCommand : IRequest<Result<Cart>>
     {

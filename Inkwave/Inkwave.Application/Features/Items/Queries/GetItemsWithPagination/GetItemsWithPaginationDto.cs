@@ -15,6 +15,7 @@ public record GetItemsWithPaginationDto : IMapFrom<Item>
     public double Quantity { get; set; }
     public string Image { get; set; } = string.Empty;
     public string Tags { get; set; } = string.Empty;
+    public double Rate => new Random().Next(1, 5) + new Random().NextDouble() - 0.1;
     public GetItemByIdSubDescriptionDto? SubDescription { get; set; }
     public ICollection<GetItemByIdCategoryDto> Categorys { get; set; } = new HashSet<GetItemByIdCategoryDto>();
 

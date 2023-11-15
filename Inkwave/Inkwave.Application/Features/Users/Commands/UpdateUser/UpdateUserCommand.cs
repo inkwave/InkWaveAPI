@@ -1,12 +1,8 @@
-﻿using Inkwave.Shared;
-
-using MediatR;
-
-namespace Inkwave.Application.Features.Users.Commands.UpdateUser
+﻿namespace Inkwave.Application.Features.Users.Commands.UpdateUser
 {
     public record UpdateUserCommand : IRequest<Result<Guid>>
     {
-        public Guid Id { get; set; }
+        public Guid UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

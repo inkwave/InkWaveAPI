@@ -45,16 +45,18 @@ public class User : BaseAuditableEntity
     }
     public User UpdateUser(string fname, string lname, string email, string phone, string gender)
     {
-        User user = new User()
-        {
-            FirstName = fname,
-            LastName = lname,
-            Email = email,
-            Phone = phone,
-            Gender = gender
-        };
-        user.AddDomainEvent(new UserUpdatedEvent(user));
-        return user;
+        this.FirstName = fname;
+        this.LastName = lname;
+        this.Email = email;
+        this.Phone = phone;
+        this.Gender = gender;
+        this.AddDomainEvent(new UserUpdatedEvent(this));
+        return this;
+    }
+    public User UpdatePhoto(string photoUrl)
+    {
+        this.PhotoUrl = photoUrl;
+        return this;
     }
 
 }

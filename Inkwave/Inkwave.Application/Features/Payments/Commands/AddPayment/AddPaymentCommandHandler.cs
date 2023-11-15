@@ -15,23 +15,24 @@ namespace Inkwave.Application.Features.Payments.Commands.AddPayment
 
         public async Task<Result<Guid>> Handle(AddPaymentCommand command, CancellationToken cancellationToken)
         {
-            var order = await _orderRepository.GetOrderById(command.OrderId);
-            if (order == null)
-                return await Result<Guid>.FailureAsync("Order not found.");
+            return default;
+            //var order = await _orderRepository.GetOrderById(command.OrderId);
+            //if (order == null)
+            //    return await Result<Guid>.FailureAsync("Order not found.");
 
-            var payment = await _paymentRepository.CreatePaymentAsync(command.OrderId, command.PaymentValue, command.PaymentType, command.PaymentMethod);
-            if (payment == null)
-                return await Result<Guid>.FailureAsync("Error creating payment.");
+            //var payment = await _paymentRepository.CreatePaymentAsync(command.OrderId, command.PaymentValue, command.PaymentType, command.PaymentMethod);
+            //if (payment == null)
+            //    return await Result<Guid>.FailureAsync("Error creating payment.");
 
-            order.AddPayment(payment);
-            var result = await _orderRepository.UpdateOrderAsync(order);
-            if (result)
-                return await Result<Guid>.SuccessAsync(command.OrderId, "Payment added.");
-            else
-                return await Result<Guid>.FailureAsync("Error adding payment.");
+            //order.AddPayment(payment);
+            //var result = await _orderRepository.UpdateOrderAsync(order);
+            //if (result)
+            //    return await Result<Guid>.SuccessAsync(command.OrderId, "Payment added.");
+            //else
+            //    return await Result<Guid>.FailureAsync("Error adding payment.");
         }
-        
-       
+
+
     }
-    
+
 }

@@ -1,43 +1,44 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Features\Categories\Commands\**" />
-    <EmbeddedResource Remove="Features\Categories\Commands\**" />
-    <None Remove="Features\Categories\Commands\**" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Features\Categories\Commands\**" />
+		<EmbeddedResource Remove="Features\Categories\Commands\**" />
+		<None Remove="Features\Categories\Commands\**" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="12.0.1" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
-    <PackageReference Include="FluentValidation" Version="11.8.0" />
-    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="12.0.1" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+		<PackageReference Include="FluentValidation" Version="11.8.0" />
+		<PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Inkwave.Domain\Inkwave.Domain.csproj" />
-    <ProjectReference Include="..\Inkwave.Shared\Inkwave.Shared.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Inkwave.Domain\Inkwave.Domain.csproj" />
+		<ProjectReference Include="..\Inkwave.Shared\Inkwave.Shared.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Items\Commands\" />
-    <Folder Include="Features\Orders\Events\" />
-    <Folder Include="Features\Orders\Queries\" />
-    <Folder Include="Features\PaymentMethod\Queries\" />
-    <Folder Include="Features\Payments\Queries\" />
-    <Folder Include="Features\Users\Queries\RefreshToken\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Features\Items\Commands\" />
+		<Folder Include="Features\Orders\Events\" />
+		<Folder Include="Features\Orders\Queries\" />
+		<Folder Include="Features\PaymentMethod\Queries\" />
+		<Folder Include="Features\Payments\Queries\" />
+		<Folder Include="Features\Users\Queries\RefreshToken\" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Using Include="Inkwave.Shared" />
-    <Using Include="MediatR" />
-    <Using Include="Inkwave.Domain" />
-  </ItemGroup>
+	<ItemGroup>
+		<Using Include="Inkwave.Shared" />
+		<Using Include="MediatR" />
+		<Using Include="Inkwave.Domain" />
+		<Using Include="AutoMapper" />
+	</ItemGroup>
 
 </Project>

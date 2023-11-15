@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using Inkwave.Application.Interfaces.Repositories;
-using Inkwave.Shared;
-using MediatR;
+﻿using Inkwave.Application.Interfaces.Repositories;
 
 namespace Inkwave.Application.Features.Carts.Queries.GetCartInfo;
 

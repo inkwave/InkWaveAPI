@@ -1,11 +1,9 @@
-﻿using Inkwave.Domain.Payment;
-
-namespace Inkwave.Application.Interfaces.Repositories
+﻿namespace Inkwave.Application.Interfaces.Repositories
 {
     public interface IPaymentRepository
     {
-        
-         Task<Payment> CreatePaymentAsync(Guid orderId, double paymentValue, string paymentType, string paymentMethod);
-       
+
+        Task<Payment> CreatePaymentAsync(Guid orderId, double paymentValue, string paymentType, string paymentMethod);
+
     }
 }

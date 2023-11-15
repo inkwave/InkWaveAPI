@@ -1,5 +1,6 @@
 ﻿using Inkwave.Application.Features.Users.Commands.DeleteUser;
 using Inkwave.Application.Features.Users.Commands.UpdateUser;
+using Inkwave.Application.Features.Users.Commands.UpdateUserPhoto;
 using Inkwave.Application.Features.Users.Queries.GetUsersWithPagination;
 
 namespace Inkwave.WebAPI.Controllers
@@ -54,15 +55,21 @@ namespace Inkwave.WebAPI.Controllers
 
 
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult<Result<Guid>>> Update(Guid id, UpdateUserCommand command)
+        [HttpPut()]
+        public async Task<ActionResult<Result<Guid>>> Update(UpdateUserCommand command)
         {
-            if (id != command.Id)
-            {
-                return BadRequest();
-            }
+            if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid UserId) && (UserId == command.UserId))
+                return await _mediator.Send(command);
+            return Result<Guid>.Failure("Not Found");
+        }
+        [HttpPut()]
+        [Route("UpdatePhoto")]
+        public async Task<ActionResult<Result<Guid>>> UpdatePhoto(string photoUrl)
+        {
+            if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid userId))
+                return await _mediator.Send(new UpdateUserPhotoCommand { UserId = userId, PhotoUrl = photoUrl });
+            return Result<Guid>.Failure("Not Found");
 
-            return await _mediator.Send(command);
         }
 
         [HttpDelete("{id}")]

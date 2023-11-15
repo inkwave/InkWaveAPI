@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Inkwave.Application.Interfaces.Repositories;
+﻿using Inkwave.Application.Interfaces.Repositories;
 
 namespace Inkwave.Application.Features.PaymentMethod.Commands.AddPaymentMethod
 {
@@ -18,7 +17,7 @@ namespace Inkwave.Application.Features.PaymentMethod.Commands.AddPaymentMethod
 
         public async Task<Result<Guid>> Handle(AddPaymentMethodCommand request, CancellationToken cancellationToken)
         {
-            var paymentMethod = await paymentMethodRepository.CreatePaymentMethodAsync(request.CardName, request.CardNumber, request.CardMonth, request.CardYear, request.CardCVV);
+            var paymentMethod = await paymentMethodRepository.CreatePaymentMethodAsync(request.UserId, request.CardName, request.CardNumber, request.CardMonth, request.CardYear, request.CardCVV);
             var result = await unitOfWork.Save(cancellationToken);
             if (result > 0)
                 return await Result<Guid>.SuccessAsync(paymentMethod.Id, "Payment Method Added.");

@@ -1,7 +1,4 @@
-﻿using Inkwave.Application.Features.Favourites.Commands.AddFavourite;
-using Inkwave.Application.Features.Favourites.Commands.RemoveFavourite;
-using Inkwave.Application.Features.Favourites.Queries.GetMyFavourite;
-using Inkwave.Application.Features.Payments.Commands.AddPayment;
+﻿using Inkwave.Application.Features.Payments.Commands.AddPayment;
 
 
 namespace Inkwave.WebAPI.Controllers
@@ -15,14 +12,14 @@ namespace Inkwave.WebAPI.Controllers
             _mediator = mediator;
         }
         [HttpPost()]
-        
+
         public async Task<ActionResult<Result<Guid>>> AddPayment(Guid id)
         {
             var command = new AddPaymentCommand() { OrderId = id };
             return await _mediator.Send(command);
 
         }
-        
+
 
 
     }

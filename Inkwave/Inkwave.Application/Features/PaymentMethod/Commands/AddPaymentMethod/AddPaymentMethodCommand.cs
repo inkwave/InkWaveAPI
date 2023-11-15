@@ -2,17 +2,16 @@
 {
     public class AddPaymentMethodCommand : IRequest<Result<Guid>>
     {
+        public Guid UserId { get; set; }
 
-        public Guid Id { get; set; }
+        public string CardName { get; set; } = string.Empty;
 
-        public string CardName { get; set; } = "";
+        public string CardNumber { get; set; } = string.Empty;
 
-        public string CardNumber { get; set; } = "";
+        public string CardMonth { get; set; } = string.Empty;
+        public string CardYear { get; set; } = string.Empty;
 
-        public string CardMonth { get; set; } = "";
-        public string CardYear { get; set; } = "";
-
-        public string CardCVV { get; set; } = "";
+        public string CardCVV { get; set; } = string.Empty;
 
     }
 }

@@ -45,7 +45,7 @@ namespace Inkwave.Application.Features.Users.Commands.UpdateUser
         }
         private async Task<bool> IsUniqueEmail(UpdateUserCommand command, CancellationToken cancellationToken)
         {
-            var userObject = await unitOfWork.Repository<User>().Entities.AnyAsync(x => x.Id != command.Id && x.Email.Trim().ToLower() == command.Email.Trim().ToLower());
+            var userObject = await unitOfWork.Repository<User>().Entities.AnyAsync(x => x.Id != command.UserId && x.Email.Trim().ToLower() == command.Email.Trim().ToLower());
             if (userObject)
                 return false;
 
