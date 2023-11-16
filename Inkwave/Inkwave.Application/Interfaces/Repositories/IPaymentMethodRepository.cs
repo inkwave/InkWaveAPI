@@ -8,5 +8,6 @@ namespace Inkwave.Application.Interfaces.Repositories
         Task<PaymentMethod> CreatePaymentMethodAsync(Guid userId, string cardName, string cardNumber, string cardMonth, string cardYear, string cardCVV);
         Task<PaymentMethod> GetById(Guid id);
         Task UpdatePaymentMethod(Guid id, Guid userId, string cardName, string cardNumber, string cardMonth, string cardYear, string cardCVV);
+        Task<IEnumerable<PaymentMethod>> GetAllPaymentMethodsByUserId(Guid userId);
     }
 }

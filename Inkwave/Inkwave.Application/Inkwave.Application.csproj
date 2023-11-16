@@ -29,7 +29,6 @@
 		<Folder Include="Features\Items\Commands\" />
 		<Folder Include="Features\Orders\Events\" />
 		<Folder Include="Features\Orders\Queries\" />
-		<Folder Include="Features\PaymentMethod\Queries\" />
 		<Folder Include="Features\Payments\Queries\" />
 		<Folder Include="Features\Users\Queries\RefreshToken\" />
 	</ItemGroup>

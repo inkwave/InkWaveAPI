@@ -1,5 +1,6 @@
 ﻿using Inkwave.Application.Features.PaymentMethod.Commands.AddPaymentMethod;
 using Inkwave.Application.Features.PaymentMethod.Commands.UpdatePaymentMethod;
+using Inkwave.Application.Features.PaymentMethod.Queries.GetPaymentMethodByUserId;
 
 namespace Inkwave.WebAPI.Controllers
 {
@@ -42,6 +43,17 @@ namespace Inkwave.WebAPI.Controllers
                     CardCVV = cardCvv
                 });
             return Result<Guid>.Failure("Not Found");
+        }
+
+        [HttpGet()]
+        public async Task<ActionResult<Result<List<GetPaymentMethodByUserIdDto>>>> GetPaymentMethodByUserId()
+        {
+            if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid userId))
+                return await _mediator.Send(new GetPaymentMethodByUserIdQuery
+                {
+                    UserId = userId
+                });
+            return Result<List<GetPaymentMethodByUserIdDto>>.Failure("Not Found");
         }
 
     }
