@@ -39,6 +39,10 @@ namespace Inkwave.Persistence.Repositories
             return await genericRepository.Entities.Where(x => x.UserId == userId).ToListAsync();
         }
 
+        public async Task<PaymentMethod> GetPaymentMethodById(Guid id)
+        {
+            return await genericRepository.Entities.FirstOrDefaultAsync(x => x.Id == id);
+        }
 
 
 
