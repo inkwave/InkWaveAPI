@@ -16,7 +16,7 @@ namespace Inkwave.Application.Features.PaymentMethod.Queries.GetPaymentMethodByI
         public async Task<Result<GetPaymentMethodByIdDto>> Handle(GetPaymentMethodByIdQuery request, CancellationToken cancellationToken)
         {
 
-            var paymentMethod = await _paymentMethodRepository.GetPaymentMethodById(request.Id);
+            var paymentMethod = await _paymentMethodRepository.GetById(request.Id);
 
             if (paymentMethod == null)
             {
@@ -26,7 +26,7 @@ namespace Inkwave.Application.Features.PaymentMethod.Queries.GetPaymentMethodByI
             var mappedPaymentMethod = _mapper.Map<GetPaymentMethodByIdDto>(paymentMethod);
 
             return Result<GetPaymentMethodByIdDto>.Success(mappedPaymentMethod);
-            
+
         }
     }
 }
