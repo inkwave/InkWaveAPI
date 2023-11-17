@@ -1,4 +1,5 @@
 ﻿using Inkwave.Application.Interfaces.Repositories;
+using Inkwave.Domain.PaymentMethod;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inkwave.Persistence.Repositories
