@@ -1,9 +1,5 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
+﻿using AutoMapper.QueryableExtensions;
 using Inkwave.Application.Interfaces.Repositories;
-using Inkwave.Domain.User;
-using Inkwave.Shared;
-using MediatR;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -23,7 +19,7 @@ internal class GetAllUsersQueryHandler : IRequestHandler<GetAllUsersQuery, Resul
     }
 
     public async Task<Result<List<GetAllUsersDto>>> Handle(GetAllUsersQuery query, CancellationToken cancellationToken)
-    { 
+    {
         var Users = await _unitOfWork.Repository<User>().Entities
                .ProjectTo<GetAllUsersDto>(_mapper.ConfigurationProvider)
                .ToListAsync(cancellationToken);

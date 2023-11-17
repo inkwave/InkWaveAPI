@@ -1,6 +1,4 @@
-﻿using Inkwave.Domain.PaymentMethod;
-
-namespace Inkwave.Application.Interfaces.Repositories
+﻿namespace Inkwave.Application.Interfaces.Repositories
 {
     public interface IPaymentMethodRepository
     {

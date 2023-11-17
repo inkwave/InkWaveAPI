@@ -21,10 +21,16 @@ namespace Inkwave.WebAPI.Controllers
         //}
         [HttpPost()]
         [Route("CreateFromCartOrder")]
-        public async Task<ActionResult<Result<Order>>> CreateFromCartOrder(Guid billingAddressId, Guid shippingAddressId)
+        public async Task<ActionResult<Result<Order>>> CreateFromCartOrder(Guid addressId, bool isCashOnDelivery, Guid paymentMethodId)
         {
             if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid userId))
-                return await _mediator.Send(new CreateFromCartOrderCommand { UserId = userId, BillingAddressId = billingAddressId, ShippingAddressId = shippingAddressId });
+                return await _mediator.Send(new CreateFromCartOrderCommand
+                {
+                    UserId = userId,
+                    AddressId = addressId,
+                    IsCashOnDelivery = isCashOnDelivery,
+                    PaymentMethodId = paymentMethodId
+                });
             return Result<Order>.Failure("Not Found");
         }
 

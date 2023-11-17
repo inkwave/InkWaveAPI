@@ -1,5 +1,4 @@
 ﻿using Inkwave.Domain.Common;
-using Inkwave.Domain.User;
 
 namespace Inkwave.Application.Features.Users.Commands.DeleteUser
 {

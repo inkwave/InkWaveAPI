@@ -1,7 +1,6 @@
-﻿using Inkwave.Domain.Common;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Inkwave.Domain.User;
+namespace Inkwave.Domain;
 
 public class User : BaseAuditableEntity
 {
@@ -39,9 +38,24 @@ public class User : BaseAuditableEntity
             passwordHash = passwordHash,
             passwordSalt = passwordSalt
         };
-        user.ActiveCode = System.Security.Cryptography.RandomNumberGenerator.GetInt32(0, 1000000).ToString("D6");
-        user.AddDomainEvent(new CreatedUserEvent(user));
+        user.CreatActiveCode();
+        user.AddDomainEvent(new SendActiveCodeEvent(user.Email, user.ActiveCode));
         return user;
+    }
+    public User CreatActiveCode()
+    {
+        this.ActiveCode = System.Security.Cryptography.RandomNumberGenerator.GetInt32(0, 1000000).ToString("D6");
+        return this;
+    }
+    public bool ActiveUser(string code)
+    {
+        if (this.ActiveCode == code)
+        {
+            this.Active = true;
+            this.AddDomainEvent(new UserActivedEvent(this));
+            return true;
+        }
+        return false;
     }
     public User UpdateUser(string fname, string lname, string email, string phone, string gender)
     {

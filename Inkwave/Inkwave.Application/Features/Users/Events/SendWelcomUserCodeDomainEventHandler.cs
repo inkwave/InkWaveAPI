@@ -1,8 +1,4 @@
 ﻿using Inkwave.Application.Interfaces;
-using Inkwave.Domain.Settings;
-using Inkwave.Domain.User;
-using MediatR;
-using System.Net.Mail;
 using System.Text;
 
 namespace Inkwave.Application.Features.Users.Events;
@@ -18,9 +14,9 @@ internal sealed class SendWelcomUserCodeDomainEventHandler : INotificationHandle
     {
         if (notification.User == null) return Task.CompletedTask;
         var email = new DTOs.Email.EmailRequestDto();
-        email.To = notification.User.Email;   
+        email.To = notification.User.Email;
         email.Subject = "Welcome to Ink Waves";
-        
+
         StringBuilder mailBody = new StringBuilder();
         mailBody.AppendFormat($"< div style = \"color:inherit;font-size:inherit;line-height:inherit\" > ");
         mailBody.AppendFormat($" < h2 style = \"margin:0;font-size:18px;line-height:250%\" > ");

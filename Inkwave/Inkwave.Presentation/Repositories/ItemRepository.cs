@@ -1,5 +1,4 @@
 ﻿using Inkwave.Application.Interfaces.Repositories;
-using Inkwave.Domain.Item;
 using Inkwave.Persistence.Contexts;
 
 namespace Inkwave.Persistence.Repositories;

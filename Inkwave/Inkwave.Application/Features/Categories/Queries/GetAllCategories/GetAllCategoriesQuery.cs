@@ -1,9 +1,5 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
+﻿using AutoMapper.QueryableExtensions;
 using Inkwave.Application.Interfaces.Repositories;
-using Inkwave.Domain.Item;
-using Inkwave.Shared;
-using MediatR;
 
 using Microsoft.EntityFrameworkCore;
 

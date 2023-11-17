@@ -11,13 +11,16 @@ public class CreateFromCartOrderCommandValidator : AbstractValidator<CreateFromC
             .NotEmpty()
             .NotNull();
 
-        RuleFor(x => x.ShippingAddressId)
+        RuleFor(x => x.AddressId)
             .NotEmpty()
             .NotNull();
 
-        RuleFor(x => x.BillingAddressId)
-            .NotEmpty()
-            .NotNull();
+        RuleFor(x => x).Must(IsCashOnDeliveryValidat).WithMessage("{PropertyName} should be not empty. NEVER!");
     }
-
+    public bool IsCashOnDeliveryValidat(CreateFromCartOrderCommand command)
+    {
+        if (command.IsCashOnDelivery == false && command.PaymentMethodId == null)
+            return false;
+        else return true;
+    }
 }

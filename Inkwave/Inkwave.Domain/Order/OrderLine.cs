@@ -1,5 +1,4 @@
-﻿using Inkwave.Domain.Common;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Inkwave.Domain;
 
@@ -9,6 +8,7 @@ public class OrderLine : BaseEntity
     public Guid OrderId { get; set; }
     [Required]
     public Guid ItemId { get; set; }
+    public string ItemName { get; set; }
     [Range(0.1, double.MaxValue)]
     public double Quantity { get; set; }
     public double Price { get; set; }
@@ -16,10 +16,7 @@ public class OrderLine : BaseEntity
     public double Tax { get; set; }
     public double Total { get; set; }
     public double Net { get; set; }
-    public OrderLine(Guid orderId, Guid itemId, double quantity,
-        double price,
-        double discount,
-        double tax)
+    public OrderLine(Guid orderId, Guid itemId, double quantity, double price, double discount, double tax)
     {
         this.Id = Guid.NewGuid();
         this.ItemId = itemId;

@@ -1,6 +1,6 @@
 ﻿using Inkwave.Domain.Common;
 
-namespace Inkwave.Domain.User;
+namespace Inkwave.Domain;
 
 public class UserActivedEvent : BaseEvent
 {

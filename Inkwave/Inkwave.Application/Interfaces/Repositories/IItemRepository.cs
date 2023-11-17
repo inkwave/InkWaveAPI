@@ -1,6 +1,4 @@
-﻿using Inkwave.Domain.Item;
-
-namespace Inkwave.Application.Interfaces.Repositories;
+﻿namespace Inkwave.Application.Interfaces.Repositories;
 
 public interface IItemRepository : IGenericRepository<Item>
 {

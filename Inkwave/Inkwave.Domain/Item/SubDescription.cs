@@ -1,8 +1,4 @@
-﻿using Inkwave.Domain.Common;
-
-namespace Inkwave.Domain.Item;
-
-
+﻿namespace Inkwave.Domain;
 public class SubDescription : BaseEntity
 {
     public string ISBN { get; set; } = string.Empty;

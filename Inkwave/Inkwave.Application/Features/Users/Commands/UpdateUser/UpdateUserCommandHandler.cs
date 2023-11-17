@@ -1,5 +1,4 @@
 ﻿using Inkwave.Application.Interfaces.Repositories;
-using Inkwave.Domain.User;
 namespace Inkwave.Application.Features.Users.Commands.UpdateUser
 {
     internal class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, Result<Guid>>

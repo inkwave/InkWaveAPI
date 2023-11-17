@@ -1,6 +1,5 @@
 ﻿using Inkwave.Application.Interfaces;
 using Inkwave.Domain.Authentication;
-using Inkwave.Domain.User;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

@@ -1,6 +1,6 @@
 ﻿using Inkwave.Application.Interfaces.Repositories;
 
-namespace Inkwave.Application.Features.PaymentMethod.Queries.GetPaymentMethodById
+namespace Inkwave.Application.Features.PaymentMethods.Queries.GetPaymentMethodById
 {
     public class GetPaymentMethodByIdQueryHandler : IRequestHandler<GetPaymentMethodByIdQuery, Result<GetPaymentMethodByIdDto>>
     {

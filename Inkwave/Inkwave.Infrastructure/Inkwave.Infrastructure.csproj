@@ -13,5 +13,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Inkwave.Application\Inkwave.Application.csproj" />
   </ItemGroup>
+ <ItemGroup>
+	 <Using Include="Inkwave.Domain" />
+  </ItemGroup>
 
 </Project>

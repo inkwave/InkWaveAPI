@@ -1,7 +1,4 @@
 ﻿using Inkwave.Application.Common.Mappings;
-using Inkwave.Domain.User;
-using Inkwave.Shared;
-using MediatR;
 
 namespace Inkwave.Application.Features.Users.Commands.CreateUser
 {

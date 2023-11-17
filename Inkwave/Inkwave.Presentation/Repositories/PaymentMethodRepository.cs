@@ -1,5 +1,4 @@
 ﻿using Inkwave.Application.Interfaces.Repositories;
-using Inkwave.Domain.PaymentMethod;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inkwave.Persistence.Repositories
@@ -34,18 +33,14 @@ namespace Inkwave.Persistence.Repositories
             await genericRepository.UpdateAsync(model);
         }
 
-        public async Task<List<PaymentMethod>> GetAllPaymentMethodsByUserId (Guid userId)
+        public async Task<List<PaymentMethod>> GetAllPaymentMethodsByUserId(Guid userId)
         {
             return await genericRepository.Entities.Where(x => x.UserId == userId).ToListAsync();
         }
 
         public async Task<PaymentMethod> GetPaymentMethodById(Guid id)
         {
-            return await genericRepository.Entities.FirstOrDefaultAsync(x => x.Id == id);
+            return await genericRepository.GetByIdAsync(id);
         }
-
-
-
-
     }
 }

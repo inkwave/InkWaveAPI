@@ -1,9 +1,6 @@
 ﻿using Inkwave.Application.Interfaces;
 using Inkwave.Application.Interfaces.Repositories;
 using Inkwave.Domain.Authentication;
-using Inkwave.Domain.User;
-using Inkwave.Shared;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inkwave.Application.Features.Users.Commands.RefreshToken;
