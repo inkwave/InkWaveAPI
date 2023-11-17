@@ -12,13 +12,15 @@ namespace Inkwave.Persistence.Repositories
             return Task.FromResult(payment);
         }
 
-        public Task<Payment> GetPaymentByIdAsync(Guid orderId, double paymentValue, string paymentType, string paymentMethod)
+       
+
+        public Task<Payment> RemovePaymentAsync(Guid orderId, double paymentValue, string paymentType, string paymentMethod)
         {
             var payment = Payment.Create(orderId, paymentValue, paymentType, paymentMethod);
             return Task.FromResult(payment);
         }
 
-        public Task<Payment> RemovePaymentAsync(Guid orderId, double paymentValue, string paymentType, string paymentMethod)
+        public Task<Payment> GetPaymentByIdAsync(Guid orderId, double paymentValue, string paymentType, string paymentMethod)
         {
             var payment = Payment.Create(orderId, paymentValue, paymentType, paymentMethod);
             return Task.FromResult(payment);
@@ -30,7 +32,16 @@ namespace Inkwave.Persistence.Repositories
             return Task.FromResult(new List<Payment> { payment }.AsEnumerable());
         }
 
+        public Task<Guid> GetPaymentByIdAsync(Guid userId, Guid itemId)
+        {
+            return Task.FromResult(Guid.NewGuid());
+        }
 
+        public Task RemovePaymentAsync(Guid payment)
+        {
+            return Task.CompletedTask;
+        }
 
+        
     }
 }

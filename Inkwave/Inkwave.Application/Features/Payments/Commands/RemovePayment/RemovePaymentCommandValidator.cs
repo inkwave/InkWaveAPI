@@ -2,7 +2,7 @@
 
 namespace Inkwave.Application.Features.Payments.Commands.RemovePayment
 {
-    internal class RemovePaymentCommandValidator : AbstractValidator<RemovePaymentCommand>
+    public class RemovePaymentCommandValidator : AbstractValidator<RemovePaymentCommand>
     {
         public RemovePaymentCommandValidator()
         {

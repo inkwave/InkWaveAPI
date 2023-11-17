@@ -2,7 +2,7 @@
 
 namespace Inkwave.Application.Features.Payments.Commands.RemovePayment
 {
-    internal class RemovePaymentCommandHandler : IRequestHandler<RemovePaymentCommand, Result<Guid>>
+    public class RemovePaymentCommandHandler : IRequestHandler<RemovePaymentCommand, Result<Guid>>
     {
         private readonly IPaymentRepository _paymentRepository;
         private readonly IMapper _mapper;
