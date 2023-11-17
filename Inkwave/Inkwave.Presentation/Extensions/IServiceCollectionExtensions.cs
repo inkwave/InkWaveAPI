@@ -38,6 +38,7 @@ namespace Inkwave.Persistence.Extensions
                 .AddTransient(typeof(IUserRepository), typeof(UserRepository))
                 .AddTransient(typeof(IItemRepository), typeof(ItemRepository))
                 .AddTransient(typeof(IFavouriteRepository), typeof(FavouriteRepository))
+                .AddTransient(typeof(IAddressRepository), typeof(AddressRepository))
                 .AddTransient(typeof(IOrderRepository), typeof(OrderRepository))
                 .AddTransient(typeof(ICartRepository), typeof(CartRepository))
                 .AddTransient(typeof(IPaymentRepository), typeof(PaymentRepository))
