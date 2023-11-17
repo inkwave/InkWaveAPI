@@ -1,4 +1,5 @@
 ﻿using Inkwave.Application.Features.Orders.Commands.CreateFromCartOrder;
+using Inkwave.Application.Features.Orders.Queries.GetOrdersByUserId;
 
 namespace Inkwave.WebAPI.Controllers
 {
@@ -10,15 +11,15 @@ namespace Inkwave.WebAPI.Controllers
         {
             _mediator = mediator;
         }
-        //[HttpGet()]
-        //public async Task<ActionResult<Result<GetCartInfoDto>>> GetCartInfo()
-        //{
-        //    if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid userId))
-        //        return await _mediator.Send(new GetCartInfoDtoQuery { UserId = userId });
-        //    else
-        //        return Result<GetCartInfoDto>.Failure("Not Found");
+        [HttpGet()]
+        public async Task<ActionResult<Result<List<GetOrdersByUserIdDto>>>> GetOrdersByUserId()
+        {
+            if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid userId))
+                return await _mediator.Send(new GetOrdersByUserIdQuery { UserId = userId });
+            else
+                return Result<List<GetOrdersByUserIdDto>>.Failure("Not Found");
 
-        //}
+        }
         [HttpPost()]
         [Route("CreateFromCartOrder")]
         public async Task<ActionResult<Result<Order>>> CreateFromCartOrder(Guid addressId, bool isCashOnDelivery, Guid paymentMethodId)

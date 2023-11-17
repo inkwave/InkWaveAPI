@@ -13,4 +13,4 @@ public class UpdateAddressCommand : IRequest<Result<Guid>>
 
     public string MarkingPlace { get; set; } = "";
 }
-}
+

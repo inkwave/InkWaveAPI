@@ -1,6 +1,4 @@
-﻿using Inkwave.Domain.Common;
-
-namespace Inkwave.Domain
+﻿namespace Inkwave.Domain
 {
     public class Address : BaseEntity
     {
@@ -21,6 +19,7 @@ namespace Inkwave.Domain
         public string Building { get; set; }
         public string Apartment { get; set; }
         public string MarkingPlace { get; set; }
+        public bool IsDefault { get; set; }
         public static Address Create(Guid userId, string street, string city, string building, string apartment, string markingPlace)
         {
             Address adress = new Address(userId, street, city, building, apartment, markingPlace);
@@ -36,6 +35,11 @@ namespace Inkwave.Domain
             this.Apartment = apartment;
             this.MarkingPlace = markingPlace;
             return this;
+        }
+        public void SetDefaultAddres(List<Address> otherAddresses)
+        {
+            this.IsDefault = true;
+            otherAddresses.ForEach(x => x.IsDefault = false);
         }
 
     }

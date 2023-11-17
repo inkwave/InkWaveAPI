@@ -8,6 +8,7 @@ public class Order : BaseAuditableEntity
     }
     public OrderStates OrderStates { get; set; } = OrderStates.Pending;
     public PaymentStatus PaymentStatus { get; set; }
+    public User Customer { get; set; }
     public Guid CustomerId { get; set; }
     public Guid AddressId { get; set; }
     public Guid PaymentMethodId { get; set; }
@@ -34,11 +35,16 @@ public class Order : BaseAuditableEntity
         order.AddDomainEvent(new CreatedOrderEvent(order));
         return order;
     }
-    public OrderLine SetOrderLine(Guid itemId, double quantity, double price, double discount, double tax)
+    public OrderLine SetOrderLine(Guid itemId, string itemName, double quantity, double price, double discount, double tax)
     {
-        var orderLine = OrderLine.Create(Id, itemId, quantity, price, discount, tax);
+        var orderLine = OrderLine.Create(Id, itemId, itemName, quantity, price, discount, tax);
         _orderLines.Add(orderLine);
         return orderLine;
+    }
+    public void SetOrdersLine(params OrderLine[] orderLines)
+    {
+        foreach (var orderLine in orderLines)
+            _orderLines.Add(orderLine);
     }
     public IReadOnlyCollection<OrderLine> GetOrderLines()
     {

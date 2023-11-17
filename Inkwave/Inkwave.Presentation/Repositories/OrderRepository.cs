@@ -30,7 +30,7 @@ namespace Inkwave.Persistence.Repositories
             customerCart.ForEach(cart =>
             {
                 var item = customerCartItems.Find(x => x.Id == cart.ItemId);
-                order.SetOrderLine(cart.ItemId, cart.Quantity, item.Price, item.Discount, item.Tax);
+                order.SetOrderLine(cart.ItemId, item.Title, cart.Quantity, item.Price, item.Discount, item.Tax);
             });
             await _orderRepository.AddAsync(order);
             await _orderLineRepository.AddRangeAsync(order.GetOrderLines());
@@ -42,9 +42,9 @@ namespace Inkwave.Persistence.Repositories
             _orderRepository.AddAsync(order);
             return Task.FromResult(order);
         }
-        public Task<OrderLine> AddOrderLineAsync(Order order, Guid itemId, double quantity, double price, double discount, double tax)
+        public Task<OrderLine> AddOrderLineAsync(Order order, Guid itemId, string itemName, double quantity, double price, double discount, double tax)
         {
-            var orderLine = order.SetOrderLine(itemId, quantity, price, discount, tax);
+            var orderLine = order.SetOrderLine(itemId, itemName, quantity, price, discount, tax);
             _orderLineRepository.AddAsync(orderLine);
             return Task.FromResult(orderLine);
         }
@@ -52,7 +52,13 @@ namespace Inkwave.Persistence.Repositories
 
         public async Task<List<Order>> GetOrdersByUserIdAsync(Guid userId, CancellationToken cancellationToken)
         {
-            return await _orderRepository.Entities.Where(x => x.CustomerId == userId).ToListAsync(cancellationToken);
+            var orders = await _orderRepository.Entities.Include(x => x.Customer).Where(x => x.CustomerId == userId).ToListAsync(cancellationToken);
+            foreach (var order in orders)
+            {
+                var ordersLine = await GetOrderLinesByOrderIdAsync(order.Id, cancellationToken);
+                order.SetOrdersLine(ordersLine.ToArray());
+            }
+            return orders;
         }
         public async Task<Order> GetOrderByIdAsync(Guid userId)
         {

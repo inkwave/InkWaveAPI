@@ -28,7 +28,6 @@
 	<ItemGroup>
 		<Folder Include="Features\Items\Commands\" />
 		<Folder Include="Features\Orders\Events\" />
-		<Folder Include="Features\Orders\Queries\" />
 		<Folder Include="Features\Payments\Queries\" />
 		<Folder Include="Features\Users\Queries\RefreshToken\" />
 	</ItemGroup>
@@ -38,6 +37,7 @@
 		<Using Include="MediatR" />
 		<Using Include="Inkwave.Domain" />
 		<Using Include="AutoMapper" />
+		<Using Include="Inkwave.Application.Common.Mappings" />
 	</ItemGroup>
 
 </Project>

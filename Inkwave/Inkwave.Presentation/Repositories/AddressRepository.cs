@@ -37,5 +37,13 @@ namespace Inkwave.Persistence.Repositories
             await genericRepository.UpdateAsync(model);
         }
 
+        public async Task UpdateDefaultAddres(Guid id)
+        {
+            var model = await genericRepository.GetByIdAsync(id);
+            var other = await GetAllAddressByUserId(model.UserId);
+            model.SetDefaultAddres(other);
+            other.ForEach(async x => await genericRepository.UpdateAsync(x));
+            await genericRepository.UpdateAsync(model);
+        }
     }
 }
