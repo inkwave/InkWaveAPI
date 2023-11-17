@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Inkwave.Persistence.Repositories
 {
-    internal class AddressRepository : IAdressRepository
+    internal class AddressRepository : IAddressRepository
     {
 
 
