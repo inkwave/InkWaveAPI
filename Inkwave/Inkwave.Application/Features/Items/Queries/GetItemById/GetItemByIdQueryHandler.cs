@@ -1,9 +1,5 @@
-﻿using AutoMapper;
-using Inkwave.Application.Features.Items.Queries.GetItemById;
+﻿using Inkwave.Application.Features.Items.Queries.GetItemById;
 using Inkwave.Application.Interfaces.Repositories;
-using Inkwave.Domain.Item;
-using Inkwave.Shared;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inkwave.Application.Features.Items.Queries.GetItemsWithPagination;

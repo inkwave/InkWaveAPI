@@ -1,6 +1,6 @@
 ﻿using Inkwave.Application.Interfaces.Repositories;
 
-namespace Inkwave.Application.Features.PaymentMethod.Commands.AddPaymentMethod
+namespace Inkwave.Application.Features.PaymentMethods.Commands.AddPaymentMethod
 {
     public class AddPaymentMethodCommandHandler : IRequestHandler<AddPaymentMethodCommand, Result<Guid>>
     {

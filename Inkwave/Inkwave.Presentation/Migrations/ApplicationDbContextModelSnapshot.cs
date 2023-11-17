@@ -44,26 +44,7 @@ namespace Inkwave.Persistence.Migrations
                     b.ToTable("Carts");
                 });
 
-            modelBuilder.Entity("Inkwave.Domain.Favourite", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ItemId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Favourites");
-                });
-
-            modelBuilder.Entity("Inkwave.Domain.Item.Category", b =>
+            modelBuilder.Entity("Inkwave.Domain.Category", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -109,7 +90,26 @@ namespace Inkwave.Persistence.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Inkwave.Domain.Item.Item", b =>
+            modelBuilder.Entity("Inkwave.Domain.Favourite", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ItemId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Favourites");
+                });
+
+            modelBuilder.Entity("Inkwave.Domain.Item", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -171,7 +171,7 @@ namespace Inkwave.Persistence.Migrations
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("Inkwave.Domain.Item.ItemCategory", b =>
+            modelBuilder.Entity("Inkwave.Domain.ItemCategory", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -192,71 +192,16 @@ namespace Inkwave.Persistence.Migrations
                     b.ToTable("ItemCategories");
                 });
 
-            modelBuilder.Entity("Inkwave.Domain.Item.SubDescription", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Author")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Edition")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ISBN")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Language")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Pages")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Publisher")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SubCategory")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Tags")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Weight")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Year")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SubDescriptions");
-                });
-
             modelBuilder.Entity("Inkwave.Domain.Order", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("BillingAddressId")
+                    b.Property<Guid>("AddressId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("Canceled_at")
+                    b.Property<DateTime?>("CanceledAt")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid?>("CreatedBy")
@@ -271,17 +216,20 @@ namespace Inkwave.Persistence.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsCashOnDelivery")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<int>("OrderStates")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("PaymentMethodId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("PaymentStatus")
                         .HasColumnType("int");
-
-                    b.Property<Guid>("ShippingAddressId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("TotalDiscount")
                         .HasColumnType("float");
@@ -319,6 +267,10 @@ namespace Inkwave.Persistence.Migrations
 
                     b.Property<Guid>("ItemId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ItemName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Net")
                         .HasColumnType("float");
@@ -389,7 +341,7 @@ namespace Inkwave.Persistence.Migrations
                     b.ToTable("Payments");
                 });
 
-            modelBuilder.Entity("Inkwave.Domain.PaymentMethod.PaymentMethod", b =>
+            modelBuilder.Entity("Inkwave.Domain.PaymentMethod", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -441,7 +393,62 @@ namespace Inkwave.Persistence.Migrations
                     b.ToTable("PaymentMethods");
                 });
 
-            modelBuilder.Entity("Inkwave.Domain.User.User", b =>
+            modelBuilder.Entity("Inkwave.Domain.SubDescription", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Edition")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ISBN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Pages")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Publisher")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SubCategory")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tags")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Weight")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Year")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SubDescriptions");
+                });
+
+            modelBuilder.Entity("Inkwave.Domain.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -521,33 +528,33 @@ namespace Inkwave.Persistence.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Inkwave.Domain.Item.Category", b =>
+            modelBuilder.Entity("Inkwave.Domain.Category", b =>
                 {
-                    b.HasOne("Inkwave.Domain.Item.Category", "CategoryParent")
+                    b.HasOne("Inkwave.Domain.Category", "CategoryParent")
                         .WithMany()
                         .HasForeignKey("CategoryParentId");
 
                     b.Navigation("CategoryParent");
                 });
 
-            modelBuilder.Entity("Inkwave.Domain.Item.Item", b =>
+            modelBuilder.Entity("Inkwave.Domain.Item", b =>
                 {
-                    b.HasOne("Inkwave.Domain.Item.SubDescription", "SubDescription")
+                    b.HasOne("Inkwave.Domain.SubDescription", "SubDescription")
                         .WithMany()
                         .HasForeignKey("SubDescriptionId");
 
                     b.Navigation("SubDescription");
                 });
 
-            modelBuilder.Entity("Inkwave.Domain.Item.ItemCategory", b =>
+            modelBuilder.Entity("Inkwave.Domain.ItemCategory", b =>
                 {
-                    b.HasOne("Inkwave.Domain.Item.Category", "Category")
+                    b.HasOne("Inkwave.Domain.Category", "Category")
                         .WithMany("ItemCategorys")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Inkwave.Domain.Item.Item", "Item")
+                    b.HasOne("Inkwave.Domain.Item", "Item")
                         .WithMany("ItemCategorys")
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -558,12 +565,12 @@ namespace Inkwave.Persistence.Migrations
                     b.Navigation("Item");
                 });
 
-            modelBuilder.Entity("Inkwave.Domain.Item.Category", b =>
+            modelBuilder.Entity("Inkwave.Domain.Category", b =>
                 {
                     b.Navigation("ItemCategorys");
                 });
 
-            modelBuilder.Entity("Inkwave.Domain.Item.Item", b =>
+            modelBuilder.Entity("Inkwave.Domain.Item", b =>
                 {
                     b.Navigation("ItemCategorys");
                 });

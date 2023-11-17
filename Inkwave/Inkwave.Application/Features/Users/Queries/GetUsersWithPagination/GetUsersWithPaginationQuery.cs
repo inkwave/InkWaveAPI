@@ -1,11 +1,7 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
+﻿using AutoMapper.QueryableExtensions;
 
 using Inkwave.Application.Extensions;
 using Inkwave.Application.Interfaces.Repositories;
-using Inkwave.Domain.User;
-using Inkwave.Shared;
-using MediatR;
 
 namespace Inkwave.Application.Features.Users.Queries.GetUsersWithPagination;
 

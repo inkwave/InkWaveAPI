@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using Inkwave.Application.Common.Mappings;
+﻿using Inkwave.Application.Common.Mappings;
 using Inkwave.Application.Features.Items.Queries.GetItemById;
-using Inkwave.Domain.Item;
 
 namespace Inkwave.Application.Features.Items.Mappers;
 public class GetItemByIdDtoProfile : Profile

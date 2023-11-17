@@ -1,7 +1,6 @@
-﻿using Inkwave.Domain.Common;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Inkwave.Domain.Item;
+namespace Inkwave.Domain;
 
 public class Category : BaseAuditableEntity
 {

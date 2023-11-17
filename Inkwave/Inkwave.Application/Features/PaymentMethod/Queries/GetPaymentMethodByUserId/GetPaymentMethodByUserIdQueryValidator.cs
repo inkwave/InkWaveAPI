@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Inkwave.Application.Features.PaymentMethod.Queries.GetPaymentMethodByUserId
+namespace Inkwave.Application.Features.PaymentMethods.Queries.GetPaymentMethodByUserId
 {
     public class GetPaymentMethodByUserIdQueryValidator : AbstractValidator<GetPaymentMethodByUserIdQuery> 
     {

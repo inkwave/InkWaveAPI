@@ -1,8 +1,5 @@
 ﻿using Inkwave.Domain.Common;
 using Inkwave.Domain.Common.Interfaces;
-using Inkwave.Domain.Item;
-using Inkwave.Domain.PaymentMethod;
-using Inkwave.Domain.User;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 

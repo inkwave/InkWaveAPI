@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using Inkwave.Application.Interfaces.Repositories;
-using Inkwave.Domain.User;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inkwave.Application.Features.Users.Commands.UpdateUser

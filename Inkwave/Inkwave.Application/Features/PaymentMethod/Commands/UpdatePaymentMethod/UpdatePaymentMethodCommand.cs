@@ -1,4 +1,4 @@
-﻿namespace Inkwave.Application.Features.PaymentMethod.Commands.UpdatePaymentMethod
+﻿namespace Inkwave.Application.Features.PaymentMethods.Commands.UpdatePaymentMethod
 {
     public class UpdatePaymentMethodCommand : IRequest<Result<Guid>>
     {

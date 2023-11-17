@@ -1,6 +1,5 @@
 ﻿using Inkwave.Application.Common.Mappings;
 using Inkwave.Application.Features.Items.Queries.GetItemById;
-using Inkwave.Domain.Item;
 
 namespace Inkwave.Application.Features.Items.Queries.GetItemsWithPagination;
 

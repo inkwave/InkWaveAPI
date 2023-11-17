@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Inkwave.Domain.Item;
+namespace Inkwave.Domain;
 
 public class Item : BaseAuditableEntity
 {

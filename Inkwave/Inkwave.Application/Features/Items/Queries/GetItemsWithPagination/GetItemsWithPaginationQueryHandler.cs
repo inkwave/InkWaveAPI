@@ -1,7 +1,6 @@
 ﻿using Inkwave.Application.Extensions;
 using Inkwave.Application.Features.Items.Queries.GetItemById;
 using Inkwave.Application.Interfaces.Repositories;
-using Inkwave.Domain.Item;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inkwave.Application.Features.Items.Queries.GetItemsWithPagination

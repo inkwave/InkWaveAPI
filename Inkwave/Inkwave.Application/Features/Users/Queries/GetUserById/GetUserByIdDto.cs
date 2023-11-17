@@ -1,5 +1,4 @@
 ﻿using Inkwave.Application.Common.Mappings;
-using Inkwave.Domain.User;
 
 namespace Inkwave.Application.Features.Users.Queries.GetUsersWithPagination;
 

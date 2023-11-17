@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Inkwave.Application.Features.PaymentMethod.Commands.AddPaymentMethod
+namespace Inkwave.Application.Features.PaymentMethods.Commands.AddPaymentMethod
 {
     public class AddPaymentMethodCommandValidator : AbstractValidator<AddPaymentMethodCommand>
     {

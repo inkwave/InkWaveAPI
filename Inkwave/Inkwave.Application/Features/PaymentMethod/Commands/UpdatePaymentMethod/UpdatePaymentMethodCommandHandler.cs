@@ -1,6 +1,6 @@
 ﻿using Inkwave.Application.Interfaces.Repositories;
 
-namespace Inkwave.Application.Features.PaymentMethod.Commands.UpdatePaymentMethod
+namespace Inkwave.Application.Features.PaymentMethods.Commands.UpdatePaymentMethod
 {
     internal class UpdatePaymentMethodCommandHandler : IRequestHandler<UpdatePaymentMethodCommand, Result<Guid>>
     {

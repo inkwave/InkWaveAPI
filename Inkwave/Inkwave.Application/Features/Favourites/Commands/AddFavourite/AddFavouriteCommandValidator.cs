@@ -2,8 +2,6 @@
 using FluentValidation;
 using Inkwave.Application.Interfaces.Repositories;
 using Inkwave.Domain;
-using Inkwave.Domain.Item;
-using Inkwave.Domain.User;
 using Microsoft.EntityFrameworkCore;
 
 public class AddFavouriteCommandValidator : AbstractValidator<AddFavouriteCommand>

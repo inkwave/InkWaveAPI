@@ -1,14 +1,13 @@
 ﻿using Inkwave.Domain.Common;
 
-namespace Inkwave.Domain.User
-{
-    internal class UserUpdatedEvent : BaseEvent
-    {
-        private User user;
+namespace Inkwave.Domain;
 
-        public UserUpdatedEvent(User user)
-        {
-            this.user = user;
-        }
+internal class UserUpdatedEvent : BaseEvent
+{
+    private User user;
+
+    public UserUpdatedEvent(User user)
+    {
+        this.user = user;
     }
 }

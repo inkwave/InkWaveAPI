@@ -1,5 +1,4 @@
 ﻿using Inkwave.Application.Common.Mappings;
-using Inkwave.Domain.Item;
 
 namespace Inkwave.Application.Features.Categorys.Queries
 {

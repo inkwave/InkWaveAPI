@@ -1,6 +1,6 @@
-﻿using Inkwave.Application.Features.PaymentMethod.Commands.AddPaymentMethod;
-using Inkwave.Application.Features.PaymentMethod.Commands.UpdatePaymentMethod;
-using Inkwave.Application.Features.PaymentMethod.Queries.GetPaymentMethodByUserId;
+﻿using Inkwave.Application.Features.PaymentMethods.Commands.AddPaymentMethod;
+using Inkwave.Application.Features.PaymentMethods.Commands.UpdatePaymentMethod;
+using Inkwave.Application.Features.PaymentMethods.Queries.GetPaymentMethodByUserId;
 
 namespace Inkwave.WebAPI.Controllers
 {

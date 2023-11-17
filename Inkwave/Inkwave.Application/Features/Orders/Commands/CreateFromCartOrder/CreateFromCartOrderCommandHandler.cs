@@ -1,7 +1,4 @@
 ﻿using Inkwave.Application.Interfaces.Repositories;
-using Inkwave.Domain;
-using Inkwave.Shared;
-using MediatR;
 
 namespace Inkwave.Application.Features.Orders.Commands.CreateFromCartOrder;
 
@@ -20,7 +17,7 @@ internal class CreateFromCartOrderCommandHandler : IRequestHandler<CreateFromCar
 
     public async Task<Result<Order>> Handle(CreateFromCartOrderCommand command, CancellationToken cancellationToken)
     {
-        var order = await _OrderRepository.CreateOrderFromCartAsync(command.UserId, command.BillingAddressId, command.ShippingAddressId, cancellationToken);
+        var order = await _OrderRepository.CreateOrderFromCartAsync(command.UserId, command.AddressId, command.PaymentMethodId, command.IsCashOnDelivery, cancellationToken);
         await unitOfWork.Save(cancellationToken);
         if (order != null)
         {

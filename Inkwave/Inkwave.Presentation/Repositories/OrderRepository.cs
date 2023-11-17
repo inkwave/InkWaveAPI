@@ -1,6 +1,4 @@
 ﻿using Inkwave.Application.Interfaces.Repositories;
-using Inkwave.Domain;
-using Inkwave.Domain.Item;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inkwave.Persistence.Repositories
@@ -20,7 +18,7 @@ namespace Inkwave.Persistence.Repositories
             _itemRepository = itemRepository;
         }
 
-        public async Task<Order> CreateOrderFromCartAsync(Guid userId, Guid billingAddressId, Guid shippingAddressId, CancellationToken cancellationToken)
+        public async Task<Order> CreateOrderFromCartAsync(Guid userId, Guid addressId, Guid paymentMethodId, bool isCashOnDelivery, CancellationToken cancellationToken)
         {
             var customerCart = await _cartRepository.GetCartByUserIdAsync(userId, cancellationToken);
             var customerCartItems = await _itemRepository.GetByIdsAsync(customerCart.Select(x => x.ItemId));
@@ -28,7 +26,7 @@ namespace Inkwave.Persistence.Repositories
             double discount = customerCartItems.Sum(x => x.Discount);
             double tax = customerCartItems.Sum(x => x.Tax);
             double net = (price - discount) + tax;
-            var order = Order.Create(userId, billingAddressId, shippingAddressId, price, discount, tax, net);
+            var order = Order.Create(userId, addressId, paymentMethodId, isCashOnDelivery, price, discount, tax, net);
             customerCart.ForEach(cart =>
             {
                 var item = customerCartItems.Find(x => x.Id == cart.ItemId);
@@ -38,9 +36,9 @@ namespace Inkwave.Persistence.Repositories
             await _orderLineRepository.AddRangeAsync(order.GetOrderLines());
             return order;
         }
-        public Task<Order> AddOrderAsync(Guid userId, Guid billingAddressId, Guid shippingAddressId, double price, double discount, double tax, double net)
+        public Task<Order> AddOrderAsync(Guid userId, Guid addressId, Guid paymentMethodId, bool isCashOnDelivery, double price, double discount, double tax, double net)
         {
-            var order = Order.Create(userId, billingAddressId, shippingAddressId, price, discount, tax, net);
+            var order = Order.Create(userId, addressId, paymentMethodId, isCashOnDelivery, price, discount, tax, net);
             _orderRepository.AddAsync(order);
             return Task.FromResult(order);
         }
@@ -80,5 +78,7 @@ namespace Inkwave.Persistence.Repositories
             if (orderLine != null)
                 await _orderLineRepository.DeleteAsync(orderLine);
         }
+
+
     }
 }
