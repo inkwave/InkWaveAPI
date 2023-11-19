@@ -1,6 +1,5 @@
 ﻿using Inkwave.Application.Features.Payments.Commands.AddPayment;
 using Inkwave.Application.Features.Payments.Commands.RemovePayment;
-using Inkwave.Application.Features.Payments.Queries.GetPaymentById;
 
 namespace Inkwave.WebAPI.Controllers
 {
@@ -28,6 +27,6 @@ namespace Inkwave.WebAPI.Controllers
             return await _mediator.Send(command);
         }
 
-       
+
     }
 }
