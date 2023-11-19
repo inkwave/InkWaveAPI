@@ -2,7 +2,7 @@
 
 namespace Inkwave.Application.Features.Payments.Commands.AddPayment
 {
-    internal class AddPaymentCommandHandler : IRequestHandler<AddPaymentCommand, Result<Guid>>
+    public class AddPaymentCommandHandler : IRequestHandler<AddPaymentCommand, Result<Guid>>
     {
         private readonly IPaymentRepository _paymentRepository;
         private readonly IOrderRepository _orderRepository;
