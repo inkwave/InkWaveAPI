@@ -1,6 +1,6 @@
 ﻿namespace Inkwave.Application.Features.Payments.Commands.AddPayment
 {
-    public class AddPaymentCommand : IRequest<Result<Guid>> 
+    public class AddPaymentCommand : IRequest<Result<Guid>>
     {
         public Guid OrderId { get; set; }
         public double PaymentValue { get; set; }

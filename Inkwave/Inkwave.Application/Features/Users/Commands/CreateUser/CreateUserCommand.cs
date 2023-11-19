@@ -1,6 +1,4 @@
-﻿using Inkwave.Application.Common.Mappings;
-
-namespace Inkwave.Application.Features.Users.Commands.CreateUser
+﻿namespace Inkwave.Application.Features.Users.Commands.CreateUser
 {
     public record CreateUserCommand : IRequest<Result<Guid>>, IMapFrom<User>
     {

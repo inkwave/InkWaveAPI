@@ -12,6 +12,7 @@
 
   <ItemGroup>
 	  <Using Include="Inkwave.Domain.Common" />
+	  <Using Include="Inkwave.Domain.Exceptions" />
   </ItemGroup>
 
 </Project>

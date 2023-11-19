@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-
-namespace Inkwave.Application.Common.Mappings;
+﻿namespace Inkwave.Application.Common.Mappings;
 
 public interface IMapFrom<T>
 {

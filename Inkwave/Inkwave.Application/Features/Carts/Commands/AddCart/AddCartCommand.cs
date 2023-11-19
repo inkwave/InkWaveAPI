@@ -1,7 +1,4 @@
-﻿using Inkwave.Shared;
-using MediatR;
-
-namespace Inkwave.Application.Features.Carts.Commands.AddCart
+﻿namespace Inkwave.Application.Features.Carts.Commands.AddCart
 {
     public record AddCartCommand : IRequest<Result<Guid>>
     {

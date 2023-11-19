@@ -5,11 +5,11 @@ public enum OrderStates
     Pending,
     Confirmed,
     Cancelled,
-    Delivered,
-    InTransit,
-    PickupAvailable,
-    Problem,
     Processing,
+    PickupAvailable,
+    InTransit,
+    Delivered,
+    Problem,
     Returned,
     Closed
 }

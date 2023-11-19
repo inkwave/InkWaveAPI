@@ -1,6 +1,4 @@
-﻿using Inkwave.Application.Common.Mappings;
-
-namespace Inkwave.Application.Features.PaymentMethods.Queries.GetPaymentMethodById
+﻿namespace Inkwave.Application.Features.PaymentMethods.Queries.GetPaymentMethodById
 {
     public class GetPaymentMethodByIdDto : IMapFrom<PaymentMethod>
     {

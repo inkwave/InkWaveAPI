@@ -1,6 +1,4 @@
-﻿using Inkwave.Application.Common.Mappings;
-
-namespace Inkwave.Application.Features.Items.Queries.GetItemById
+﻿namespace Inkwave.Application.Features.Items.Queries.GetItemById
 {
     public class GetItemByIdDto : IMapFrom<Item>
     {

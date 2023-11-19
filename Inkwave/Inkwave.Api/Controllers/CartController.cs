@@ -2,11 +2,6 @@
 using Inkwave.Application.Features.Carts.Commands.RemoveCart;
 using Inkwave.Application.Features.Carts.Commands.UpdateQuantityCart;
 using Inkwave.Application.Features.Carts.Queries.GetCartInfo;
-using Inkwave.Domain;
-using Inkwave.Infrastructure.Authentication;
-using Inkwave.Shared;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Inkwave.WebAPI.Controllers
 {

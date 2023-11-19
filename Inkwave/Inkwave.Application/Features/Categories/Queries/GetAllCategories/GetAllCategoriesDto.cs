@@ -1,6 +1,4 @@
-﻿using Inkwave.Application.Common.Mappings;
-
-namespace Inkwave.Application.Features.Categorys.Queries
+﻿namespace Inkwave.Application.Features.Categorys.Queries
 {
     public class GetAllCategoriesDto : IMapFrom<Category>
     {

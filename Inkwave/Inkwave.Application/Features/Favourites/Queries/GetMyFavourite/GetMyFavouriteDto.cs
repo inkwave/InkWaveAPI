@@ -1,6 +1,4 @@
-﻿using Inkwave.Application.Common.Mappings;
-
-namespace Inkwave.Application.Features.Favourites.Queries.GetMyFavourite;
+﻿namespace Inkwave.Application.Features.Favourites.Queries.GetMyFavourite;
 
 public class GetMyFavouriteDto : IMapFrom<Item>
 {

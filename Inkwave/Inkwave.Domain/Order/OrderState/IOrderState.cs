@@ -2,14 +2,14 @@
 
 public interface IOrderState
 {
-    void Pending();
-    void Confirmed();
-    void Cancelled();
-    void Delivered();
-    void InTransit();
-    void PickupAvailable();
-    void Problem();
-    void Processing();
-    void Returned();
-    void Closed();
+    OrderStates Pending();
+    OrderStates Confirmed();
+    OrderStates Cancelled(string description);
+    OrderStates Delivered();
+    OrderStates InTransit();
+    OrderStates PickupAvailable();
+    OrderStates Problem(string description);
+    OrderStates Processing();
+    OrderStates Returned(string description);
+    OrderStates Closed();
 }

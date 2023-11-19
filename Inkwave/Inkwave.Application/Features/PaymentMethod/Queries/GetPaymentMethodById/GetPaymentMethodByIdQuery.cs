@@ -3,7 +3,7 @@
     public class GetPaymentMethodByIdQuery : IRequest<Result<GetPaymentMethodByIdDto>>
     {
         public Guid Id { get; set; }
-        
+
     }
-   
+
 }

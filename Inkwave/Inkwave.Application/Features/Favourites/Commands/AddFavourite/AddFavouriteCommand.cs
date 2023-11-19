@@ -1,7 +1,4 @@
-﻿using Inkwave.Shared;
-using MediatR;
-
-namespace Inkwave.Application.Features.Favourites.Commands.AddFavourite
+﻿namespace Inkwave.Application.Features.Favourites.Commands.AddFavourite
 {
     public record AddFavouriteCommand : IRequest<Result<Guid>>
     {

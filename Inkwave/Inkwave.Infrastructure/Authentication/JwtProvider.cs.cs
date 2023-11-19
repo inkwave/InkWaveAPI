@@ -28,6 +28,7 @@ internal class JwtProvider : IJwtProvider
                     new Claim(ClaimName.Email, user.Email),
                     new Claim(ClaimName.FirstName, user.FirstName),
                     new Claim(ClaimName.LastName, user.LastName),
+                    new Claim(ClaimTypes.Role, user.status),
                 };
         var SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
         var jwtSecurityToken = new JwtSecurityToken(jwtSettings.Issuer, jwtSettings.Audience, Claims, null, DateTime.UtcNow.AddDays(30), SigningCredentials);

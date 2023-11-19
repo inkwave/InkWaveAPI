@@ -2,6 +2,7 @@
 
 public class GetOrdersByUserIdDto : IMapFrom<Order>
 {
+    public Guid Id { get; set; }
     public string OrderStates { get; set; }
     public string PaymentStatus { get; set; }
     public string Customer { get; set; }

@@ -1,6 +1,4 @@
-﻿using Inkwave.Domain.Common;
-
-namespace Inkwave.Domain;
+﻿namespace Inkwave.Domain;
 
 public class PaymentMethod : BaseAuditableEntity
 {

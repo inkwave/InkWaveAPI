@@ -32,7 +32,7 @@ public class JwtBearerOptionsSetup : IConfigureNamedOptions<JwtBearerOptions>
             ValidateLifetime = true,
             ClockSkew = TimeSpan.Zero
         };
-        
+
         options.RequireHttpsMetadata = false;
         options.SaveToken = true;
         options.Events = new JwtBearerEvents()
@@ -64,10 +64,10 @@ public class JwtBearerOptionsSetup : IConfigureNamedOptions<JwtBearerOptions>
             {
                 context.Response.StatusCode = 403;
                 context.Response.ContentType = "application/json";
-                var result ="You are not authorized to access this resource";
+                var result = "You are not authorized to access this resource";
                 return context.Response.WriteAsync(result);
             },
         };
     }
-    
+
 }

@@ -1,6 +1,4 @@
-﻿using Inkwave.Domain;
-
-namespace Inkwave.Application.Interfaces.Repositories
+﻿namespace Inkwave.Application.Interfaces.Repositories
 {
     public interface IFavouriteRepository
     {

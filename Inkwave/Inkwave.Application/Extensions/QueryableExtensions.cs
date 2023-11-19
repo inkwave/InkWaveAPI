@@ -1,5 +1,4 @@
-﻿using Inkwave.Shared;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Inkwave.Application.Extensions
 {

@@ -1,9 +1,6 @@
 ﻿using Inkwave.Application.Features.Items.Queries.GetAllItem;
 using Inkwave.Application.Features.Items.Queries.GetItemById;
 using Inkwave.Application.Features.Items.Queries.GetItemsWithPagination;
-using Inkwave.Shared;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Inkwave.WebAPI.Controllers
 {

@@ -2,53 +2,61 @@
 
 public class OrderProcessingState : IOrderState
 {
-    public void Cancelled()
+    private readonly Order order;
+    public OrderProcessingState(Order order)
     {
-        throw new NotImplementedException();
+        this.order = order;
     }
-    public void Confirmed()
+    public OrderStates Cancelled(string description)
     {
-        throw new NotImplementedException();
+        order.CanceledAt = DateTime.Now;
+        order.CanceledDescription = description;
+        return OrderStates.Cancelled;
     }
-
-
-    public void Closed()
+    public OrderStates PickupAvailable()
     {
-        throw new NotImplementedException();
-    }
-
-    public void Delivered()
-    {
-        throw new NotImplementedException();
+        order.PickupAvailableAt = DateTime.Now;
+        return OrderStates.PickupAvailable;
     }
 
-    public void InTransit()
+    public OrderStates Problem(string description)
     {
-        throw new NotImplementedException();
+        order.ProblemAt = DateTime.Now;
+        order.ProblemDescription = description;
+        return OrderStates.Problem;
+    }
+    public OrderStates Pending()
+    {
+        throw new OrderStateException(this.order.OrderStates.ToString());
     }
 
-    public void Pending()
+    public OrderStates Confirmed()
     {
-        throw new NotImplementedException();
+        throw new OrderStateException(this.order.OrderStates.ToString());
     }
 
-    public void PickupAvailable()
+
+    public OrderStates Closed()
     {
-        throw new NotImplementedException();
+        throw new OrderStateException(this.order.OrderStates.ToString());
     }
 
-    public void Problem()
+    public OrderStates Delivered()
     {
-        throw new NotImplementedException();
+        throw new OrderStateException(this.order.OrderStates.ToString());
     }
 
-    public void Processing()
+    public OrderStates InTransit()
     {
-        throw new NotImplementedException();
+        throw new OrderStateException(this.order.OrderStates.ToString());
+    }
+    public OrderStates Processing()
+    {
+        throw new OrderStateException(this.order.OrderStates.ToString());
     }
 
-    public void Returned()
+    public OrderStates Returned(string description)
     {
-        throw new NotImplementedException();
+        throw new OrderStateException(this.order.OrderStates.ToString());
     }
 }

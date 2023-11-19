@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Inkwave.Shared;
+using Inkwave.Domain.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
@@ -35,6 +35,11 @@ public class ErrorHandlerMiddleware
                     // custom application error
                     responseModel.Code = (int)HttpStatusCode.Unauthorized;
                     response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                    break;
+                case OrderStateException e:
+                    // custom application error
+                    responseModel.Code = (int)HttpStatusCode.BadRequest;
+                    response.StatusCode = (int)HttpStatusCode.BadRequest;
                     break;
 
                 case ValidationException e:

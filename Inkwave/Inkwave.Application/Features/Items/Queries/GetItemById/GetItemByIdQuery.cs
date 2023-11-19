@@ -1,6 +1,4 @@
 ﻿using Inkwave.Application.Features.Items.Queries.GetItemById;
-using Inkwave.Shared;
-using MediatR;
 
 namespace Inkwave.Application.Features.Items.Queries.GetItemsWithPagination;
 

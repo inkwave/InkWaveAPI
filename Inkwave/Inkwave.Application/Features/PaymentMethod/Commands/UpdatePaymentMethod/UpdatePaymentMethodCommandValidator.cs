@@ -4,9 +4,9 @@ namespace Inkwave.Application.Features.PaymentMethods.Commands.UpdatePaymentMeth
 {
     internal class UpdatePaymentMethodCommandValidator : AbstractValidator<UpdatePaymentMethodCommand>
     {
-        
-        public UpdatePaymentMethodCommandValidator() 
-        { 
+
+        public UpdatePaymentMethodCommandValidator()
+        {
             RuleFor(p => p.Id)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull();
@@ -40,5 +40,5 @@ namespace Inkwave.Application.Features.PaymentMethods.Commands.UpdatePaymentMeth
 
 
     }
-    
+
 }

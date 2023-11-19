@@ -1,6 +1,4 @@
 ﻿using Inkwave.Application.Interfaces.Repositories;
-using Inkwave.Shared;
-using MediatR;
 
 namespace Inkwave.Application.Features.Favourites.Commands.RemoveFavourite
 {

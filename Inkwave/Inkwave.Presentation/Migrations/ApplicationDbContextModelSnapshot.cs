@@ -241,6 +241,16 @@ namespace Inkwave.Persistence.Migrations
                     b.Property<DateTime?>("CanceledAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("CanceledDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ClosedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ConfirmedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid?>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
@@ -251,6 +261,12 @@ namespace Inkwave.Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeliveredAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("InTransitAt")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsCashOnDelivery")
@@ -267,6 +283,26 @@ namespace Inkwave.Persistence.Migrations
 
                     b.Property<int>("PaymentStatus")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("PickupAvailableAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ProblemAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ProblemDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ProcessingAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ReturnedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ReturnedDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("TotalDiscount")
                         .HasColumnType("float");

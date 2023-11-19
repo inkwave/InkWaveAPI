@@ -1,5 +1,4 @@
-﻿using Inkwave.Application.Common.Mappings;
-using Inkwave.Application.Features.Items.Queries.GetItemById;
+﻿using Inkwave.Application.Features.Items.Queries.GetItemById;
 
 namespace Inkwave.Application.Features.Items.Mappers;
 public class GetItemByIdDtoProfile : Profile

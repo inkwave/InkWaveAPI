@@ -1,7 +1,5 @@
 ﻿using Inkwave.Application.Features.Carts.Commands.AddCart;
 using Inkwave.Application.Interfaces.Repositories;
-using Inkwave.Shared;
-using MediatR;
 
 namespace Inkwave.Carts.Features.Carts.Commands.AddCart;
 

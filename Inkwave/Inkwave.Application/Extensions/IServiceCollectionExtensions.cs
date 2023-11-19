@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using Inkwave.Application.Behaviors;
-using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 

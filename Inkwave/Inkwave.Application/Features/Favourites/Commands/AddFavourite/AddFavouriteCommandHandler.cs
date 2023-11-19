@@ -1,7 +1,5 @@
 ﻿using Inkwave.Application.Features.Favourites.Commands.AddFavourite;
 using Inkwave.Application.Interfaces.Repositories;
-using Inkwave.Shared;
-using MediatR;
 
 namespace Inkwave.Favourites.Features.Favourites.Commands.AddFavourite
 {

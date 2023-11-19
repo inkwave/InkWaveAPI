@@ -1,6 +1,4 @@
-﻿using Inkwave.Application.Common.Mappings;
-
-namespace Inkwave.Application.Features.Users.Queries.GetUsersWithPagination;
+﻿namespace Inkwave.Application.Features.Users.Queries.GetUsersWithPagination;
 
 public class GetUserByIdDto : IMapFrom<User>
 {

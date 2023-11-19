@@ -2,7 +2,7 @@
 
 namespace Inkwave.Application.Features.PaymentMethods.Queries.GetPaymentMethodByUserId
 {
-    public class GetPaymentMethodByUserIdQueryValidator : AbstractValidator<GetPaymentMethodByUserIdQuery> 
+    public class GetPaymentMethodByUserIdQueryValidator : AbstractValidator<GetPaymentMethodByUserIdQuery>
     {
         public GetPaymentMethodByUserIdQueryValidator()
         {

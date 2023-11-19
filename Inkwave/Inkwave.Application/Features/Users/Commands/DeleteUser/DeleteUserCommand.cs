@@ -1,5 +1,4 @@
-﻿using Inkwave.Application.Common.Mappings;
-using Inkwave.Application.Interfaces.Repositories;
+﻿using Inkwave.Application.Interfaces.Repositories;
 
 namespace Inkwave.Application.Features.Users.Commands.DeleteUser
 {

@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using Inkwave.Application.Interfaces.Repositories;
-using Inkwave.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inkwave.Application.Features.Carts.Commands.RemoveCart;
