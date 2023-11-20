@@ -1,6 +1,7 @@
 ﻿using Inkwave.Application.Features.Payments.Commands.AddPayment;
 using Inkwave.Application.Features.Payments.Commands.RemovePayment;
 using Inkwave.Application.Features.Payments.Queries.GetAllPayments;
+using Inkwave.Application.Features.Payments.Queries.GetPaymentById;
 
 namespace Inkwave.WebAPI.Controllers
 {
@@ -36,6 +37,15 @@ namespace Inkwave.WebAPI.Controllers
             var query = new GetAllPaymentsQuery();
             return await _mediator.Send(query);
         }
-      
+
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<PaymentResponse>> GetPaymentById(Guid id)
+        {
+            var query = new GetPaymentByIdQuery(id);
+            return await _mediator.Send(query);
+        }
+
+
     }
 }

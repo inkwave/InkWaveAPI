@@ -28,7 +28,6 @@
 	<ItemGroup>
 		<Folder Include="Features\Items\Commands\" />
 		<Folder Include="Features\Orders\Events\" />
-		<Folder Include="Features\Payments\Queries\GetPaymentById\" />
 		<Folder Include="Features\Users\Queries\RefreshToken\" />
 	</ItemGroup>
 
