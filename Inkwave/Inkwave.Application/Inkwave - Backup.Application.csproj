@@ -12,6 +12,8 @@
 		<None Remove="Features\Categories\Commands\**" />
 	</ItemGroup>
 
+
+
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="12.0.1" />
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
@@ -28,9 +30,11 @@
 	<ItemGroup>
 		<Folder Include="Features\Items\Commands\" />
 		<Folder Include="Features\Orders\Events\" />
+		<Folder Include="Features\Payments\Queries\GetAllPayments\" />
 		<Folder Include="Features\Payments\Queries\GetPaymentById\" />
 		<Folder Include="Features\Users\Queries\RefreshToken\" />
 	</ItemGroup>
+
 
 	<ItemGroup>
 		<Using Include="Inkwave.Shared" />

@@ -1,5 +1,6 @@
 ﻿using Inkwave.Application.Features.Payments.Commands.AddPayment;
 using Inkwave.Application.Features.Payments.Commands.RemovePayment;
+using Inkwave.Application.Features.Payments.Queries.GetAllPayments;
 
 namespace Inkwave.WebAPI.Controllers
 {
@@ -28,5 +29,13 @@ namespace Inkwave.WebAPI.Controllers
         }
 
 
+        [HttpGet]
+
+        public async Task<ActionResult<List<PaymentResponse>>> GetAllPayments()
+        {
+            var query = new GetAllPaymentsQuery();
+            return await _mediator.Send(query);
+        }
+      
     }
 }
