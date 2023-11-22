@@ -1,13 +1,14 @@
-﻿using Inkwave.Application.Features.Categorys.Queries;
+﻿using Inkwave.Application.Features.Categories.Commands.AddGategory;
+using Inkwave.Application.Features.Categories.Commands.UpdateGategory;
+using Inkwave.Application.Features.Categorys.Queries;
 using Inkwave.Application.Features.Categorys.Queries.GetCategorysWithPagination;
-
 namespace Inkwave.WebAPI.Controllers
 {
-    public class CategorysController : ApiControllerBase
+    public class CategoriesController : ApiControllerBase
     {
         private readonly IMediator _mediator;
 
-        public CategorysController(IMediator mediator)
+        public CategoriesController(IMediator mediator)
         {
             _mediator = mediator;
         }
@@ -60,5 +61,21 @@ namespace Inkwave.WebAPI.Controllers
         //{
         //    return await _mediator.Send(new DeleteItemCommand(id));
         //}
+
+
+        [HttpPost]
+        public async Task<ActionResult<Result<Guid>>> AddGategory (string name, string description, string image, Guid? categoryParentId)
+        {
+            return await _mediator.Send(new AddGategoryCommand(null, name, description, image, categoryParentId));
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<Result<Guid>>> UpdateGategory(Guid id, string name, string description, string image, Guid? categoryParentId)
+        {
+            return await _mediator.Send(new UpdateGategoryCommand(id, name, description, image, categoryParentId));
+        }
+
+
+
     }
 }

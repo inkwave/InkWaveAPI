@@ -7,12 +7,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Remove="Features\Categories\Commands\**" />
-		<EmbeddedResource Remove="Features\Categories\Commands\**" />
-		<None Remove="Features\Categories\Commands\**" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="12.0.1" />
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
 		<PackageReference Include="FluentValidation" Version="11.8.0" />

@@ -12,5 +12,25 @@ public class Category : BaseAuditableEntity
     public Category? CategoryParent { get; set; }
     public ICollection<ItemCategory>? ItemCategorys { get; set; }
 
+
+    public static Category Create(string name, string description, string image, Guid? categoryParentId)
+    {
+        Category category = new Category();
+        category.Name = name;
+        category.Description = description;
+        category.Image = image;
+        category.CategoryParentId = categoryParentId;
+        return category;
+    }
+
+    public Category Update(string name, string description, string image, Guid? categoryParentId)
+    {
+        this.Name = name;
+        this.Description = description;
+        this.Image = image;
+        this.CategoryParentId = categoryParentId;
+        return this;
+    }
+
 }
 
