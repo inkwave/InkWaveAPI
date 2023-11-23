@@ -8,6 +8,7 @@ public class OrderLine : BaseEntity
     public Guid OrderId { get; set; }
     [Required]
     public Guid ItemId { get; set; }
+    public Item? Item { get; set; }
     public string ItemName { get; set; }
     [Range(0.1, double.MaxValue)]
     public double Quantity { get; set; }

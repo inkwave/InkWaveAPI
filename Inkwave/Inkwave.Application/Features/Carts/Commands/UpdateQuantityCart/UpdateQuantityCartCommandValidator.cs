@@ -49,7 +49,8 @@ public class UpdateQuantityCartCommandValidator : AbstractValidator<UpdateQuanti
     }
     private async Task<bool> IsNotExists(UpdateQuantityCartCommand command, CancellationToken cancellationToken)
     {
-        return !await unitOfWork.Repository<Cart>().Entities.AnyAsync(x => x.UserId == command.UserId && x.ItemId == command.ItemId, cancellationToken);
+        var userObject = await unitOfWork.Repository<Cart>().Entities.AnyAsync(x => x.UserId == command.UserId && x.ItemId == command.ItemId, cancellationToken);
+        return userObject != null;
     }
 
 }

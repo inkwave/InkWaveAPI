@@ -13,9 +13,9 @@ namespace Inkwave.Persistence.Repositories
             this.genericRepository = genericRepository;
         }
 
-        public async Task<Address> CreateAddressAsync(Guid userId, string street, string city, string building, string apartment, string markingPlace)
+        public async Task<Address> CreateAddressAsync(Guid userId, string name, string governorate, string street, string city, string district, string building, string zipCode, string apartment, string markingPlace)
         {
-            var model = Address.Create(userId, street, city, building, apartment, markingPlace);
+            var model = Address.Create(userId, name, governorate, street, city, district, building, zipCode, apartment, markingPlace);
             await genericRepository.AddAsync(model);
             return model;
         }
@@ -30,17 +30,19 @@ namespace Inkwave.Persistence.Repositories
             return genericRepository.GetByIdAsync(id);
         }
 
-        public async Task UpdateAddress(Guid id, Guid userId, string street, string city, string building, string apartment, string markingPlace)
+        public async Task UpdateAddress(Guid id, Guid userId, string name, string governorate, string street, string city, string district, string building, string zipCode, string apartment, string markingPlace)
         {
             var model = await genericRepository.GetByIdAsync(id);
-            model.Update(userId, street, city, building, apartment, markingPlace);
+            model.Update(userId, name, governorate, street, city, district, building, zipCode, apartment, markingPlace);
             await genericRepository.UpdateAsync(model);
         }
 
-        public async Task UpdateDefaultAddres(Guid id)
+        public async Task UpdateDefaultAddres(Guid id, Guid userId)
         {
             var model = await genericRepository.GetByIdAsync(id);
-            var other = await GetAllAddressByUserId(model.UserId);
+            if (model.UserId != userId)
+                return;
+            var other = await GetAllAddressByUserId(userId);
             model.SetDefaultAddres(other);
             other.ForEach(async x => await genericRepository.UpdateAsync(x));
             await genericRepository.UpdateAsync(model);

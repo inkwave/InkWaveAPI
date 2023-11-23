@@ -1,6 +1,6 @@
 ﻿using Inkwave.Application.Interfaces.Repositories;
 
-namespace Inkwave.Application.Features.Address.Commands.AddAddress
+namespace Inkwave.Application.Features.Addresses.Commands.AddAddress
 {
     public class AddAddressCommandHandler : IRequestHandler<AddAddressCommand, Result<Guid>>
     {
@@ -17,7 +17,7 @@ namespace Inkwave.Application.Features.Address.Commands.AddAddress
 
         public async Task<Result<Guid>> Handle(AddAddressCommand request, CancellationToken cancellationToken)
         {
-            var Address = await AddressRepository.CreateAddressAsync(request.UserId, request.Street, request.City, request.Building, request.Apartment, request.MarkingPlace);
+            var Address = await AddressRepository.CreateAddressAsync(request.UserId, request.Name, request.Governorate, request.Street, request.City, request.District, request.Building, request.ZipCode, request.Apartment, request.MarkingPlace);
             var result = await unitOfWork.Save(cancellationToken);
             if (result > 0)
                 return await Result<Guid>.SuccessAsync(Address.Id, "Address Added.");

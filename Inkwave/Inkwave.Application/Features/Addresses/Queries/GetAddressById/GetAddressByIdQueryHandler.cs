@@ -1,6 +1,6 @@
 ﻿using Inkwave.Application.Interfaces.Repositories;
 
-namespace Inkwave.Application.Features.Address.Queries.GetAddressById
+namespace Inkwave.Application.Features.Addresses.Queries.GetAddressById
 {
     public class GetAddressByIdQueryHandler : IRequestHandler<GetAddressByIdQuery, Result<GetAddressByIdDto>>
     {

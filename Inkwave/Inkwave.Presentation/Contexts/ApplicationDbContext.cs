@@ -1,5 +1,4 @@
-﻿using Inkwave.Domain.Common;
-using Inkwave.Domain.Common.Interfaces;
+﻿using Inkwave.Persistence.Interceptors;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -7,12 +6,10 @@ namespace Inkwave.Persistence.Contexts;
 
 public class ApplicationDbContext : DbContext
 {
-    private readonly IDomainEventDispatcher _dispatcher;
-
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
-      IDomainEventDispatcher dispatcher) : base(options)
+    private readonly PublishDominEventInterceptor _publishDominEventInterceptor;
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, PublishDominEventInterceptor publishDominEventInterceptor) : base(options)
     {
-        _dispatcher = dispatcher;
+        _publishDominEventInterceptor = publishDominEventInterceptor;
     }
 
     public DbSet<User> Users => Set<User>();
@@ -36,27 +33,23 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Cart>().HasIndex(c => c.UserId);
         modelBuilder.Entity<Order>().HasIndex(c => c.CustomerId);
     }
-
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        int result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
-
-        // ignore events if no dispatcher provided
-        if (_dispatcher == null) return result;
-
-        // dispatch events only if save was successful
-        var entitiesWithEvents = ChangeTracker.Entries<BaseEntity>()
-            .Select(e => e.Entity)
-            .Where(e => e.DomainEvents.Any())
-            .ToArray();
-
-        await _dispatcher.DispatchAndClearEvents(entitiesWithEvents);
-
-        return result;
+        optionsBuilder.AddInterceptors(_publishDominEventInterceptor);
+        base.OnConfiguring(optionsBuilder);
     }
 
-    public override int SaveChanges()
-    {
-        return SaveChangesAsync().GetAwaiter().GetResult();
-    }
+    //public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+    //{
+    //    int result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+
+
+
+    //    return result;
+    //}
+
+    //public override int SaveChanges()
+    //{
+    //    return SaveChangesAsync().GetAwaiter().GetResult();
+    //}
 }

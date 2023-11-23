@@ -34,11 +34,21 @@ public class OrderLineDto : IMapFrom<OrderLine>
     public Guid OrderId { get; set; }
     public Guid ItemId { get; set; }
     public string ItemName { get; set; }
+    public string? ItemImage { get; set; }
     public double Quantity { get; set; }
     public double Price { get; set; }
     public double Discount { get; set; }
     public double Tax { get; set; }
     public double Total { get; set; }
     public double Net { get; set; }
+    private class Mapping : Profile
+    {
+        public Mapping()
+        {
+            CreateMap<OrderLine, OrderLineDto>()
+                .ForMember(d => d.ItemImage, opt => opt.MapFrom(s => s.Item.Image));
+
+        }
+    }
 
 }

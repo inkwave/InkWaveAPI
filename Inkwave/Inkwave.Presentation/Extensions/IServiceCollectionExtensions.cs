@@ -1,5 +1,6 @@
 ﻿using Inkwave.Application.Interfaces.Repositories;
 using Inkwave.Persistence.Contexts;
+using Inkwave.Persistence.Interceptors;
 using Inkwave.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -33,6 +34,7 @@ namespace Inkwave.Persistence.Extensions
         private static void AddRepositories(this IServiceCollection services)
         {
             services
+                .AddScoped<PublishDominEventInterceptor>()
                 .AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork))
                 .AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>))
                 .AddTransient(typeof(IUserRepository), typeof(UserRepository))

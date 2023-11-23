@@ -1,5 +1,5 @@
-﻿using Inkwave.Application.Features.Categories.Commands.AddGategory;
-using Inkwave.Application.Features.Categories.Commands.UpdateGategory;
+﻿using Inkwave.Application.Features.Categories.Commands.AddCategory;
+using Inkwave.Application.Features.Categories.Commands.UpdateCategory;
 using Inkwave.Application.Features.Categorys.Queries;
 using Inkwave.Application.Features.Categorys.Queries.GetCategorysWithPagination;
 namespace Inkwave.WebAPI.Controllers
@@ -64,15 +64,15 @@ namespace Inkwave.WebAPI.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<Result<Guid>>> AddGategory (string name, string description, string image, Guid? categoryParentId)
+        public async Task<ActionResult<Result<Category>>> AddGategory(AddCategoryCommand command)
         {
-            return await _mediator.Send(new AddGategoryCommand(null, name, description, image, categoryParentId));
+            return await _mediator.Send(command);
         }
 
         [HttpPut]
-        public async Task<ActionResult<Result<Guid>>> UpdateGategory(Guid id, string name, string description, string image, Guid? categoryParentId)
+        public async Task<ActionResult<Result<Category>>> UpdateGategory(UpdateCategoryCommand command)
         {
-            return await _mediator.Send(new UpdateGategoryCommand(id, name, description, image, categoryParentId));
+            return await _mediator.Send(command);
         }
 
 

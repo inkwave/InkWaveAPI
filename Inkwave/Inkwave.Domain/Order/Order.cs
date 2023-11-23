@@ -1,9 +1,14 @@
-﻿namespace Inkwave.Domain;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
+
+namespace Inkwave.Domain;
 public class Order : BaseAuditableEntity
 {
     private Order()
     {
     }
+    [NotMapped]
+    [JsonIgnore]
     public OrderStateContext OrderStateContext => new OrderStateContext(this);
     public OrderStates OrderStates { get; internal set; }
 
@@ -11,7 +16,7 @@ public class Order : BaseAuditableEntity
     public User Customer { get; set; }
     public Guid CustomerId { get; set; }
     public Guid AddressId { get; set; }
-    public Guid PaymentMethodId { get; set; }
+    public Guid? PaymentMethodId { get; set; }
     public bool IsCashOnDelivery { get; set; }
     public double TotalPrice { get; set; }
     public double TotalDiscount { get; set; }
@@ -20,20 +25,20 @@ public class Order : BaseAuditableEntity
 
     public DateTime? ConfirmedAt { get; set; }
     public DateTime? CanceledAt { get; set; }
-    public string CanceledDescription { get; set; }
+    public string CanceledDescription { get; set; } = string.Empty;
     public DateTime? ProcessingAt { get; set; }
     public DateTime? DeliveredAt { get; set; }
     public DateTime? InTransitAt { get; set; }
     public DateTime? PickupAvailableAt { get; set; }
     public DateTime? ProblemAt { get; set; }
-    public string ProblemDescription { get; set; }
+    public string ProblemDescription { get; set; } = string.Empty;
     public DateTime? ReturnedAt { get; set; }
-    public string ReturnedDescription { get; set; }
+    public string ReturnedDescription { get; set; } = string.Empty;
     public DateTime? ClosedAt { get; set; }
 
 
     ICollection<OrderLine> _orderLines = new HashSet<OrderLine>();
-    public static Order Create(Guid customerId, Guid addressId, Guid paymentMethodId, bool isCashOnDelivery, double price, double discount, double tax, double net)
+    public static Order Create(Guid customerId, Guid addressId, Guid? paymentMethodId, bool isCashOnDelivery, double price, double discount, double tax, double net)
     {
         Order order = new Order();
         order.CreatedDate = DateTime.Now;

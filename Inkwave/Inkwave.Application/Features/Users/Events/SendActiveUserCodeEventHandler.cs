@@ -2,10 +2,10 @@
 
 namespace Inkwave.Application.Features.Users.Events;
 
-internal sealed class SendActiveUserCodeDomainEventHandler : INotificationHandler<SendActiveCodeEvent>
+internal sealed class SendActiveUserCodeEventHandler : INotificationHandler<SendActiveCodeEvent>
 {
     private readonly IEmailService emailService;
-    public SendActiveUserCodeDomainEventHandler(IEmailService emailService)
+    public SendActiveUserCodeEventHandler(IEmailService emailService)
     {
         this.emailService = emailService;
     }

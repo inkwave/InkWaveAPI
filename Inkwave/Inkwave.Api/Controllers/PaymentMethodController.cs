@@ -13,35 +13,18 @@ namespace Inkwave.WebAPI.Controllers
             _mediator = mediator;
         }
         [HttpPost()]
-        public async Task<ActionResult<Result<Guid>>> AddPaymentMethod(string cardName, string cardNumber, string cardMonth, string cardYear, string cardCvv)
+        public async Task<ActionResult<Result<Guid>>> AddPaymentMethod(AddPaymentMethodCommand command)
         {
-            if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid userId))
-                return await _mediator.Send(new AddPaymentMethodCommand
-                {
-                    UserId = userId,
-                    CardName = cardName,
-                    CardNumber = cardNumber,
-                    CardMonth = cardMonth,
-                    CardYear = cardYear,
-                    CardCVV = cardCvv
-                });
+            if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid userId) && userId == command.UserId)
+                return await _mediator.Send(command);
             return Result<Guid>.Failure("Not Found");
         }
 
         [HttpPut()]
-        public async Task<ActionResult<Result<Guid>>> UpdatePaymentMethod(Guid id, string cardName, string cardNumber, string cardMonth, string cardYear, string cardCvv)
+        public async Task<ActionResult<Result<Guid>>> UpdatePaymentMethod(UpdatePaymentMethodCommand command)
         {
-            if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid userId))
-                return await _mediator.Send(new UpdatePaymentMethodCommand
-                {
-                    Id = id,
-                    UserId = userId,
-                    CardName = cardName,
-                    CardNumber = cardNumber,
-                    CardMonth = cardMonth,
-                    CardYear = cardYear,
-                    CardCVV = cardCvv
-                });
+            if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid userId) && userId == command.UserId)
+                return await _mediator.Send(command);
             return Result<Guid>.Failure("Not Found");
         }
 

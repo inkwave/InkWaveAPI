@@ -1,6 +1,6 @@
 ﻿using Inkwave.Application.Interfaces.Repositories;
 
-namespace Inkwave.Application.Features.Address.Commands.UpdateAddress
+namespace Inkwave.Application.Features.Addresses.Commands.UpdateAddress
 {
     internal class UpdateAddressCommandHandler : IRequestHandler<UpdateAddressCommand, Result<Guid>>
     {
@@ -13,16 +13,15 @@ namespace Inkwave.Application.Features.Address.Commands.UpdateAddress
             this.AddressRepository = AddressRepository;
         }
 
-        public async Task<Result<Guid>> Handle(UpdateAddressCommand command, CancellationToken cancellationToken)
+        public async Task<Result<Guid>> Handle(UpdateAddressCommand request, CancellationToken cancellationToken)
         {
-            await AddressRepository.UpdateAddress(command.Id, command.UserId, command.Building, command.MarkingPlace, command.Apartment, command.Street, command.City);
+            await AddressRepository.UpdateAddress(request.Id, request.UserId, request.Name, request.Governorate, request.Street, request.City, request.District, request.Building, request.ZipCode, request.Apartment, request.MarkingPlace);
             await unitOfWork.Save(cancellationToken);
             var result = await unitOfWork.Save(cancellationToken);
             if (result > 0)
-                return await Result<Guid>.SuccessAsync(command.Id, "Updated Address.");
+                return await Result<Guid>.SuccessAsync(request.Id, "Updated Address.");
             else
                 return await Result<Guid>.FailureAsync("error in the code");
-
         }
 
 

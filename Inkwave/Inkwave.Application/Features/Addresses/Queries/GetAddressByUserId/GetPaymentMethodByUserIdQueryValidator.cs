@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Inkwave.Application.Features.Address.Queries.GetAddressByUserId
+namespace Inkwave.Application.Features.Addresses.Queries.GetAddressByUserId
 {
     public class GetAddressByUserIdQueryValidator : AbstractValidator<GetAddressByUserIdQuery>
     {

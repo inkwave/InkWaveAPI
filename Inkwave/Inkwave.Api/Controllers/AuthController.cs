@@ -28,7 +28,7 @@ namespace Inkwave.WebAPI.Controllers
             return await _mediator.Send(command);
         }
         [HttpPost("SendActiveCode")]
-        public async Task<ActionResult<Result<bool>>> SendActiveCode(string email)
+        public async Task<ActionResult<Result<string>>> SendActiveCode(string email)
         {
             return await _mediator.Send(new SendActiveCodeCommand { Email = email });
         }

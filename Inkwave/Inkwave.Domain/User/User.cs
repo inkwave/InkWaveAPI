@@ -45,6 +45,7 @@ public class User : BaseAuditableEntity
     public User CreatActiveCode()
     {
         this.ActiveCode = System.Security.Cryptography.RandomNumberGenerator.GetInt32(0, 1000000).ToString("D6");
+        this.AddDomainEvent(new SendActiveCodeEvent(this.Email, this.ActiveCode));
         return this;
     }
     public bool ActiveUser(string code)

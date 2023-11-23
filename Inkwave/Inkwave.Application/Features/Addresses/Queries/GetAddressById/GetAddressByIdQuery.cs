@@ -1,4 +1,4 @@
-﻿namespace Inkwave.Application.Features.Address.Queries.GetAddressById
+﻿namespace Inkwave.Application.Features.Addresses.Queries.GetAddressById
 {
     public class GetAddressByIdQuery : IRequest<Result<GetAddressByIdDto>>
     {

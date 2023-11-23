@@ -2,25 +2,24 @@
 
 namespace Inkwave.Application.Features.Users.Commands.ActiveUser
 {
-    internal sealed class SendActiveCodeCommandHandler : IRequestHandler<SendActiveCodeCommand, Result<bool>>
+    internal sealed class SendActiveCodeCommandHandler : IRequestHandler<SendActiveCodeCommand, Result<string>>
     {
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IUserRepository _userRepository;
-        private readonly IMediator _mediator;
 
-        public SendActiveCodeCommandHandler(IUserRepository userRepository, IMediator mediator)
+        public SendActiveCodeCommandHandler(IUserRepository userRepository, IUnitOfWork unitOfWork)
         {
-            _mediator = mediator;
             _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
         }
 
-        public async Task<Result<bool>> Handle(SendActiveCodeCommand command, CancellationToken cancellationToken)
+        public async Task<Result<string>> Handle(SendActiveCodeCommand command, CancellationToken cancellationToken)
         {
             User? user = await _userRepository.GetUserByEmail(command.Email);
-            if (user == null) return Result<bool>.Failure("email not found");
-
+            if (user == null) return Result<string>.Failure("email not found");
             user.CreatActiveCode();
-            await _mediator.Send(new SendActiveCodeEvent(user.Email, user.ActiveCode), cancellationToken);
-            return Result<bool>.Success();
+            await _unitOfWork.Save(cancellationToken);
+            return Result<string>.Success(user.ActiveCode);
         }
     }
 }

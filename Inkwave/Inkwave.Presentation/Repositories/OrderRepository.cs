@@ -18,7 +18,7 @@ namespace Inkwave.Persistence.Repositories
             _itemRepository = itemRepository;
         }
 
-        public async Task<Order> CreateOrderFromCartAsync(Guid userId, Guid addressId, Guid paymentMethodId, bool isCashOnDelivery, CancellationToken cancellationToken)
+        public async Task<Order> CreateOrderFromCartAsync(Guid userId, Guid addressId, Guid? paymentMethodId, bool isCashOnDelivery, CancellationToken cancellationToken)
         {
             var customerCart = await _cartRepository.GetCartByUserIdAsync(userId, cancellationToken);
             var customerCartItems = await _itemRepository.GetByIdsAsync(customerCart.Select(x => x.ItemId));
@@ -66,7 +66,7 @@ namespace Inkwave.Persistence.Repositories
         }
         public async Task<List<OrderLine>> GetOrderLinesByOrderIdAsync(Guid orderId, CancellationToken cancellationToken)
         {
-            return await _orderLineRepository.Entities.Where(x => x.OrderId == orderId).ToListAsync(cancellationToken);
+            return await _orderLineRepository.Entities.Include(x => x.Item).Where(x => x.OrderId == orderId).ToListAsync(cancellationToken);
         }
         public async Task RemoveOrderAsync(Guid Id, CancellationToken cancellationToken)
         {

@@ -1,22 +1,17 @@
 ﻿using FluentValidation;
 
-namespace Inkwave.Application.Features.Address.Commands.UpdateAddress
+namespace Inkwave.Application.Features.Addresses.Commands.AddAddress
 {
-    internal class UpdateAddressCommandValidator : AbstractValidator<UpdateAddressCommand>
+    public class AddAddressCommandValidator : AbstractValidator<AddAddressCommand>
     {
-
-        public UpdateAddressCommandValidator()
+        public AddAddressCommandValidator()
         {
-            RuleFor(p => p.Id)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull();
-
-            RuleFor(p => p.Street)
+            RuleFor(p => p.Apartment)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
                 .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
 
-            RuleFor(p => p.Apartment)
+            RuleFor(p => p.Street)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
                 .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
@@ -37,8 +32,5 @@ namespace Inkwave.Application.Features.Address.Commands.UpdateAddress
                 .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
         }
 
-
-
     }
-
 }

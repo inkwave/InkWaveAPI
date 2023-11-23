@@ -1,6 +1,7 @@
-﻿using Inkwave.Application.Features.Address.Commands.AddAddress;
-using Inkwave.Application.Features.Address.Commands.UpdateAddress;
-using Inkwave.Application.Features.Address.Queries.GetAddressByUserId;
+﻿using Inkwave.Application.Features.Addresses.Commands.AddAddress;
+using Inkwave.Application.Features.Addresses.Commands.SetDefaultAddress;
+using Inkwave.Application.Features.Addresses.Commands.UpdateAddress;
+using Inkwave.Application.Features.Addresses.Queries.GetAddressByUserId;
 
 namespace Inkwave.WebAPI.Controllers
 {
@@ -13,35 +14,26 @@ namespace Inkwave.WebAPI.Controllers
             _mediator = mediator;
         }
         [HttpPost()]
-        public async Task<ActionResult<Result<Guid>>> AddAddress(string street, string city, string building, string apartment, string markingPlace)
+        public async Task<ActionResult<Result<Guid>>> AddAddress(AddAddressCommand command)
+        {
+            if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid userId) && userId == command.UserId)
+                return await _mediator.Send(command);
+            return Result<Guid>.Failure("Not Found");
+        }
+        [HttpPost()]
+        [Route("SetDefault/{id}")]
+        public async Task<ActionResult<Result<Guid>>> SetDefault(Guid id)
         {
             if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid userId))
-                return await _mediator.Send(new AddAddressCommand
-                {
-                    UserId = userId,
-                    Street = street,
-                    City = city,
-                    Building = building,
-                    Apartment = apartment,
-                    MarkingPlace = markingPlace
-                });
+                return await _mediator.Send(new SetDefaultAddressCommand { Id = id, UserId = userId });
             return Result<Guid>.Failure("Not Found");
         }
 
         [HttpPut()]
-        public async Task<ActionResult<Result<Guid>>> UpdateAddress(Guid id, string street, string city, string building, string apartment, string markingPlace)
+        public async Task<ActionResult<Result<Guid>>> UpdateAddress(UpdateAddressCommand command)
         {
-            if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid userId))
-                return await _mediator.Send(new UpdateAddressCommand
-                {
-                    Id = id,
-                    UserId = userId,
-                    Street = street,
-                    City = city,
-                    Building = building,
-                    Apartment = apartment,
-                    MarkingPlace = markingPlace
-                });
+            if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid userId) && userId == command.UserId)
+                return await _mediator.Send(command);
             return Result<Guid>.Failure("Not Found");
         }
 
