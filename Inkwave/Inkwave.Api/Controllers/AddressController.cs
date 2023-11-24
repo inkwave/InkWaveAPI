@@ -28,7 +28,6 @@ namespace Inkwave.WebAPI.Controllers
                 return await _mediator.Send(new SetDefaultAddressCommand { Id = id, UserId = userId });
             return Result<Guid>.Failure("Not Found");
         }
-
         [HttpPut()]
         public async Task<ActionResult<Result<Guid>>> UpdateAddress(UpdateAddressCommand command)
         {
@@ -36,7 +35,6 @@ namespace Inkwave.WebAPI.Controllers
                 return await _mediator.Send(command);
             return Result<Guid>.Failure("Not Found");
         }
-
         [HttpGet()]
         public async Task<ActionResult<Result<List<GetAddressByUserIdDto>>>> GetAddressByUserId()
         {
@@ -47,6 +45,5 @@ namespace Inkwave.WebAPI.Controllers
                 });
             return Result<List<GetAddressByUserIdDto>>.Failure("Not Found");
         }
-
     }
 }

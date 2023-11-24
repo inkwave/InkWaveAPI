@@ -17,7 +17,7 @@ public class AddPrintingCommandHandler : IRequestHandler<AddPrintingCommand, Res
     public async Task<Result<Guid>> Handle(AddPrintingCommand command, CancellationToken cancellationToken)
     {
         var printing = await _printingRepository.CreatePrintingAsync(command.UserId, command.File, command.BindingOption, command.PrintingColor,
-          command.PaperSize, command.PaperType, command.PrintingLayou, command.PrintingSide,
+          command.PaperSize, command.PaperType, command.PrintingLayout, command.PrintingSide,
            command.CoverImage, command.CoverBgSize, command.CoverPositionX, command.CoverPositionY, command.CoverRepeat, command.CoverZoom);
         var result = await _iunitOfWork.Save(cancellationToken);
         if (result > 0)

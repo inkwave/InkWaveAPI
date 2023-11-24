@@ -1,5 +1,4 @@
-﻿using Inkwave.Application.Common;
-using Inkwave.Application.Interfaces;
+﻿using Inkwave.Application.Interfaces;
 using Inkwave.Application.Interfaces.Repositories;
 using Inkwave.Domain.Authentication;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +21,7 @@ namespace Inkwave.Application.Features.Users.Commands.LoginUser
             if (entity == null)
                 return await Result<AuthResult>.FailureAsync("not found");
 
-            if (!PasswordSecurity.VeryfypasswordHash(command.Password, entity.passwordHash, entity.passwordSalt))
+            if (!entity.VerifyPassword(command.Password))
                 return await Result<AuthResult>.FailureAsync("email or password failuer");
 
             var token = jwtProvider.GenerateToken(entity);

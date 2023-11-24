@@ -54,8 +54,8 @@
         }
         public void SetDefaultAddres(List<Address> otherAddresses)
         {
-            this.IsDefault = true;
             otherAddresses.ForEach(x => x.IsDefault = false);
+            this.IsDefault = true;
         }
 
     }

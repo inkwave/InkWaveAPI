@@ -26,7 +26,7 @@ public class User : BaseAuditableEntity
     public string ActiveCode { get; set; } = string.Empty;
     public bool Active { get; set; } = false;
 
-    public static User CreateUser(string fname, string lname, string email, string phone, string gender, byte[] passwordHash, byte[] passwordSalt)
+    public static User CreateUser(string fname, string lname, string email, string phone, string gender, string password)
     {
         User user = new User()
         {
@@ -34,13 +34,28 @@ public class User : BaseAuditableEntity
             LastName = lname,
             Email = email,
             Phone = phone,
-            Gender = gender,
-            passwordHash = passwordHash,
-            passwordSalt = passwordSalt
+            Gender = gender
         };
+        user.CreatePassword(password);
         user.CreatActiveCode();
         user.AddDomainEvent(new SendActiveCodeEvent(user.Email, user.ActiveCode));
         return user;
+    }
+    public void CreatePassword(string password)
+    {
+        PasswordSecurity.CreatePassword(password, out byte[] _passwordHash, out byte[] _passwordSalt);
+        this.passwordSalt = _passwordSalt;
+        this.passwordHash = _passwordHash;
+    }
+    public bool VerifyPassword(string password)
+    {
+        return PasswordSecurity.VerifyPasswordHash(password, passwordHash, passwordSalt);
+    }
+    public void ChangePassword(string oldPassword, string newPassword)
+    {
+        if (VerifyPassword(oldPassword))
+            CreatePassword(newPassword);
+        this.AddDomainEvent(new ChangePasswordEvent(this));
     }
     public User CreatActiveCode()
     {
@@ -73,6 +88,7 @@ public class User : BaseAuditableEntity
         this.PhotoUrl = photoUrl;
         return this;
     }
+
 
 }
 public class Claims : BaseEntity

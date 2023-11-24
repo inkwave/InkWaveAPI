@@ -1,4 +1,5 @@
-﻿using Inkwave.Application.Features.Users.Commands.DeleteUser;
+﻿using Inkwave.Application.Features.Users.Commands.ChangePassword;
+using Inkwave.Application.Features.Users.Commands.DeleteUser;
 using Inkwave.Application.Features.Users.Commands.UpdateUser;
 using Inkwave.Application.Features.Users.Commands.UpdateUserPhoto;
 using Inkwave.Application.Features.Users.Queries.GetUsersWithPagination;
@@ -53,7 +54,14 @@ namespace Inkwave.WebAPI.Controllers
             return BadRequest(errorMessages);
         }
 
-
+        [HttpPost()]
+        [Route("ChangePassword")]
+        public async Task<ActionResult<Result<bool>>> ChangePassword(ChangePasswordCommand command)
+        {
+            if (Guid.TryParse(this.User.Claims.First(i => i.Type == ClaimName.UserId).Value, out Guid UserId) && (UserId == command.UserId))
+                return await _mediator.Send(command);
+            return Result<bool>.Failure("Not Found");
+        }
 
         [HttpPut()]
         public async Task<ActionResult<Result<Guid>>> Update(UpdateUserCommand command)

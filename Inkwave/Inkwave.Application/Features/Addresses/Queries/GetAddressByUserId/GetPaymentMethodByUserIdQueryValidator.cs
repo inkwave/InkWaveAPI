@@ -1,14 +1,13 @@
 ﻿using FluentValidation;
 
-namespace Inkwave.Application.Features.Addresses.Queries.GetAddressByUserId
+namespace Inkwave.Application.Features.Addresses.Queries.GetAddressByUserId;
+
+public class GetAddressByUserIdQueryValidator : AbstractValidator<GetAddressByUserIdQuery>
 {
-    public class GetAddressByUserIdQueryValidator : AbstractValidator<GetAddressByUserIdQuery>
+    public GetAddressByUserIdQueryValidator()
     {
-        public GetAddressByUserIdQueryValidator()
-        {
-            RuleFor(x => x.UserId).NotEmpty().WithMessage("UserId is required.");
-        }
-
-
+        RuleFor(x => x.UserId).NotEmpty().WithMessage("UserId is required.");
     }
+
+
 }

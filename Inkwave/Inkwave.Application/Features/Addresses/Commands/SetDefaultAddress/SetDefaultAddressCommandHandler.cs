@@ -2,7 +2,7 @@
 
 namespace Inkwave.Application.Features.Addresses.Commands.SetDefaultAddress;
 
-internal class SetDefaultAddressCommandHandler : IRequestHandler<SetDefaultAddressCommand, Result<Guid>>
+public class SetDefaultAddressCommandHandler : IRequestHandler<SetDefaultAddressCommand, Result<Guid>>
 {
     private readonly IUnitOfWork unitOfWork;
     private readonly IAddressRepository AddressRepository;
@@ -16,7 +16,6 @@ internal class SetDefaultAddressCommandHandler : IRequestHandler<SetDefaultAddre
     public async Task<Result<Guid>> Handle(SetDefaultAddressCommand command, CancellationToken cancellationToken)
     {
         await AddressRepository.UpdateDefaultAddres(command.Id, command.UserId);
-        await unitOfWork.Save(cancellationToken);
         var result = await unitOfWork.Save(cancellationToken);
         if (result > 0)
             return await Result<Guid>.SuccessAsync(command.Id, "Updated Address.");

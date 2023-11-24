@@ -1,5 +1,4 @@
-﻿using Inkwave.Application.Common;
-using Inkwave.Application.Interfaces.Repositories;
+﻿using Inkwave.Application.Interfaces.Repositories;
 
 namespace Inkwave.Application.Features.Users.Commands.CreateUser
 {
@@ -17,8 +16,7 @@ namespace Inkwave.Application.Features.Users.Commands.CreateUser
 
         public async Task<Result<Guid>> Handle(CreateUserCommand command, CancellationToken cancellationToken)
         {
-            PasswordSecurity.CreatePassword(command.Password, out byte[] passwordHash, out byte[] passwordSalt);
-            var user = User.CreateUser(command.FirstName, command.LastName, command.Email, command.Phone, command.Gender, passwordHash, passwordSalt);
+            var user = User.CreateUser(command.FirstName, command.LastName, command.Email, command.Phone, command.Gender, command.Password);
 
             await _userRepository.AddAsync(user);
             await _unitOfWork.Save(cancellationToken);
