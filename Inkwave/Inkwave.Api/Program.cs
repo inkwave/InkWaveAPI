@@ -1,6 +1,8 @@
 using Inkwave.Application.Extensions;
+using Inkwave.Application.Interfaces;
 using Inkwave.Infrastructure.Extensions;
 using Inkwave.Persistence.Extensions;
+using Inkwave.WebAPI;
 using Inkwave.WebAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplicationLayer();
 builder.Services.AddInfrastructureLayer();
 builder.Services.AddPersistenceLayer(builder.Configuration);
+builder.Services.AddScoped<IFileHandler, FileHandler>();
+builder.Services.AddScoped<IFileWriter, FileWriter>();
 
 
 builder.Services.AddControllers();

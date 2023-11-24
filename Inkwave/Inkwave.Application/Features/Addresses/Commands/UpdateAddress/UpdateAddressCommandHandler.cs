@@ -15,7 +15,7 @@ namespace Inkwave.Application.Features.Addresses.Commands.UpdateAddress
 
         public async Task<Result<Guid>> Handle(UpdateAddressCommand request, CancellationToken cancellationToken)
         {
-            await AddressRepository.UpdateAddress(request.Id, request.UserId, request.Name, request.Governorate, request.Street, request.City, request.District, request.Building, request.ZipCode, request.Apartment, request.MarkingPlace);
+            await AddressRepository.UpdateAddress(request.Id, request.UserId, request.Name, request.Country, request.Governorate, request.Street, request.City, request.District, request.Building, request.ZipCode, request.Apartment, request.MarkingPlace);
             await unitOfWork.Save(cancellationToken);
             var result = await unitOfWork.Save(cancellationToken);
             if (result > 0)

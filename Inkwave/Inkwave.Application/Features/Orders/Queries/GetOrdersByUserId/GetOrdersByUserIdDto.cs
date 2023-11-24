@@ -15,6 +15,7 @@ public class GetOrdersByUserIdDto : IMapFrom<Order>
     public double TotalTax { get; set; }
     public double TotalNet { get; set; }
     public DateTime? CanceledAt { get; set; }
+    public DateTime? CreatedDate { get; set; }
     public IReadOnlyCollection<OrderLineDto> Items { get; init; }
     private class Mapping : Profile
     {

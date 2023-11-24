@@ -9,7 +9,8 @@ namespace Inkwave.Application.Features.PaymentMethods.Commands.AddPaymentMethod
             RuleFor(p => p.CardNumber)
                     .NotEmpty().WithMessage("{PropertyName} is required.")
                     .NotNull()
-                    .CreditCard();
+                .MinimumLength(16).WithMessage("{PropertyName} must not minimum 16 characters.")
+                .MaximumLength(19).WithMessage("{PropertyName} must not maximum 19 characters.");
 
             RuleFor(p => p.CardMonth)
                 .NotEmpty().WithMessage("{PropertyName} is required.")

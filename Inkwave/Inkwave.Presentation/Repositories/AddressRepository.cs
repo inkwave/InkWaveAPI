@@ -13,9 +13,9 @@ namespace Inkwave.Persistence.Repositories
             this.genericRepository = genericRepository;
         }
 
-        public async Task<Address> CreateAddressAsync(Guid userId, string name, string governorate, string street, string city, string district, string building, string zipCode, string apartment, string markingPlace)
+        public async Task<Address> CreateAddressAsync(Guid userId, string name, string country, string governorate, string street, string city, string district, string building, string zipCode, string apartment, string markingPlace)
         {
-            var model = Address.Create(userId, name, governorate, street, city, district, building, zipCode, apartment, markingPlace);
+            var model = Address.Create(userId, name, country, governorate, street, city, district, building, zipCode, apartment, markingPlace);
             await genericRepository.AddAsync(model);
             return model;
         }
@@ -30,10 +30,10 @@ namespace Inkwave.Persistence.Repositories
             return genericRepository.GetByIdAsync(id);
         }
 
-        public async Task UpdateAddress(Guid id, Guid userId, string name, string governorate, string street, string city, string district, string building, string zipCode, string apartment, string markingPlace)
+        public async Task UpdateAddress(Guid id, Guid userId, string name, string country, string governorate, string street, string city, string district, string building, string zipCode, string apartment, string markingPlace)
         {
             var model = await genericRepository.GetByIdAsync(id);
-            model.Update(userId, name, governorate, street, city, district, building, zipCode, apartment, markingPlace);
+            model.Update(userId, name, country, governorate, street, city, district, building, zipCode, apartment, markingPlace);
             await genericRepository.UpdateAsync(model);
         }
 

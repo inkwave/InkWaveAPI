@@ -13,6 +13,7 @@ public class ApplicationDbContext : DbContext
     }
 
     public DbSet<User> Users => Set<User>();
+    public DbSet<Printing> Prints => Set<Printing>();
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<Item> Items => Set<Item>();
     public DbSet<SubDescription> SubDescriptions => Set<SubDescription>();
@@ -32,6 +33,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Favourite>().HasIndex(c => c.UserId);
         modelBuilder.Entity<Cart>().HasIndex(c => c.UserId);
         modelBuilder.Entity<Order>().HasIndex(c => c.CustomerId);
+        modelBuilder.Entity<Printing>().HasIndex(c => c.UserId);
     }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

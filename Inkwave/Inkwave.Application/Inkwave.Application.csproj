@@ -22,6 +22,7 @@
 	<ItemGroup>
 		<Folder Include="Features\Items\Commands\" />
 		<Folder Include="Features\Orders\Events\" />
+		<Folder Include="Features\Prints\Queries\GetAllPrinting\" />
 		<Folder Include="Features\Users\Queries\RefreshToken\" />
 	</ItemGroup>
 

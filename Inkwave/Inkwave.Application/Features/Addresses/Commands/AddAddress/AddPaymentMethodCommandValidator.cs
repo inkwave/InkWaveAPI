@@ -6,6 +6,11 @@ namespace Inkwave.Application.Features.Addresses.Commands.AddAddress
     {
         public AddAddressCommandValidator()
         {
+            RuleFor(p => p.Country)
+                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .NotNull()
+                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters.");
+
             RuleFor(p => p.Apartment)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()

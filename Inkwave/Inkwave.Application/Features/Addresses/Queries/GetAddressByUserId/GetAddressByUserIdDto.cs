@@ -2,7 +2,9 @@
 {
     public class GetAddressByUserIdDto : IMapFrom<Address>
     {
+        public Guid Id { get; set; }
         public Guid UserId { get; set; }
+        public string Country { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public string Governorate { get; set; } = string.Empty;
         public string City { get; set; } = string.Empty;
