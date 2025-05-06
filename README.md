@@ -1,64 +1,128 @@
-![image](https://github.com/user-attachments/assets/73a4fd64-053c-4ac0-9688-a8ac665c6f80)# Overview
+# Overview
 This document provides a comprehensive introduction to the InkWaveAPI, a robust e-commerce platform built with ASP.NET Core that implements a clean architecture approach. The InkWaveAPI serves as the backend system for managing various aspects of an online store, including payments, orders, user management, and product catalogs.
 
 For specific implementation details about the payment system, which is the most critical component of the application, see Payment System.
 
-🧭The InkWaveAPI is designed to provide a scalable, maintainable backend for an e-commerce platform with the following primary capabilities:
+## System Purpose and Scope
+The InkWaveAPI is designed to provide a scalable, maintainable backend for an e-commerce platform with the following primary capabilities:
+- Payment processing and management
+- User authentication and account management
+- Order creation and processing
+- Item and category management
+- Shopping cart functionality
+- Address management
+- Favorites management
+- Printing service management
+- 
+## 🏗️ Architecture Overview
+InkWaveAPI follows a clean architecture approach with clearly defined boundaries between layers. This design promotes separation of concerns, maintainability, testability, and enables independent evolution of each layer.
 
-Payment processing and management
-User authentication and account management
-Order creation and processing
-Item and category management
-Shopping cart functionality
-Address management
-Favorites management
-Printing service management
-Sources: 
-Inkwave/Inkwave.Presentation/Contexts/ApplicationDbContext.cs 
-🏗️ Architecture Overview
-InkWaveAPI follows a clean architecture pattern with clear separation of concerns across multiple layers:
 
-Presentation Layer: Exposes API endpoints (e.g., PaymentController)
 
-Application Layer: Contains business logic and implements the CQRS pattern using MediatR
-
-Domain Layer: Defines core entities and their relationships
-
-Infrastructure Layer: Handles data access and integrates with SQL Server
 ![image](https://github.com/user-attachments/assets/aae196b6-e6c5-44f0-941b-70cbac345aa3)
-Core Business Systems
-The application consists of several interconnected business systems:
 
-![image](https://github.com/user-attachments/assets/cf3694fd-7945-4ef2-b37a-b567680b4b08)
-Key Entity Relationships
-The system consists of multiple entities with complex relationships:
-| Entity   | Relationships                       | Purpose                            |
-| -------- | ----------------------------------- | ---------------------------------- | 
-| User     | Orders, Addresses, Favorites, Carts | Core user account information      |
-| Order    | User, OrderLines, Address, Payment  | Manages customer orders            |
-| Item     | Categories, SubDescriptions         | Product information                |
-| Payment  | Order, PaymentMethod                | Handles payment processing         |
-| Address  | User                                | Manages shipping/billing addresses |
-| Category | Items                               | Organizes products                 |
-| Cart     | User, Items                         | Manages shopping carts             |
-| Favorite | User, Items                         | Tracks user favorite items         |
-| Printing | User                                | Custom printing service            |
 
-CQRS Implementation
-The system implements the Command Query Responsibility Segregation (CQRS) pattern using MediatR:
-![image](https://github.com/user-attachments/assets/b85ca48b-8609-4ed1-8c42-7dc31a850695)
-🔧 Technology Stack
-The InkWaveAPI is built using the following key technologies:
+## Core Architectural Layers
+### API Layer
 
-ASP.NET Core 7.0: Primary framework for building the API
-Entity Framework Core: ORM for database access
-MediatR: For implementing CQRS pattern
-AutoMapper: For object-to-object mapping
-FluentValidation: For input validation
-SQL Server: Database platform
+The API layer consists of controllers that handle HTTP requests and serve as the entry point to the application. Controllers use the Mediator pattern to dispatch commands and queries to their respective handlers.
+Example controller from the codebase:
 
-#Payment System
-Overview
+
+![image](https://github.com/user-attachments/assets/d4e2fce1-1e91-4b42-9e2a-371191155ede)
+
+### Application Layer
+The Application layer implements the Command Query Responsibility Segregation (CQRS) pattern, separating read operations (Queries) from write operations (Commands). This layer contains:
+1- **Commands**: Request objects representing actions that change state
+2- **Queries**: Request objects for retrieving data
+3- **Handlers**: Process commands and queries, coordinating with domain entities and repositories
+4- **Validators**: Ensure commands and queries contain valid data
+5- **DTOs**: Data Transfer Objects that shape the data returned to clients
+![image](https://github.com/user-attachments/assets/d273408b-21d4-4f5a-bc6e-37e63872e06b)
+### Domain Layer
+The Domain layer contains the core business logic and entities that represent the business concepts. It includes:
+1- **Entities**: Core business objects with identity and lifecycle
+2- **Value Objects**: Immutable objects that have no identity
+3- **Domain Events**: Notifications of significant changes within the domain
+4- **Domain Interfaces**: Abstractions for repositories and services
+![image](https://github.com/user-attachments/assets/10afae5a-9c58-4a4e-986c-0de6e4e63f36)
+### Infrastructure Layer
+The Infrastructure layer provides implementations of interfaces defined in the Domain and Application layers. It includes:
+
+1- **DbContext**: Manages database connections and entity relationships
+2- **Repositories**: Implement data access logic
+3- **Unit of Work**: Manages transactions and ensures atomic operations
+4- **External Services**: Implementations of third-party service integrations
+![image](https://github.com/user-attachments/assets/d16ca62c-2b3d-47b0-947c-c3f39d491df5)
+## Design Patterns Implementation
+### Repository Pattern
+The Repository pattern abstracts data access logic from the rest of the application. InkWaveAPI implements a generic repository base class and specific repositories for each domain entity.
+![image](https://github.com/user-attachments/assets/30621723-c402-46da-9db0-b43d7aed8371)
+## Unit of Work Pattern
+The Unit of Work pattern ensures that all repository operations are part of a single transaction, maintaining data consistency.
+![image](https://github.com/user-attachments/assets/a8dd5989-9ca6-45bb-a87b-d6dca5c06176)
+## CQRS Pattern
+The Command Query Responsibility Segregation pattern separates read operations from write operations. This pattern is implemented using MediatR.
+![image](https://github.com/user-attachments/assets/b6053c1c-d1d8-4521-9be2-034b030520b8)
+## Request Flow
+The following diagram illustrates how a typical request flows through the system:
+![image](https://github.com/user-attachments/assets/646be95e-40e9-475f-96de-d535f7a0b1a8)
+## Database Schema
+The ApplicationDbContext manages the following entity relationships:
+![image](https://github.com/user-attachments/assets/f4b049a5-c5f2-439b-9d62-6893ab5c161b)
+## Cross-Cutting Concerns
+### Domain Events
+The system uses domain events to notify other parts of the application when significant changes occur. These events are intercepted by the PublishDominEventInterceptor.
+![image](https://github.com/user-attachments/assets/cdb8219e-e007-446e-afcb-11033ccfbbab)
+## Dependency Injection
+Services are registered using extension methods on IServiceCollection:
+![image](https://github.com/user-attachments/assets/7f3c05e4-af3e-47d4-819d-d847609ea018)
+
+# 🔧 Technology Stack
+The InkWaveAPI technology stack follows modern best practices for building scalable, maintainable, and testable applications.
+![image](https://github.com/user-attachments/assets/14be877a-7896-4558-ac6c-40d982051962)
+## Primary Libraries and Technologies
+### API and Application Layer
+| Technology        | Version   | Purpose                                         |
+|-------------------|-----------|-------------------------------------------------|
+| **ASP.NET Core**  | 7.0       | Web API framework                               |
+| **MediatR**       | (Implied) | Mediator pattern implementation for CQRS        |
+| **AutoMapper**    | 12.0.1    | Object-to-object mapping                        |
+| **FluentValidation** | 11.8.0 | Validation library                              |
+### Data Access and Persistence
+
+| Technology        | Version   | Purpose                                         |
+|-------------------|-----------|-------------------------------------------------|
+| **Entity Framework Core**  | 7.0       | Object-Relational Mapper (ORM)                             |
+
+### Authentication and Security
+| Technology           | Purpose                                         |
+|-------------------|-------------------------------------------------|
+| **JWT Authentication**  | Token-based authentication                               |
+| **JwtBearer**  |  JWT token validation and processing                              |
+### Communication Services
+| Technology           | Purpose                                         |
+|-------------------|-------------------------------------------------|
+| **SMTP Client**  | 	Email sending functionality                               |
+
+## CQRS Implementation with MediatR
+The InkWaveAPI implements the Command Query Responsibility Segregation (CQRS) pattern using MediatR as the mediator library.
+![image](https://github.com/user-attachments/assets/a7b8be2e-b0ff-4843-b367-15ff10a26fb4)
+
+## JWT Authentication Flow
+The authentication system uses JWT tokens for secure API access.
+![image](https://github.com/user-attachments/assets/1241ce60-5169-43a8-9e2d-11fcef843a02)
+## Email Service Integration
+![image](https://github.com/user-attachments/assets/755c79bc-14e6-454f-ad49-033d661419cb)
+## Dependency Injection Configuration
+The application uses ASP.NET Core's built-in dependency injection container to register and resolve services throughout the application.
+![image](https://github.com/user-attachments/assets/0a66ceab-55c4-4f43-84c9-6d8c94690974)
+
+
+
+
+# Payment System
+## Overview
 The Payment System is a critical component of the InkWaveAPI that handles all payment-related operations within the application. This system manages both payment transactions and payment methods for users, providing a comprehensive solution for processing and tracking financial transactions.
 
 The system is designed to handle:
@@ -68,13 +132,13 @@ Payment method management (credit/debit cards)
 Payment status tracking
 Secure storage of payment information
 For information about the Order processing that triggers payments, see Order System.
-System Architecture
-Domain Model Diagram
+## System Architecture
+### Domain Model Diagram
 ![image](https://github.com/user-attachments/assets/5fb70118-3500-470a-b3c0-0161c3b6c1be)
-System Interaction Flow
+### System Interaction Flow
 ![image](https://github.com/user-attachments/assets/9d556022-f84f-4104-86a0-114d834c3761)
-Payment Processing Components
-Payment Entity
+## Payment Processing Components
+### Payment Entity
 The Payment class is the core domain entity that represents a payment transaction in the system:
 | Property       | Type           | Description                                                                 |
 |----------------|----------------|-----------------------------------------------------------------------------|
